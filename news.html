@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Campus Life &amp; Updates – Bal Vikas Senior Secondary School</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<script src="../js/main.js"></script>
+<body>
+<div class="topbar">
+  <div class="container d-flex justify-content-between flex-wrap gap-2">
+    <span><i class="fas fa-phone-alt me-1"></i><a href="tel:+919783318862">+91 9783318862</a><span class="mx-2 opacity-25">|</span><a href="tel:+919887295816">+91 9887295816</a></span>
+    <span><i class="fas fa-envelope me-1"></i><a href="mailto:bvpsnayla@gmail.com">bvpsnayla@gmail.com</a><span class="mx-2 opacity-25 d-none d-md-inline">|</span><span class="d-none d-md-inline"><i class="fas fa-map-marker-alt me-1"></i>Sar Ki Dhani, Nayla, Jaipur – 303012</span></span>
+  </div>
+</div>
+<div class="ticker-bar">
+  <div class="container d-flex align-items-center">
+    <div class="tlbl"><i class="fas fa-bullhorn me-1"></i>Notice</div>
+    <div class="tinner"><div class="ttrack">
+      <span>Annual Sports Day – March 15, 2025</span>
+      <span>Admissions Open for Session 2025-26</span>
+      <span>Class 10 &amp; 12 Board Exam Schedule Released</span>
+      <span>Parent-Teacher Meeting – Feb 28th</span>
+      <span>Republic Day Celebration Highlights</span>
+      <span>Annual Sports Day – March 15, 2025</span>
+      <span>Admissions Open for Session 2025-26</span>
+      <span>Class 10 &amp; 12 Board Exam Schedule Released</span>
+      <span>Parent-Teacher Meeting – Feb 28th</span>
+      <span>Republic Day Celebration Highlights</span>
+    </div></div>
+  </div>
+</div>
+<nav class="main-nav navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="logo-ring"><i class="fas fa-graduation-cap"></i></div>
+      <div class="brand-text"><span class="sname">Bal Vikas Senior Secondary School</span><span class="ssub">RBSE Affiliated &nbsp;·&nbsp; Est. 2000 &nbsp;·&nbsp; Classes I–XII</span></div>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav1"><i class="fas fa-bars" style="color:var(--navy)"></i></button>
+    <div class="collapse navbar-collapse" id="nav1"><ul class="navbar-nav ms-auto align-items-lg-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="about.html">About</a></li><li class="nav-item"><a class="nav-link" href="#">Academics</a></li><li class="nav-item"><a class="nav-link active" href="news.html">News</a></li><li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li><li class="nav-item ms-lg-2"><a class="nav-link nav-cta" href="admissions.html">Admissions</a></li></ul></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:78px 0 68px">
+  <div class="container hi">
+    <div class="hbc fu mb-3"><a href="index.html">Home</a> &rsaquo; <span>News &amp; Updates</span></div>
+    <div class="h-pill fu"><i class="fas fa-newspaper me-2"></i>Latest from BVPS</div>
+    <h1 class="fu d1">Campus Life &amp; <em>Updates</em></h1>
+    <p class="sub fu d2">Stay connected with everything happening at Bal Vikas Senior Secondary School — from academic milestones to sports victories and cultural celebrations.</p>
+    <div class="row g-3 fu d3" style="max-width:560px;margin-top:8px">
+      <div class="col-6 col-sm-3"><div class="h-stat"><span class="n">25+</span><span class="l">Years</span></div></div>
+      <div class="col-6 col-sm-3"><div class="h-stat"><span class="n">I–XII</span><span class="l">Classes</span></div></div>
+      <div class="col-6 col-sm-3"><div class="h-stat"><span class="n">RBSE</span><span class="l">Affiliated</span></div></div>
+      <div class="col-6 col-sm-3"><div class="h-stat"><span class="n">100%</span><span class="l">Growth</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-sec">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--navy);margin-bottom:3px">School <span style="color:var(--blue)">News</span></h2>
+        <div style="width:50px;height:4px;background:linear-gradient(90deg,var(--navy),var(--gold));border-radius:2px"></div>
+      </div>
+      <div class="filter-group">
+        <button class="fbtn active" onclick="filterNews('all',this)">All Updates</button>
+        <button class="fbtn" onclick="filterNews('Academic',this)"><i class="fas fa-book-open"></i>Academic</button>
+        <button class="fbtn" onclick="filterNews('Sports',this)"><i class="fas fa-running"></i>Sports</button>
+        <button class="fbtn" onclick="filterNews('Events',this)"><i class="fas fa-calendar-alt"></i>Events</button>
+        <button class="fbtn" onclick="filterNews('Achievement',this)"><i class="fas fa-trophy"></i>Achievement</button>
+        <button class="fbtn" onclick="filterNews('Cultural',this)"><i class="fas fa-music"></i>Cultural</button>
+        <button class="fbtn" onclick="filterNews('Notice',this)"><i class="fas fa-bell"></i>Notice</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS GRID + SIDEBAR -->
+<section class="news-sec">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- MAIN GRID -->
+      <div class="col-lg-8">
+        <div class="row g-4" id="newsGrid">
+
+          <div class="col-md-6 n-item fu d1" data-cat="Academic">
+            <div class="n-card">
+              <div class="n-img"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80" alt="Class"><div class="date-badge"><span class="day">18</span><span class="mon">Feb</span></div><span class="cat-tag ct-ac">Academic</span></div>
+              <div class="n-body"><h3>Class 10 &amp; 12 Board Exam Preparation Tips from Our Faculty</h3><p>Our experienced teachers share a comprehensive guide to help students ace RBSE board exams with proven strategies and time management.</p><a href="#" class="rm-btn">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 n-item fu d2" data-cat="Sports">
+            <div class="n-card">
+              <div class="n-img"><img src="https://images.unsplash.com/photo-1521731978332-9e9e714bdd20?w=600&q=80" alt="Sports"><div class="date-badge"><span class="day">15</span><span class="mon">Mar</span></div><span class="cat-tag ct-sp">Sports</span></div>
+              <div class="n-body"><h3>Annual Sports Day 2025 – Mark Your Calendars!</h3><p>BVPS is all set to host its Annual Sports Day. Students will compete in track events, kabaddi, cricket, and traditional Rajasthani games.</p><a href="#" class="rm-btn">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 n-item fu d3" data-cat="Achievement">
+            <div class="n-card">
+              <div class="n-img"><img src="https://images.unsplash.com/photo-1627556704302-624286467c65?w=600&q=80" alt="Achievement"><div class="date-badge"><span class="day">10</span><span class="mon">Feb</span></div><span class="cat-tag ct-ach">Achievement</span></div>
+              <div class="n-body"><h3>BVPS Students Secure Top Ranks in District Science Olympiad</h3><p>Three Class 9 students brought glory to the school winning gold, silver, and bronze medals at the District-Level Science Olympiad in Jaipur.</p><a href="#" class="rm-btn">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 n-item fu d1" data-cat="Events">
+            <div class="n-card">
+              <div class="n-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Republic Day"><div class="date-badge"><span class="day">26</span><span class="mon">Jan</span></div><span class="cat-tag ct-ev">Events</span></div>
+              <div class="n-body"><h3>Republic Day Celebrations at BVPS – Pride &amp; Patriotism</h3><p>Students, teachers, and parents gathered for a vibrant Republic Day celebration featuring flag hoisting, march-past, and cultural performances.</p><a href="#" class="rm-btn">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 n-item fu d2" data-cat="Cultural">
+            <div class="n-card">
+              <div class="n-img"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="Cultural"><div class="date-badge"><span class="day">05</span><span class="mon">Feb</span></div><span class="cat-tag ct-cu">Cultural</span></div>
+              <div class="n-body"><h3>Annual Cultural Fest "Rang Utsav" Dazzles Students &amp; Parents</h3><p>The school came alive with folk dances, drama, music and art exhibitions as students showcased their creative talents at the annual festival.</p><a href="#" class="rm-btn">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 n-item fu d3" data-cat="Notice">
+            <div class="n-card">
+              <div class="n-img"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="Admissions"><div class="date-badge"><span class="day">01</span><span class="mon">Mar</span></div><span class="cat-tag ct-nt">Notice</span></div>
+              <div class="n-body"><h3>Admissions Open for Academic Session 2025–26 (Classes I–XII)</h3><p>Bal Vikas Senior Secondary School invites applications for admissions from Class I to Class XII for the upcoming session. Limited seats available.</p><a href="admissions.html" class="rm-btn">Apply Now <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 n-item fu d1" data-cat="Academic">
+            <div class="n-card">
+              <div class="n-img"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80" alt="PTM"><div class="date-badge"><span class="day">28</span><span class="mon">Feb</span></div><span class="cat-tag ct-ac">Academic</span></div>
+              <div class="n-body"><h3>Parent-Teacher Meeting Scheduled for February 28th</h3><p>All parents are cordially invited to attend the PTM to discuss their ward's academic progress, attendance and upcoming examinations.</p><a href="#" class="rm-btn">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 n-item fu d2" data-cat="Sports">
+            <div class="n-card">
+              <div class="n-img"><img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80" alt="Cricket"><div class="date-badge"><span class="day">22</span><span class="mon">Jan</span></div><span class="cat-tag ct-sp">Sports</span></div>
+              <div class="n-body"><h3>BVPS Cricket Team Wins Inter-School Tournament in Nayla</h3><p>Our school's under-17 cricket team clinched the championship trophy at the Inter-School Cricket Tournament defeating 8 schools from Jaipur district.</p><a href="#" class="rm-btn">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 n-item fu d3" data-cat="Events">
+            <div class="n-card">
+              <div class="n-img"><img src="https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=600&q=80" alt="Workshop"><div class="date-badge"><span class="day">12</span><span class="mon">Jan</span></div><span class="cat-tag ct-ev">Events</span></div>
+              <div class="n-body"><h3>Career Guidance Workshop for Class 10 &amp; 12 Students</h3><p>Renowned career counsellors visited BVPS to help senior students explore higher education options, entrance exams and career pathways.</p><a href="#" class="rm-btn">Read More <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="col-lg-4">
+
+        <div class="sidebar-widget fu d1">
+          <div class="sw-title"><i class="fas fa-clock"></i>Recent Updates</div>
+          <div class="recent-item">
+            <div class="ri-img"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=200&q=80" alt="Recent"></div>
+            <div class="ri-info"><h6>Class 10 &amp; 12 Board Exam Preparation Tips</h6><span>18 Feb 2025 · Academic</span></div>
+          </div>
+          <div class="recent-item">
+            <div class="ri-img"><img src="https://images.unsplash.com/photo-1521731978332-9e9e714bdd20?w=200&q=80" alt="Recent"></div>
+            <div class="ri-info"><h6>Annual Sports Day 2025 – Mark Calendars!</h6><span>15 Mar 2025 · Sports</span></div>
+          </div>
+          <div class="recent-item">
+            <div class="ri-img"><img src="https://images.unsplash.com/photo-1627556704302-624286467c65?w=200&q=80" alt="Recent"></div>
+            <div class="ri-info"><h6>Students Secure Top Ranks in Science Olympiad</h6><span>10 Feb 2025 · Achievement</span></div>
+          </div>
+          <div class="recent-item">
+            <div class="ri-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=200&q=80" alt="Recent"></div>
+            <div class="ri-info"><h6>Republic Day Celebration at BVPS 2025</h6><span>26 Jan 2025 · Events</span></div>
+          </div>
+        </div>
+
+        <div class="sidebar-widget fu d2">
+          <div class="sw-title"><i class="fas fa-bullhorn"></i>Notices &amp; Circulars</div>
+          <div class="notice-item"><div class="ni-dot"></div><div><div class="ni-text">Admissions Open for Session 2025-26</div><div class="ni-date">01 Mar 2025</div></div></div>
+          <div class="notice-item"><div class="ni-dot"></div><div><div class="ni-text">Annual Sports Day on March 15, 2025</div><div class="ni-date">28 Feb 2025</div></div></div>
+          <div class="notice-item"><div class="ni-dot"></div><div><div class="ni-text">Parent-Teacher Meeting – Feb 28th</div><div class="ni-date">22 Feb 2025</div></div></div>
+          <div class="notice-item"><div class="ni-dot"></div><div><div class="ni-text">Board Exam Schedule Released for Class 10 &amp; 12</div><div class="ni-date">15 Feb 2025</div></div></div>
+          <div class="notice-item"><div class="ni-dot"></div><div><div class="ni-text">Half-Yearly Results Declared – Check Now</div><div class="ni-date">10 Feb 2025</div></div></div>
+        </div>
+
+        <div class="sidebar-widget fu d3" style="background:linear-gradient(135deg,var(--navy),var(--blue));border-color:transparent">
+          <h5 style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:10px">Ready to Apply?</h5>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:18px">Admissions open for 2025-26. Limited seats available. Apply today!</p>
+          <a href="admissions.html" class="btn-g" style="width:100%;justify-content:center;font-size:.84rem"><i class="fas fa-paper-plane"></i>Apply Now</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGINATION -->
+<div class="pag-sec">
+  <div class="container d-flex justify-content-center">
+    <nav><ul class="pagination">
+      <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">4</a></li>
+      <li class="page-item"><a class="page-link" href="#">...</a></li>
+      <li class="page-item"><a class="page-link" href="#">8</a></li>
+      <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+    </ul></nav>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="fb"><i class="fas fa-graduation-cap me-2" style="color:var(--gold)"></i>Bal Vikas Sr. Sec. School</div>
+        <p style="font-size:.83rem;line-height:1.75;margin-bottom:16px">"A Great Place to Learn" — Committed to quality education with strong moral values, discipline, and holistic development since 2000.</p>
+        <div class="sbar"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div>
+      </div>
+      <div class="col-lg-2 col-md-4">
+        <div class="fh">Quick Links</div>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-angle-right me-1"></i>Home</a></li>
+          <li><a href="about.html"><i class="fas fa-angle-right me-1"></i>About BVPS</a></li>
+          <li><a href="#"><i class="fas fa-angle-right me-1"></i>Academics</a></li>
+          <li><a href="admissions.html"><i class="fas fa-angle-right me-1"></i>Admissions</a></li>
+          <li><a href="news.html"><i class="fas fa-angle-right me-1"></i>News &amp; Updates</a></li>
+          <li><a href="gallery.html"><i class="fas fa-angle-right me-1"></i>Gallery</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <div class="fh">Our Features</div>
+        <ul>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Experienced Faculty</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Value-Based Education</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Safe &amp; Disciplined Campus</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Academic Excellence</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Co-Curricular Activities</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Personality Development</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <div class="fh">Contact Info</div>
+        <div class="fc"><i class="fas fa-map-marker-alt"></i><span>Sar Ki Dhani, Nayla, District Jaipur (Rajasthan) – 303012</span></div>
+        <div class="fc"><i class="fas fa-phone-alt"></i><span><a href="tel:+919783318862" style="color:inherit">+91 9783318862</a><br><a href="tel:+919887295816" style="color:inherit">+91 9887295816</a></span></div>
+        <div class="fc"><i class="fas fa-envelope"></i><span><a href="mailto:bvpsnayla@gmail.com" style="color:inherit">bvpsnayla@gmail.com</a></span></div>
+        <div class="fc"><i class="fas fa-university"></i><span>RBSE Affiliated | Est. 2000</span></div>
+        <div class="fc"><i class="fas fa-clock"></i><span>Mon–Sat: 9:00 AM – 4:00 PM</span></div>
+      </div>
+    </div>
+    <hr>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2" style="font-size:.77rem;color:rgba(255,255,255,.32)">
+      <span>© 2025 Bal Vikas Senior Secondary School, Nayla, Jaipur. All Rights Reserved.</span>
+      <span><em style="color:var(--glt)">"A Great Place to Learn"</em></span>
+    </div>
+  </div>
+</footer>
+</body></html>

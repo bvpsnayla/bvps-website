@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admissions 2025-26 - Bal Vikas Senior Secondary School</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<script src="../js/main.js"></script>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container d-flex justify-content-between flex-wrap gap-2">
+    <span><i class="fas fa-phone-alt me-1"></i><a href="tel:+919783318862">+91 9783318862</a><span class="mx-2 opacity-25">|</span><a href="tel:+919887295816">+91 9887295816</a></span>
+    <span><i class="fas fa-envelope me-1"></i><a href="mailto:bvpsnayla@gmail.com">bvpsnayla@gmail.com</a><span class="mx-2 opacity-25 d-none d-md-inline">|</span><span class="d-none d-md-inline"><i class="fas fa-map-marker-alt me-1"></i>Sar Ki Dhani, Nayla, Jaipur - 303012</span></span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="main-nav navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <div class="logo-ring"><i class="fas fa-graduation-cap"></i></div>
+      <div class="brand-text">
+        <span class="sname">Bal Vikas Senior Secondary School</span>
+        <span class="ssub">RBSE Affiliated &nbsp; Est. 2000 &nbsp; Classes I-XII</span>
+      </div>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav1"><i class="fas fa-bars" style="color:var(--navy)"></i></button>
+    <div class="collapse navbar-collapse" id="nav1">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Academics</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">News</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">Admissions</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+        <li class="nav-item ms-lg-2"><a class="nav-link nav-cta" href="#inquiry">Enquire Now</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <nav style="font-size:.79rem;color:rgba(255,255,255,.5);margin-bottom:11px"><a href="#" style="color:rgba(255,255,255,.6);text-decoration:none">Home</a><span class="mx-2">&rsaquo;</span><span style="color:var(--gold-light)">Admissions</span></nav>
+        <div class="hero-pill fade-up"><i class="fas fa-star" style="font-size:.64rem"></i>Admissions Open 2025-26</div>
+        <h1 class="fade-up d1">Join the<br><em>BVPS Family</em></h1>
+        <p class="fade-up d2">Nurturing young minds with quality education, strong values, and holistic development. Give your child the best foundation at BVPS, Nayla.</p>
+        <div class="d-flex gap-3 flex-wrap fade-up d3">
+          <a href="#process" class="btn-gold"><i class="fas fa-paper-plane"></i> Apply Now</a>
+          <a href="#" class="btn-outline"><i class="fas fa-download"></i> Download Prospectus</a>
+        </div>
+      </div>
+      <div class="col-lg-6 fade-up d2">
+        <div class="hero-card">
+          <div class="session-badge"><i class="fas fa-calendar-check me-2"></i>Session 2025-26</div>
+          <div class="stat-row">
+            <div class="stat-box"><span class="num">25+</span><span class="lbl">Years of Excellence</span></div>
+            <div class="stat-box"><span class="num">I-XII</span><span class="lbl">Classes Offered</span></div>
+            <div class="stat-box"><span class="num">RBSE</span><span class="lbl">Affiliated Board</span></div>
+            <div class="stat-box"><span class="num">100%</span><span class="lbl">Holistic Growth</span></div>
+          </div>
+          <div class="deadline-box mt-3">
+            <div class="dlabel"><i class="fas fa-clock me-1"></i>Admission Deadline</div>
+            <div class="ddate">31st March 2025</div>
+            <div style="font-size:.74rem;color:rgba(255,255,255,.55);margin-top:2px">Limited seats - Apply early</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW TO APPLY (with OFFLINE/ONLINE toggle) ===== -->
+<section class="process-section" id="process">
+  <div class="container">
+
+    <div class="sec-header fade-up">
+      <div class="sec-eyebrow"><i class="fas fa-route me-2"></i>How to Apply</div>
+      <h2 class="sec-title">Simple <span>Admission</span> Process</h2>
+      <div class="sec-line"></div>
+      <p class="sec-sub">Choose how you would like to apply - visit us in person or complete the form online.</p>
+    </div>
+
+    <!-- TOGGLE -->
+    <div class="toggle-wrap fade-up d1">
+      <div class="toggle-track">
+        <div class="toggle-slider" id="tSlider"></div>
+        <button class="toggle-btn active" id="btnOff" onclick="switchMode('offline')">
+          <i class="fas fa-building"></i> Offline Application
+        </button>
+        <button class="toggle-btn" id="btnOn" onclick="switchMode('online')">
+          <i class="fas fa-globe"></i> Online Application
+        </button>
+      </div>
+      <p class="toggle-hint" id="tHint">Visit school office with your documents</p>
+    </div>
+
+    <!-- ───── OFFLINE SECTION ───── -->
+    <div id="offlineSection">
+      <div class="timeline-wrap fade-up d1">
+        <div class="timeline-step">
+          <div class="step-circle"><i class="fas fa-comments"></i><div class="step-num">Step 01</div></div>
+          <h4 class="step-title">Inquiry</h4>
+          <p class="step-desc">Visit school or call us to learn about programs, fees, and facilities.</p>
+          <span class="step-tag">Contact Us</span>
+        </div>
+        <div class="timeline-step">
+          <div class="step-circle"><i class="fas fa-file-alt"></i><div class="step-num">Step 02</div></div>
+          <h4 class="step-title">Registration</h4>
+          <p class="step-desc">Collect form from school office, fill it and submit with documents.</p>
+          <span class="step-tag">Submit Form</span>
+        </div>
+        <div class="timeline-step">
+          <div class="step-circle"><i class="fas fa-user-check"></i><div class="step-num">Step 03</div></div>
+          <h4 class="step-title">Interaction</h4>
+          <p class="step-desc">Student and parent interaction session with the school principal.</p>
+          <span class="step-tag">Meet Principal</span>
+        </div>
+        <div class="timeline-step">
+          <div class="step-circle"><i class="fas fa-check-circle"></i><div class="step-num">Step 04</div></div>
+          <h4 class="step-title">Admission</h4>
+          <p class="step-desc">Complete fee payment and receive official admission confirmation.</p>
+          <span class="step-tag">Confirmed!</span>
+        </div>
+      </div>
+      <div class="offline-info-card fade-up d2">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-2 text-center"><div class="offline-icon"><i class="fas fa-school"></i></div></div>
+          <div class="col-md-7">
+            <h4 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:6px">Apply Offline at School Office</h4>
+            <p style="font-size:.87rem;color:var(--muted);margin:0;line-height:1.65">Collect the admission form from the school reception. Bring original documents and two sets of photocopies. Office is open <strong>Monday to Saturday, 9:00 AM - 4:00 PM</strong>.</p>
+            <div class="d-flex gap-3 flex-wrap mt-3">
+              <a href="tel:+919783318862" class="offline-contact-btn"><i class="fas fa-phone-alt"></i> +91 9783318862</a>
+              <a href="tel:+919887295816" class="offline-contact-btn"><i class="fas fa-phone-alt"></i> +91 9887295816</a>
+              <a href="mailto:bvpsnayla@gmail.com" class="offline-contact-btn"><i class="fas fa-envelope"></i> bvpsnayla@gmail.com</a>
+            </div>
+          </div>
+          <div class="col-md-3 text-center">
+            <a href="#" class="btn-gold" style="width:100%;justify-content:center;font-size:.83rem"><i class="fas fa-download"></i> Download Form PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── ONLINE SECTION ───── -->
+    <div id="onlineSection" style="display:none">
+
+      <!-- Online steps -->
+      <div class="timeline-wrap fade-up d1">
+        <div class="timeline-step">
+          <div class="step-circle" style="border-color:var(--accent)"><i class="fas fa-globe" style="color:var(--accent)"></i><div class="step-num">Step 01</div></div>
+          <h4 class="step-title">Fill Form</h4>
+          <p class="step-desc">Complete the online application form with all required details below.</p>
+          <span class="step-tag blue">Fill Below</span>
+        </div>
+        <div class="timeline-step">
+          <div class="step-circle" style="border-color:var(--accent)"><i class="fas fa-cloud-upload-alt" style="color:var(--accent)"></i><div class="step-num">Step 02</div></div>
+          <h4 class="step-title">Upload Docs</h4>
+          <p class="step-desc">Upload scanned copies of all required certificates and photos.</p>
+          <span class="step-tag blue">Attach Files</span>
+        </div>
+        <div class="timeline-step">
+          <div class="step-circle" style="border-color:var(--accent)"><i class="fas fa-paper-plane" style="color:var(--accent)"></i><div class="step-num">Step 03</div></div>
+          <h4 class="step-title">Submit</h4>
+          <p class="step-desc">Submit form. Our team reviews and contacts you within 24-48 hours.</p>
+          <span class="step-tag blue">24-48 hrs</span>
+        </div>
+        <div class="timeline-step">
+          <div class="step-circle" style="border-color:var(--accent)"><i class="fas fa-check-double" style="color:var(--accent)"></i><div class="step-num">Step 04</div></div>
+          <h4 class="step-title">Confirm</h4>
+          <p class="step-desc">Visit school for interaction, pay fees and get admission confirmed.</p>
+          <span class="step-tag blue">Confirmed!</span>
+        </div>
+      </div>
+
+      <!-- ===== THE 5-STEP ONLINE FORM ===== -->
+      <form id="admissionForm" class="online-form-wrap" id="oFormWrap" novalidate>
+
+        <!-- Header -->
+        <div class="oform-header">
+          <div class="d-flex align-items-center gap-4 flex-wrap" style="position:relative;z-index:1">
+            <div class="oform-logo"><i class="fas fa-graduation-cap"></i></div>
+            <div>
+              <h3>Bal Vikas Senior Secondary School</h3>
+              <p>Online Admission Application Form - Session 2025-26</p>
+              <div class="d-flex gap-2 flex-wrap mt-2">
+                <span class="fbadge">RBSE Affiliated</span>
+                <span class="fbadge">Est. 2000</span>
+                <span class="fbadge gold">Classes I-XII</span>
+              </div>
+            </div>
+          </div>
+          <!-- Progress -->
+          <div class="prog-wrap mt-3">
+            <div class="prog-steps">
+              <div class="ps active" data-s="1"><span class="ps-num">1</span><span class="ps-lbl">Student Info</span></div>
+              <div class="ps" data-s="2"><span class="ps-num">2</span><span class="ps-lbl">Parent Info</span></div>
+              <div class="ps" data-s="3"><span class="ps-num">3</span><span class="ps-lbl">Additional</span></div>
+              <div class="ps" data-s="4"><span class="ps-num">4</span><span class="ps-lbl">Documents</span></div>
+              <div class="ps" data-s="5"><span class="ps-num">5</span><span class="ps-lbl">Declaration</span></div>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="progFill" style="width:20%"></div></div>
+          </div>
+        </div>
+
+        <!-- STEP 1: STUDENT INFO -->
+        <div class="step-panel active" id="sp1">
+          <div class="panel-header">
+            <div class="panel-icon"><i class="fas fa-user-graduate"></i></div>
+            <div><h4>Student Information</h4><p>Enter the student's personal and academic details accurately.</p></div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Student's Full Name <span class="req">*</span></label>
+              <div class="iw"><i class="fas fa-user ic"></i><input type="text" name="student_name" class="form-control" placeholder="As per birth certificate"></div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Date of Birth <span class="req">*</span></label>
+              <input type="date" name="dob" class="form-control">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Gender <span class="req">*</span></label>
+              <select name="gender" class="form-select"><option value="" disabled selected>Select</option><option>Male</option><option>Female</option><option>Other</option></select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Class Applying For <span class="req">*</span></label>
+              <select name="class_apply" class="form-select" required>
+                <option value="" disabled selected>Select class</option>
+                <option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option>
+                <option>Class VI</option><option>Class VII</option><option>Class VIII</option><option>Class IX</option><option>Class X</option>
+                <option>Class XI - Science</option><option>Class XI - Arts</option><option>Class XI - Commerce</option>
+                <option>Class XII - Science</option><option>Class XII - Arts</option><option>Class XII - Commerce</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Previous School Name</label>
+              <div class="iw"><i class="fas fa-school ic"></i><input type="text" class="form-control" placeholder="Last attended school (if any)"></div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Nationality <span class="req">*</span></label>
+              <div class="iw"><i class="fas fa-flag ic"></i><input type="text" class="form-control" value="Indian"></div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">State <span class="req">*</span></label>
+              <select class="form-select">
+                <option value="" disabled selected>Select State</option>
+                <option selected>Rajasthan</option><option>Uttar Pradesh</option><option>Madhya Pradesh</option>
+                <option>Gujarat</option><option>Haryana</option><option>Punjab</option><option>Delhi</option><option>Other</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">District <span class="req">*</span></label>
+              <div class="iw"><i class="fas fa-map ic"></i><input type="text" class="form-control" placeholder="e.g. Jaipur"></div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Block / Tehsil</label>
+              <div class="iw"><i class="fas fa-map-pin ic"></i><input type="text" class="form-control" placeholder="e.g. Chaksu"></div>
+            </div>
+            <div class="col-md-5">
+              <label class="form-label">Village / Locality <span class="req">*</span></label>
+              <div class="iw"><i class="fas fa-home ic"></i><input type="text" class="form-control" placeholder="Village or locality name"></div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Pin Code <span class="req">*</span></label>
+              <div class="iw"><i class="fas fa-hashtag ic"></i><input type="text" class="form-control" placeholder="303012" maxlength="6"></div>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Full Address <span class="req">*</span></label>
+              <textarea class="ta" rows="2" placeholder="House No., Street, Village, District, State..."></textarea>
+            </div>
+          </div>
+          <div class="snav"><div></div><button class="btn-next" onclick="goStep(2)">Next: Parent Information <i class="fas fa-arrow-right ms-1"></i></button></div>
+        </div>
+
+        <!-- STEP 2: PARENT INFO -->
+        <div class="step-panel" id="sp2">
+          <div class="panel-header">
+            <div class="panel-icon"><i class="fas fa-users"></i></div>
+            <div><h4>Parent / Guardian Information</h4><p>Details of the student's parents or legal guardian.</p></div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Father's Full Name <span class="req">*</span></label>
+              <div class="iw"><i class="fas fa-user-tie ic"></i><input type="text" name="father_name" class="form-control" placeholder="Father's full name" required></div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Mother's Full Name <span class="req">*</span></label>
+              <div class="iw"><i class="fas fa-user ic"></i><input type="text" name="mother_name" class="form-control" placeholder="Mother's full name" required></div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Mobile Number <span class="req">*</span></label>
+              <div class="iw"><i class="fas fa-mobile-alt ic"></i><input type="tel" name="mobile" class="form-control" placeholder="+91 XXXXX XXXXX" required></div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email Address</label>
+              <div class="iw"><i class="fas fa-envelope ic"></i><input type="email" class="form-control" placeholder="parent@email.com"></div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Father's Occupation <span class="req">*</span></label>
+              <select class="form-select">
+                <option value="" disabled selected>Select occupation</option>
+                <option>Government Employee</option><option>Private Employee</option>
+                <option>Self Employed / Business</option><option>Farmer</option>
+                <option>Daily Wage Worker</option><option>Other</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Mother's Occupation</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select occupation</option>
+                <option>Homemaker</option><option>Government Employee</option>
+                <option>Private Employee</option><option>Self Employed / Business</option>
+                <option>Teacher</option><option>Other</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Annual Family Income <span class="req">*</span></label>
+              <select class="form-select">
+                <option value="" disabled selected>Select range</option>
+                <option>Below Rs. 1,00,000</option><option>Rs. 1,00,000 - Rs. 2,00,000</option>
+                <option>Rs. 2,00,001 - Rs. 3,00,000</option><option>Rs. 3,00,001 - Rs. 5,00,000</option>
+                <option>Rs. 5,00,001 - Rs. 10,00,000</option><option>Above Rs. 10,00,000</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">WhatsApp Number (if different)</label>
+              <div class="iw"><i class="fab fa-whatsapp ic"></i><input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX"></div>
+            </div>
+          </div>
+          <div class="snav">
+            <button class="btn-back" onclick="goStep(1)"><i class="fas fa-arrow-left me-1"></i> Back</button>
+            <button class="btn-next" onclick="goStep(3)">Next: Additional Info <i class="fas fa-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <!-- STEP 3: ADDITIONAL INFO -->
+        <div class="step-panel" id="sp3">
+          <div class="panel-header">
+            <div class="panel-icon"><i class="fas fa-clipboard-list"></i></div>
+            <div><h4>Additional Information</h4><p>Help us understand your child better for a personalised experience.</p></div>
+          </div>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Does the student have any special needs or medical conditions?</label>
+              <div class="d-flex gap-4 mt-2 mb-2">
+                <label class="r-opt"><input type="radio" name="sn" value="no" checked onchange="toggleSN(this)"> No, none</label>
+                <label class="r-opt"><input type="radio" name="sn" value="yes" onchange="toggleSN(this)"> Yes, please specify</label>
+              </div>
+              <textarea class="ta" id="snText" rows="2" placeholder="Describe any medical conditions, physical challenges, learning disabilities, allergies, or medications..." style="display:none"></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Extra-Curricular Interests <span style="color:var(--muted);font-weight:400">(Select all that apply)</span></label>
+              <div class="interests-grid mt-2">
+                <label class="ic-chip"><input type="checkbox"><span>Cricket</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Athletics</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Football</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Kabaddi</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Music</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Drama</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Art &amp; Craft</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Dance</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Science Club</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Mathematics</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Reading</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Chess</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Painting</span></label>
+                <label class="ic-chip"><input type="checkbox"><span>Yoga</span></label>
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="form-label">How did you hear about BVPS?</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select source</option>
+                <option>Word of Mouth / Friends &amp; Family</option><option>Social Media</option>
+                <option>Banner / Poster</option><option>Newspaper</option>
+                <option>Current BVPS Student</option><option>Online Search</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="snav">
+            <button class="btn-back" onclick="goStep(2)"><i class="fas fa-arrow-left me-1"></i> Back</button>
+            <button class="btn-next" onclick="goStep(4)">Next: Upload Documents <i class="fas fa-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <!-- STEP 4: DOCUMENTS -->
+        <div class="step-panel" id="sp4">
+          <div class="panel-header">
+            <div class="panel-icon"><i class="fas fa-paperclip"></i></div>
+            <div><h4>Document Upload</h4><p>Upload scanned copies or clear photos. Accepted formats: JPG, PNG, PDF (max 2 MB each).</p></div>
+          </div>
+          <div class="row g-4">
+            <!-- Photo -->
+            <div class="col-md-4">
+              <label class="form-label">Student Photo <span class="req">*</span></label>
+              <input type="file" name="photo" id="photoInput" accept="image/*" hidden>
+              <div class="photo-zone" id="photoZone" onclick="document.getElementById('photoInput').click()">
+                <i class="fas fa-user-circle pz-icon" id="photoIcon"></i>
+                <p>Click to Upload Photo</p>
+                <small>JPG or PNG only</small>
+                <span class="pz-badge">Mandatory</span>
+                <input type="file" id="photoInput" accept="image/*" hidden onchange="previewPhoto(this)">
+              </div>
+            </div>
+            <!-- Docs -->
+            <div class="col-md-8">
+              <label class="form-label">Required Documents</label>
+              <div class="d-flex flex-column gap-3">
+                <div class="doc-row" onclick="document.getElementById('bcFile').click()">
+                  <div class="doc-row-icon"><i class="fas fa-certificate"></i></div>
+                  <div class="doc-row-info"><strong>Birth Certificate <span class="req">*</span></strong><span>Municipal / Gram Panchayat issued</span></div>
+                  <div class="doc-status" id="bcSt"><i class="fas fa-cloud-upload-alt"></i> Upload</div>
+                  <input type="file" name="birth_certificate" id="bcFile" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                </div>
+                <div class="doc-row" onclick="document.getElementById('tcFile').click()">
+                  <div class="doc-row-icon"><i class="fas fa-file-signature"></i></div>
+                  <div class="doc-row-info"><strong>Transfer Certificate (TC)</strong><span>From previous school (if applicable)</span></div>
+                  <div class="doc-status" id="tcSt"><i class="fas fa-cloud-upload-alt"></i> Upload</div>
+                  <input type="file" name="tc" id="tcFile" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                </div>
+                <div class="doc-row" onclick="document.getElementById('msFile').click()">
+                  <div class="doc-row-icon"><i class="fas fa-scroll"></i></div>
+                  <div class="doc-row-info"><strong>Previous Marksheet / Report Card</strong><span>Last class result or progress report</span></div>
+                  <div class="doc-status" id="msSt"><i class="fas fa-cloud-upload-alt"></i> Upload</div>
+                  <input type="file" name="marksheet" id="msFile" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                </div>
+                <div class="doc-row" onclick="document.getElementById('otFile').click()">
+                  <div class="doc-row-icon"><i class="fas fa-folder-open"></i></div>
+                  <div class="doc-row-info"><strong>Other Documents</strong><span>Aadhaar card, caste certificate, etc. (optional)</span></div>
+                  <div class="doc-status" id="otSt"><i class="fas fa-cloud-upload-alt"></i> Upload</div>
+                  <input type="file" id="otFile" accept=".pdf,.jpg,.jpeg,.png" multiple hidden onchange="markDoc('otSt',this)">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="snav">
+            <button class="btn-back" onclick="goStep(3)"><i class="fas fa-arrow-left me-1"></i> Back</button>
+            <button class="btn-next" onclick="goStep(5)">Next: Declaration <i class="fas fa-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <!-- STEP 5: DECLARATION -->
+        <div class="step-panel" id="sp5">
+          <div class="panel-header">
+            <div class="panel-icon"><i class="fas fa-shield-alt"></i></div>
+            <div><h4>Declaration &amp; Submission</h4><p>Read and accept the declaration before submitting your application.</p></div>
+          </div>
+          <div class="review-box mb-3">
+            <h5><i class="fas fa-eye me-2" style="color:var(--accent)"></i>Application Review</h5>
+            <p style="font-size:.83rem;color:var(--muted);margin:0">Please verify all information before submission. You can go back to make corrections at any time.</p>
+          </div>
+          <div class="decl-box">
+            <h6 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:12px"><i class="fas fa-file-contract me-2" style="color:var(--gold)"></i>Declaration by Parent / Guardian</h6>
+            <p style="font-size:.83rem;line-height:1.8;color:var(--text)">I, the parent/guardian of the above-named student, hereby solemnly declare that:</p>
+            <ol style="font-size:.83rem;line-height:2;color:var(--text);padding-left:18px;margin-top:8px">
+              <li>All information provided in this application form is <strong>true, accurate, and complete</strong> to the best of my knowledge.</li>
+              <li>All documents uploaded are <strong>genuine and unaltered</strong>. I understand that submission of false documents will result in immediate cancellation of admission.</li>
+              <li>I have read and understood the school's <strong>rules, regulations, and fee structure</strong> and agree to abide by them.</li>
+              <li>I understand that <strong>admission is subject to seat availability</strong> and the school's discretion; submitting this form does not guarantee admission.</li>
+              <li>I consent to the school using the provided information for <strong>academic and administrative purposes only</strong>.</li>
+            </ol>
+          </div>
+          <div class="d-flex flex-column gap-3 mt-4">
+            <label class="dc"><input type="checkbox" id="dc1"> <span>I confirm that all information provided is <strong>true and accurate</strong>. <span class="req">*</span></span></label>
+            <label class="dc"><input type="checkbox" id="dc2"> <span>I have read and agree to the <a href="#" style="color:var(--accent)">School Rules &amp; Regulations</a> and <a href="#" style="color:var(--accent)">Admission Policy</a>. <span class="req">*</span></span></label>
+            <label class="dc"><input type="checkbox" id="dc3"> <span>I consent to the school contacting me via phone/email/WhatsApp regarding this application.</span></label>
+          </div>
+          <div class="snav mt-4">
+            <button class="btn-back" onclick="goStep(4)"><i class="fas fa-arrow-left me-1"></i> Back</button>
+            <button type="button" onclick="submitApp()">Submit</button>
+          </div>
+          <!-- Success -->
+          <div class="success-box" id="successBox" style="display:none">
+            <div class="si"><i class="fas fa-check-circle"></i></div>
+            <h4>Application Submitted Successfully!</h4>
+            <p>Thank you for applying to <strong>Bal Vikas Senior Secondary School</strong>. Our admissions team will review your application and contact you within <strong>24-48 working hours</strong>.</p>
+            <div class="success-ref">Reference ID: <strong>BVPS-2025-<span id="refNum"></span></strong></div>
+          </div>
+        </div>
+
+      </div><!-- end online-form-wrap -->
+    </div><!-- end onlineSection -->
+
+  </form>
+</section>
+
+<!-- AGE TABLE -->
+<section class="table-section" id="eligibility">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 fade-up">
+        <div class="sec-eyebrow"><i class="fas fa-birthday-cake me-2"></i>Age Criteria</div>
+        <h2 class="sec-title" style="text-align:left">Age <span>Eligibility</span><br>Requirements</h2>
+        <div class="sec-line" style="margin-left:0"></div>
+        <p class="sec-sub" style="text-align:left;max-width:100%;margin-left:0">As per RBSE guidelines, minimum age criteria apply for admission to each class. Age is calculated as of 1st April of the academic year.</p>
+        <div class="en-note"><i class="fas fa-info-circle" style="color:var(--gold);margin-right:8px"></i>Original birth certificate is mandatory for age verification at the time of admission.</div>
+      </div>
+      <div class="col-lg-7 fade-up d2">
+        <div class="table-responsive">
+          <table class="etable">
+            <thead><tr><th>Class</th><th>Min. Age</th><th>Max. Age</th><th>Category</th></tr></thead>
+            <tbody>
+              <tr><td><span class="cls-badge">Class I</span></td><td><span class="age-v">5</span> yrs</td><td><span class="age-v">7</span> yrs</td><td><span style="color:var(--accent);font-size:.8rem;font-weight:600">Primary</span></td></tr>
+              <tr><td><span class="cls-badge">Class II</span></td><td><span class="age-v">6</span> yrs</td><td><span class="age-v">8</span> yrs</td><td><span style="color:var(--accent);font-size:.8rem;font-weight:600">Primary</span></td></tr>
+              <tr><td><span class="cls-badge">Class III</span></td><td><span class="age-v">7</span> yrs</td><td><span class="age-v">9</span> yrs</td><td><span style="color:var(--accent);font-size:.8rem;font-weight:600">Primary</span></td></tr>
+              <tr><td><span class="cls-badge">Class IV</span></td><td><span class="age-v">8</span> yrs</td><td><span class="age-v">10</span> yrs</td><td><span style="color:var(--accent);font-size:.8rem;font-weight:600">Primary</span></td></tr>
+              <tr><td><span class="cls-badge">Class V</span></td><td><span class="age-v">9</span> yrs</td><td><span class="age-v">11</span> yrs</td><td><span style="color:var(--accent);font-size:.8rem;font-weight:600">Primary</span></td></tr>
+              <tr><td><span class="cls-badge">Class VI</span></td><td><span class="age-v">10</span> yrs</td><td><span class="age-v">12</span> yrs</td><td><span style="color:#16a34a;font-size:.8rem;font-weight:600">Middle</span></td></tr>
+              <tr><td><span class="cls-badge">Class VII</span></td><td><span class="age-v">11</span> yrs</td><td><span class="age-v">13</span> yrs</td><td><span style="color:#16a34a;font-size:.8rem;font-weight:600">Middle</span></td></tr>
+              <tr><td><span class="cls-badge">Class VIII</span></td><td><span class="age-v">12</span> yrs</td><td><span class="age-v">14</span> yrs</td><td><span style="color:#16a34a;font-size:.8rem;font-weight:600">Middle</span></td></tr>
+              <tr><td><span class="cls-badge">Class IX</span></td><td><span class="age-v">13</span> yrs</td><td><span class="age-v">15</span> yrs</td><td><span style="color:var(--gold);font-size:.8rem;font-weight:600">Secondary</span></td></tr>
+              <tr><td><span class="cls-badge">Class X</span></td><td><span class="age-v">14</span> yrs</td><td><span class="age-v">16</span> yrs</td><td><span style="color:var(--gold);font-size:.8rem;font-weight:600">Secondary</span></td></tr>
+              <tr><td><span class="cls-badge">Class XI</span></td><td><span class="age-v">15</span> yrs</td><td><span class="age-v">17</span> yrs</td><td><span style="color:#dc2626;font-size:.8rem;font-weight:600">Sr. Secondary</span></td></tr>
+              <tr><td><span class="cls-badge">Class XII</span></td><td><span class="age-v">16</span> yrs</td><td><span class="age-v">18</span> yrs</td><td><span style="color:#dc2626;font-size:.8rem;font-weight:600">Sr. Secondary</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section class="docs-section" id="documents">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-eyebrow"><i class="fas fa-folder-open me-2"></i>Documents Required</div>
+      <h2 class="sec-title">What to <span>Bring</span></h2>
+      <div class="sec-line"></div>
+      <p class="sec-sub">Carry original documents along with one set of self-attested photocopies at the time of admission.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 fade-up d1"><div class="doc-card"><div class="doc-icon-box"><i class="fas fa-certificate"></i></div><h4>Birth Certificate</h4><p>Municipal corporation issued birth certificate for age verification as per RBSE norms.</p><span class="doc-req">Mandatory</span></div></div>
+      <div class="col-lg-4 col-md-6 fade-up d2"><div class="doc-card"><div class="doc-icon-box"><i class="fas fa-file-signature"></i></div><h4>Transfer Certificate (TC)</h4><p>TC from previously attended school, duly signed by the head of institution (for Classes II-XII).</p><span class="doc-req">Mandatory</span></div></div>
+      <div class="col-lg-4 col-md-6 fade-up d3"><div class="doc-card"><div class="doc-icon-box"><i class="fas fa-scroll"></i></div><h4>Previous Marksheet</h4><p>Latest academic marksheet or progress report of the previous class cleared by the student.</p><span class="doc-req">Mandatory</span></div></div>
+      <div class="col-lg-4 col-md-6 fade-up d1"><div class="doc-card"><div class="doc-icon-box"><i class="fas fa-images"></i></div><h4>Passport Photographs</h4><p>Four recent passport-size colour photographs of the student with a white background.</p><span class="doc-req">Mandatory</span></div></div>
+      <div class="col-lg-4 col-md-6 fade-up d2"><div class="doc-card"><div class="doc-icon-box"><i class="fas fa-id-card"></i></div><h4>Aadhaar Card</h4><p>Student's and parent's Aadhaar card copy for identity verification and government records.</p><span class="doc-req">Mandatory</span></div></div>
+      <div class="col-lg-4 col-md-6 fade-up d3"><div class="doc-card"><div class="doc-icon-box"><i class="fas fa-home"></i></div><h4>Residence Proof</h4><p>Electricity bill, ration card, or any government-issued document for local address verification.</p><span class="doc-req" style="background:rgba(47,128,237,.12);color:var(--accent)">If Applicable</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK INQUIRY -->
+<section class="form-section" id="inquiry">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-eyebrow"><i class="fas fa-headset me-2"></i>Quick Contact</div>
+      <h2 class="sec-title">Have a <span>Question?</span></h2>
+      <div class="sec-line"></div>
+      <p class="sec-sub">Send a quick message and our admissions team will reach out within 24 hours. For full online application, see <a href="#process" style="color:var(--accent)">How to Apply</a> above.</p>
+    </div>
+    <div class="qcard fade-up d1">
+      <div class="row g-0">
+        <div class="col-lg-4">
+          <div class="qsidebar h-100">
+            <h3>Let's Build Your Child's Future Together</h3>
+            <p>Our admissions counsellors are available Monday to Saturday, 9 AM - 4 PM to assist you.</p>
+            <div class="qs-item"><div class="qi"><i class="fas fa-phone-alt"></i></div><div class="qt"><strong>Call Us</strong>+91 9783318862 / +91 9887295816</div></div>
+            <div class="qs-item"><div class="qi"><i class="fas fa-envelope"></i></div><div class="qt"><strong>Email Us</strong>bvpsnayla@gmail.com</div></div>
+            <div class="qs-item"><div class="qi"><i class="fas fa-map-marker-alt"></i></div><div class="qt"><strong>Visit Us</strong>Sar Ki Dhani, Nayla, Jaipur - 303012</div></div>
+            <div class="qs-item"><div class="qi"><i class="fas fa-clock"></i></div><div class="qt"><strong>Office Hours</strong>Mon-Sat: 9:00 AM - 4:00 PM</div></div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="qbody">
+            <h3>Quick Enquiry Form</h3>
+            <p class="qsub">All fields marked with * are required.</p>
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label">Student Name *</label><div class="iw"><i class="fas fa-user ic"></i><input type="text" class="form-control" placeholder="Student's name"></div></div>
+              <div class="col-md-6"><label class="form-label">Father's / Guardian's Name *</label><div class="iw"><i class="fas fa-user-tie ic"></i><input type="text" class="form-control" placeholder="Father's name"></div></div>
+              <div class="col-md-6">
+                <label class="form-label">Class Applied For *</label>
+                <select class="form-select">
+                  <option value="" disabled selected>Select class</option>
+                  <option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option>
+                  <option>Class VI</option><option>Class VII</option><option>Class VIII</option><option>Class IX</option><option>Class X</option>
+                  <option>Class XI - Science</option><option>Class XI - Arts</option><option>Class XI - Commerce</option>
+                  <option>Class XII - Science</option><option>Class XII - Arts</option><option>Class XII - Commerce</option>
+                </select>
+              </div>
+              <div class="col-md-6"><label class="form-label">Mobile Number *</label><div class="iw"><i class="fas fa-mobile-alt ic"></i><input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX"></div></div>
+              <div class="col-12"><label class="form-label">Message / Query (Optional)</label><textarea class="ta" rows="3" placeholder="Any questions about admission, fees, transport, facilities..."></textarea></div>
+              <div class="col-12"><button class="btn-qsubmit" id="qBtn"><i class="fas fa-paper-plane"></i> Send Enquiry</button><p class="pnote"><i class="fas fa-shield-alt"></i> Your information is safe and will never be shared with third parties.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-eyebrow"><i class="fas fa-question-circle me-2"></i>FAQs</div>
+      <h2 class="sec-title">Frequently Asked <span>Questions</span></h2>
+      <div class="sec-line"></div>
+      <p class="sec-sub">Got questions? We have answers. If you don't find what you're looking for, call us directly.</p>
+    </div>
+    <div class="faq-wrap fade-up d1">
+      <div class="accordion" id="faqAcc">
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#f1">What are the school fee details for the 2025-26 session?</button></h2><div id="f1" class="accordion-collapse collapse show" data-bs-parent="#faqAcc"><div class="accordion-body">The school fees vary by class level - Primary (I-V), Middle (VI-VIII), Secondary (IX-X), and Senior Secondary (XI-XII). Fees include tuition, activity, and development charges. Please contact our office at <strong>+91 9783318862</strong> or visit in person for the complete fee structure. We also have provisions for fee concessions for meritorious and economically weaker students.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">Does BVPS provide school transport / bus facility?</button></h2><div id="f2" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">Yes, BVPS provides safe and reliable school transport services covering Nayla and nearby villages and areas in Jaipur district. Transport fees depend on the distance from the school. Please contact the school office for bus route details and applicable charges.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">What are the school timing and working hours?</button></h2><div id="f3" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">School timings are <strong>Monday to Saturday, 7:30 AM - 2:00 PM</strong> (subject to seasonal adjustments). The school office is open from <strong>9:00 AM - 4:00 PM</strong>. School remains closed on Sundays and all government holidays declared by the Government of Rajasthan and RBSE.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f4">Which subjects / streams are offered in Class XI and XII?</button></h2><div id="f4" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">For Classes XI and XII, BVPS offers three streams: <strong>Science</strong> (Physics, Chemistry, Biology/Mathematics), <strong>Arts</strong> (Hindi, English, History, Geography, Political Science, Economics), and <strong>Commerce</strong> (Accountancy, Business Studies, Economics). Stream selection is made at the time of Class XI admission.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f5">What is the last date to apply for admission?</button></h2><div id="f5" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">For the 2025-26 academic session, the last date for submitting the admission form is <strong>31st March 2025</strong>. However, admissions are on a first-come, first-served basis and seats are limited. We strongly recommend applying as early as possible.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f6">Are there any co-curricular activities and sports programs?</button></h2><div id="f6" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">Absolutely! BVPS offers a wide range of co-curricular activities including <strong>Sports</strong> (Cricket, Kabaddi, Athletics), <strong>Cultural Activities</strong> (Drama, Dance, Music), <strong>Academic Clubs</strong> (Science, Maths, Literary), and <strong>Personality Development Programs</strong>. Annual Sports Day, Cultural Fest, and Science Exhibitions are hallmark events at BVPS.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-card fade-up">
+      <h2>Ready to Begin Your Child's Journey at BVPS?</h2>
+      <p>Seats are filling up fast for 2025-26. Contact us today or fill out the online form to take the first step.</p>
+      <div class="cta-btns">
+        <a href="#process" onclick="setTimeout(function(){switchMode('online')},100)" class="btn-gold"><i class="fas fa-paper-plane"></i> Apply Online Now</a>
+        <a href="tel:+919783318862" class="btn-outline"><i class="fas fa-phone-alt"></i> Call: +91 9783318862</a>
+        <a href="#" class="btn-outline"><i class="fas fa-download"></i> Download Prospectus</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="fb"><i class="fas fa-graduation-cap me-2" style="color:var(--gold)"></i>Bal Vikas Sr. Sec. School</div>
+        <p style="font-size:.82rem;line-height:1.75;margin-bottom:14px">"A Great Place to Learn" - Empowering students with quality education, strong moral values, and holistic development since 2000.</p>
+        <div class="sbar">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4">
+        <div class="fh">Quick Links</div>
+        <ul>
+          <li><a href="#"><i class="fas fa-angle-right me-1"></i>Home</a></li>
+          <li><a href="#"><i class="fas fa-angle-right me-1"></i>About BVPS</a></li>
+          <li><a href="#"><i class="fas fa-angle-right me-1"></i>Academics</a></li>
+          <li><a href="#"><i class="fas fa-angle-right me-1"></i>Admissions</a></li>
+          <li><a href="#"><i class="fas fa-angle-right me-1"></i>News &amp; Updates</a></li>
+          <li><a href="#"><i class="fas fa-angle-right me-1"></i>Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <div class="fh">Our Features</div>
+        <ul>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Experienced Faculty</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Value-Based Education</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Safe &amp; Disciplined Campus</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Academic Excellence</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Co-Curricular Activities</a></li>
+          <li><a href="#"><i class="fas fa-check me-2" style="color:var(--gold)"></i>Personality Development</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <div class="fh">Contact Info</div>
+        <div class="fc-row"><i class="fas fa-map-marker-alt"></i><span>Sar Ki Dhani, Nayla, District Jaipur (Rajasthan) - 303012</span></div>
+        <div class="fc-row"><i class="fas fa-phone-alt"></i><span><a href="tel:+919783318862" style="color:inherit">+91 9783318862</a><br><a href="tel:+919887295816" style="color:inherit">+91 9887295816</a></span></div>
+        <div class="fc-row"><i class="fas fa-envelope"></i><span><a href="mailto:bvpsnayla@gmail.com" style="color:inherit">bvpsnayla@gmail.com</a></span></div>
+        <div class="fc-row"><i class="fas fa-university"></i><span>RBSE Affiliated | Est. 2000</span></div>
+        <div class="fc-row"><i class="fas fa-clock"></i><span>Mon-Sat: 9:00 AM - 4:00 PM</span></div>
+      </div>
+    </div>
+    <hr>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2" style="font-size:.76rem;color:rgba(255,255,255,.32)">
+      <span>2025 Bal Vikas Senior Secondary School, Nayla, Jaipur. All Rights Reserved.</span>
+      <span><em style="color:var(--gold-light)">"A Great Place to Learn"</em></span>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
