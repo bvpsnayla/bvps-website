@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Gallery – Bal Vikas Senior Secondary School</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container d-flex justify-content-between flex-wrap gap-2">
+    <span><i class="fas fa-phone-alt me-1"></i><a href="tel:+919783318862">+91 9783318862</a><span class="mx-2 opacity-25">|</span><a href="tel:+919887295816">+91 9887295816</a></span>
+    <span><i class="fas fa-envelope me-1"></i><a href="mailto:bvpsnayla@gmail.com">bvpsnayla@gmail.com</a><span class="mx-2 opacity-25 d-none d-md-inline">|</span><span class="d-none d-md-inline"><i class="fas fa-map-marker-alt me-1"></i>Sar Ki Dhani, Nayla, Jaipur – 303012</span></span>
+  </div>
+</div>
+
+<nav class="main-nav navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="logo-ring"><i class="fas fa-graduation-cap"></i></div>
+      <div class="brand-text"><span class="sname">Bal Vikas Senior Secondary School</span><span class="ssub">RBSE Affiliated · Est. 2000 · Classes I–XII</span></div>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav1"><i class="fas fa-bars" style="color:var(--navy)"></i></button>
+    <div class="collapse navbar-collapse" id="nav1"><ul class="navbar-nav ms-auto align-items-lg-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="about.html">About</a></li><li class="nav-item"><a class="nav-link" href="academics.html">Academics</a></li><li class="nav-item"><a class="nav-link" href="faculties.html">Faculties</a></li><li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li><li class="nav-item"><a class="nav-link" href="news.html">News</a></li><li class="nav-item ms-lg-2"><a class="nav-link nav-cta" href="#inquiry">Admissions</a></li></ul></div>
+  </div>
+</nav>
+
+<section class="hero" style="padding:78px 0 68px">
+  <div class="container hi">
+    <div class="hbc fu mb-3"><a href="index.html">Home</a> › <span>Gallery</span></div>
+    <div class="h-pill fu"><i class="fas fa-camera me-2"></i>Moments at BVPS</div>
+    <h1 class="fu d1">Our <em>Gallery</em></h1>
+    <p class="sub fu d2">Glimpses of campus life, achievements, celebrations, and everyday moments that define the BVPS experience.</p>
+    <div class="row g-3 fu d3" style="max-width:520px;margin-top:8px">
+      <div class="col-6 col-sm-3"><div class="h-stat"><span class="n">100+</span><span class="l">Photos</span></div></div>
+      <div class="col-6 col-sm-3"><div class="h-stat"><span class="n">50+</span><span class="l">Events</span></div></div>
+      <div class="col-6 col-sm-3"><div class="h-stat"><span class="n">25+</span><span class="l">Years</span></div></div>
+      <div class="col-6 col-sm-3"><div class="h-stat"><span class="n">2025</span><span class="l">Session</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="g-stats">
+  <div class="container">
+    <div class="row text-center g-3">
+      <div class="col-6 col-md-3"><div class="gs-item"><div class="gs-num">500+</div><div class="gs-lbl">Photos Archived</div></div></div>
+      <div class="col-6 col-md-3"><div class="gs-item"><div class="gs-num">50+</div><div class="gs-lbl">Events Captured</div></div></div>
+      <div class="col-6 col-md-3"><div class="gs-item"><div class="gs-num">25</div><div class="gs-lbl">Years of Memories</div></div></div>
+      <div class="col-6 col-md-3"><div class="gs-item"><div class="gs-num">1000+</div><div class="gs-lbl">Happy Faces</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="gf-sec">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--navy);margin-bottom:3px">Photo <span style="color:var(--blue)">Gallery</span></h2>
+        <div style="width:50px;height:4px;background:linear-gradient(90deg,var(--navy),var(--gold));border-radius:2px"></div>
+      </div>
+      <div class="gf-group">
+        <button class="gfbtn active" onclick="filterGal('all',this)"><i class="fas fa-th"></i>All Photos</button>
+        <button class="gfbtn" onclick="filterGal('Events',this)"><i class="fas fa-calendar-alt"></i>Events</button>
+        <button class="gfbtn" onclick="filterGal('Sports',this)"><i class="fas fa-running"></i>Sports</button>
+        <button class="gfbtn" onclick="filterGal('Cultural',this)"><i class="fas fa-music"></i>Cultural</button>
+        <button class="gfbtn" onclick="filterGal('Academic',this)"><i class="fas fa-book-open"></i>Academic</button>
+        <button class="gfbtn" onclick="filterGal('Facilities',this)"><i class="fas fa-building"></i>Facilities</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="gallery-sec">
+  <div class="container">
+    <div class="g-grid" id="gGrid">
+      <div class="g-item fu d1" data-gcat="Events" onclick="openLightbox('assets/images/event1.jpg', 'School Event', 'Events')">
+        <img src="assets/images/event1.jpg" alt="Event">
+        <div class="g-overlay"><div class="g-caption"><h4>Annual School Event</h4><span><i class="fas fa-calendar"></i>January 2025</span></div></div>
+        <div class="g-cat gc-ev">Events</div>
+        <div class="g-zoom"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="g-item fu d2" data-gcat="Sports" onclick="openLightbox('assets/images/sports1.jpg', 'Sports Day', 'Sports')">
+        <img src="assets/images/sports1.jpg" alt="Sports">
+        <div class="g-overlay"><div class="g-caption"><h4>Annual Sports Day</h4><span><i class="fas fa-calendar"></i>March 2025</span></div></div>
+        <div class="g-cat gc-sp">Sports</div>
+        <div class="g-zoom"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="g-item fu d3" data-gcat="Academic" onclick="openLightbox('assets/images/academic1.jpg', 'Classroom Activity', 'Academic')">
+        <img src="assets/images/academic1.jpg" alt="Academic">
+        <div class="g-overlay"><div class="g-caption"><h4>Classroom Learning</h4><span><i class="fas fa-calendar"></i>February 2025</span></div></div>
+        <div class="g-cat gc-ac">Academic</div>
+        <div class="g-zoom"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="g-item fu d4" data-gcat="Cultural" onclick="openLightbox('assets/images/cultural1.jpg', 'Cultural Program', 'Cultural')">
+        <img src="assets/images/cultural1.jpg" alt="Cultural">
+        <div class="g-overlay"><div class="g-caption"><h4>Cultural Program</h4><span><i class="fas fa-calendar"></i>November 2024</span></div></div>
+        <div class="g-cat gc-cu">Cultural</div>
+        <div class="g-zoom"><i class="fas fa-search-plus"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row g-4 mb-4">
+      <div class="col-lg-4">
+        <div class="fb">Bal Vikas Senior Secondary School</div>
+        <div class="fh">Contact Info</div>
+        <div class="fc"><i class="fas fa-phone-alt"></i> +91 9783318862 / 9887295816</div>
+        <div class="fc"><i class="fas fa-envelope"></i> bvpsnayla@gmail.com</div>
+        <div class="fc"><i class="fas fa-map-marker-alt"></i> Sar Ki Dhani, Nayla, Jaipur – 303012</div>
+        <div class="sbar">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="fh">Quick Links</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="academics.html">Academics</a></li>
+          <li><a href="faculties.html">Faculties</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="fh">Programs</div>
+        <ul>
+          <li><a href="#">Primary (I-V)</a></li>
+          <li><a href="#">Middle (VI-VIII)</a></li>
+          <li><a href="#">Senior (IX-XII)</a></li>
+          <li><a href="#">Admissions</a></li>
+          <li><a href="#">News</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <div class="fh">Affiliation</div>
+        <ul>
+          <li><a href="#">RBSE Affiliation</a></li>
+          <li><a href="#">Board Info</a></li>
+          <li><a href="#">Exam Schedule</a></li>
+          <li><a href="#">Results</a></li>
+          <li><a href="#">Fee Structure</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="text-center" style="font-size:.78rem;color:rgba(255,255,255,.5)">
+      <p>&copy; 2025 Bal Vikas Senior Secondary School. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
