@@ -1690,11 +1690,15 @@ footer hr {
 }
 
 /* Hero logo card */
-.hero-logo-wrap{display:flex;align-items:center;justify-content:center; padding-top:40px}
-.hero-logo-outer{width:320px;height:320px;border-radius:50%;border:5px solid rgba(255,255,255,.15);padding:25px;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;position:relative}
-.hero-logo-outer::before{content:'';position:absolute;inset:-15px;border-radius:50%;border:2px dashed rgba(255,255,255,.1);animation:spin 40s linear infinite}
+.hero-logo-wrap{display:flex;align-items:center;justify-content:flex-end; padding-top:40px}
+.hero-logo-outer{width:320px;height:320px;border-radius:50%;border:5px solid rgba(255,255,255,.15);padding:25px;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;position:relative}
+.hero-logo-outer::before{content:'';position:absolute;inset:-15px;border-radius:50%;border:2px dashed rgba(255,255,255,.1);
+animation:spin 40s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.hero-logo-inner{width:100%;height:100%;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.hero-logo-inner{width:100%;height:100%;border-radius:50%;background:#fff;display:flex;align-items:center;
+  justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
 .hero-logo-inner img{max-height:180px;width:auto}
 
 @media(max-width:991px){
