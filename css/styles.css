@@ -3482,8 +3482,5 @@ hero-affil{
   transform: scale(1.1);
 }
 
-.line {
-  height: 2px;
-  background: linear-gradient(to right, transparent, rgb(211, 198, 18), transparent);
-  margin: 20px 0;
-}
+
+ /* margin: 20px 0;
