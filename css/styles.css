@@ -246,13 +246,12 @@ body {
 
 .hero::after {
   content: '';
-  display: none;
   position: absolute;
   bottom: -1px;
   left: 0;
   right: 0;
   height: 70px;
-  background: var(--owhite);
+  background: transparent;
   clip-path: ellipse(60% 100% at 50% 100%);
 }
 
