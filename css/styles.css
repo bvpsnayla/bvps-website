@@ -230,7 +230,7 @@ body {
 
 /* ─── HERO BASE ─── */
 .hero {
-  background: linear-gradient(135deg, #0f172a, #0ea5e9);
+  background: linear-gradient(135deg, var(--navy-dp) 0%, var(--navy) 45%, var(--blue) 100%);
   padding: 88px 0 78px;
   position: relative;
   overflow: hidden;
@@ -246,6 +246,7 @@ body {
 
 .hero::after {
   content: '';
+  display: none;
   position: absolute;
   bottom: -1px;
   left: 0;
