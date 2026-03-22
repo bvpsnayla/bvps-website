@@ -246,12 +246,13 @@ body {
 
 .hero::after {
   content: '';
+  display: none;
   position: absolute;
   bottom: -1px;
   left: 0;
   right: 0;
   height: 70px;
-  background: linear-gradient(to bottom, transparent, #0f172a);
+  background: transparent;
   clip-path: ellipse(60% 100% at 50% 100%);
 }
 
@@ -1115,7 +1116,7 @@ footer hr {
 }
 
 .flt-card {
-  background: var(--owhite);
+  background: transparent;
   border-radius: 18px;
   overflow: hidden;
   border: 1.5px solid var(--bdr);
