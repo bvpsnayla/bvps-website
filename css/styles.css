@@ -3484,6 +3484,6 @@ hero-affil{
 
 .line {
   height: 2px;
-  background: linear-gradient(to right, transparent, white, transparent);
+  background: linear-gradient(to right, transparent, rgb(211, 198, 18), transparent);
   margin: 20px 0;
 }
