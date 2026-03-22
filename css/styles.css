@@ -1711,7 +1711,7 @@ animation:spin 40s linear infinite}
 }
 @media(max-width:768px){
   .hero{padding:50px 0 75px;
-  display: none;}
+  display: block;}
   .hero-logo-wrap{margin-top:30px}
   .hero-logo-outer{width:220px;height:220px}
   .hero-logo-inner img{max-height:110px}
