@@ -229,6 +229,7 @@ body {
 }
 
 /* ─── HERO BASE ─── */
+/* ─── HERO BASE ─── */
 .hero {
   background: linear-gradient(135deg, var(--navy-dp) 0%, var(--navy) 45%, var(--blue) 100%);
   padding: 88px 0 78px;
@@ -245,14 +246,13 @@ body {
 }
 
 .hero::after {
-  content: 'none';
-  display: none;
+  content: '';
   position: absolute;
   bottom: -1px;
   left: 0;
   right: 0;
   height: 70px;
-  background: transparent;
+  background: var(--owhite);
   clip-path: ellipse(60% 100% at 50% 100%);
 }
 
@@ -1113,7 +1113,7 @@ footer hr {
 .faculty-sec {
   padding: 88px 0;
   background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 60%,rgba(47,128,237,.85) 100%);position:relative;overflow:hidden}
-
+}
 
 .flt-card {
   background: var(--owhite);
@@ -1694,7 +1694,7 @@ footer hr {
 .hero-logo-wrap{
   display:flex;
   align-items:center;
-  justify-content:flex-end;
+  justify-content:flex-end; ✅
 }
 .hero-logo-outer{width:320px;height:320px;border-radius:50%;border:5px solid rgba(255,255,255,.15); margin-left: auto; padding:25px;
 background:rgba(255,255,255,.06);
@@ -1713,8 +1713,8 @@ animation:spin 40s linear infinite}
 }
 @media(max-width:768px){
   .hero{padding:50px 0 75px;
-  display: block;}
-  .hero-logo-wrap{margin-top:30px; display: none;}
+  display: none;}
+  .hero-logo-wrap{margin-top:30px}
   .hero-logo-outer{width:220px;height:220px}
   .hero-logo-inner img{max-height:110px}
 }
