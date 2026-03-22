@@ -486,7 +486,7 @@ body {
   transition: all .25s;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 15px;
   font-family: 'DM Sans', sans-serif;
   text-decoration: none;
   box-shadow: 0 6px 22px rgba(217, 119, 6, .35);
@@ -1697,11 +1697,13 @@ footer hr {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  width: 100%;
 }
 
 .hero-logo-outer {
   width: 320px;
   height: 320px;
+  margin-left: auto;
   border-radius: 50%;
   border: 5px solid rgba(255, 255, 255, .15);
   padding: 25px;
