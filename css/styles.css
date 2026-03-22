@@ -534,7 +534,7 @@ body {
   transition: all .25s;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 15px;
   font-family: 'DM Sans', sans-serif;
   text-decoration: none;
 }
