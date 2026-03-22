@@ -1322,13 +1322,11 @@ footer hr {
   overflow: hidden;
 }
 
-.faculty-section::before,
 .marquee-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 70%,rgba(47,128,237,.2) 0%,transparent 50%)}
-}
+  background: radial-gradient(circle at 30% 70%,rgba(47,128,237,.08) 0%,transparent 50%)}
 
 .marquee-wrap {
   width: 100%;
@@ -1692,7 +1690,7 @@ footer hr {
 }
 
 /* Hero logo card */
-.hero-logo-wrap{display:flex;align-items:center;justify-content:center}
+.hero-logo-wrap{display:flex;align-items:center;justify-content:center; padding-top:40px}
 .hero-logo-outer{width:320px;height:320px;border-radius:50%;border:5px solid rgba(255,255,255,.15);padding:25px;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;position:relative}
 .hero-logo-outer::before{content:'';position:absolute;inset:-15px;border-radius:50%;border:2px dashed rgba(255,255,255,.1);animation:spin 40s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
