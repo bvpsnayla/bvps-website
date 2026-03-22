@@ -3484,6 +3484,7 @@ hero-affil{
 
 .line {
   height: 2px;
+  color: whitesmoke;
   background: linear-gradient(to right, transparent, white, transparent);
   margin: 20px 0;
 }
