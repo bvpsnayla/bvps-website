@@ -1689,35 +1689,31 @@ footer hr {
   pointer-events: none;
 }
 
+/* ===== HERO ===== */
+.hero{background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 45%,var(--accent) 100%);padding:100px 0 90px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(47,128,237,.25) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(217,119,6,.18) 0%,transparent 50%)}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--off-white);clip-path:ellipse(60% 100% at 50% 100%)}
+.hero-inner{position:relative;z-index:1}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:var(--gold-light);font-size:.73rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:24px;margin-bottom:22px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:900;color:#fff;line-height:1.12;margin-bottom:6px}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero .sanskrit{font-family:'Playfair Display',serif;font-size:1.3rem;color:rgba(255,255,255,.85);font-style:italic;margin-bottom:6px}
+.hero .tagline{color:rgba(255,255,255,.55);font-size:.95rem;font-weight:300;letter-spacing:.15em;margin-bottom:26px}
+.hero p.desc{color:rgba(255,255,255,.72);font-size:1.05rem;font-weight:300;max-width:540px;line-height:1.7;margin-bottom:32px}
+.btn-gold{background:var(--gold);color:#fff;font-weight:600;border:none;border-radius:12px;padding:14px 32px;font-size:.92rem;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:9px;font-family:'DM Sans',sans-serif;text-decoration:none}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);color:#fff;box-shadow:0 8px 25px rgba(217,119,6,.35)}
+.btn-outline-hero{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4);border-radius:12px;padding:12px 28px;font-size:.92rem;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:9px;font-family:'DM Sans',sans-serif;text-decoration:none}
+.btn-outline-hero:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.7);color:#fff}
+.hero-affil{color:rgba(255,255,255,.5);font-size:.82rem;font-weight:500;margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.15)}
+.hero-affil strong{color:rgba(255,255,255,.8)}
+ 
 /* Hero logo card */
-.hero-logo-wrap{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end; ✅
-}
-.hero-logo-outer{width:320px;height:320px;border-radius:50%;border:5px solid rgba(255,255,255,.15); margin-left: auto; padding:25px;
-background:rgba(255,255,255,.06);
-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;position:relative}
-.hero-logo-outer::before{content:'';position:absolute;inset:-15px;border-radius:50%;border:2px dashed rgba(255,255,255,.1);
-animation:spin 40s linear infinite}
+.hero-logo-wrap{display:flex;align-items:center;justify-content:center}
+.hero-logo-outer{width:320px;height:320px;border-radius:50%;border:5px solid rgba(255,255,255,.15);padding:25px;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;position:relative}
+.hero-logo-outer::before{content:'';position:absolute;inset:-15px;border-radius:50%;border:2px dashed rgba(255,255,255,.1);animation:spin 40s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.hero-logo-inner{width:100%;height:100%;border-radius:50%;background:#fff;display:flex;align-items:center;
-  justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.hero-logo-inner{width:100%;height:100%;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
 .hero-logo-inner img{max-height:180px;width:auto}
-
-@media(max-width:991px){
-  .hero{padding:65px 0 80px}
-  .hero-logo-outer{width:250px;height:250px}
-  .hero-logo-inner img{max-height:130px}
-}
-@media(max-width:768px){
-  .hero{padding:50px 0 75px;
-  display: none;}
-  .hero-logo-wrap{margin-top:30px}
-  .hero-logo-outer{width:220px;height:220px}
-  .hero-logo-inner img{max-height:110px}
-}
-
 
 /* ─── WHY CHOOSE ─── */
 .why-section {
