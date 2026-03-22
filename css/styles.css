@@ -3481,3 +3481,9 @@ hero-affil{
 .whatsapp-float img:hover {
   transform: scale(1.1);
 }
+
+.line {
+  height: 2px;
+  background: linear-gradient(to right, transparent, white, transparent);
+  margin: 20px 0;
+}
