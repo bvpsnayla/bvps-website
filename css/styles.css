@@ -1111,7 +1111,7 @@ footer hr {
 /* ─── FACULTY / STAFF SECTION ─── */
 .faculty-sec {
   padding: 88px 0;
-  background: #fff;
+  background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 60%,rgba(47,128,237,.85) 100%);position:relative;overflow:hidden}
 }
 
 .flt-card {
@@ -1327,7 +1327,7 @@ footer hr {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 70%, rgba(47, 128, 237, .2) 0%, transparent 50%);
+  background: radial-gradient(circle at 30% 70%,rgba(47,128,237,.2) 0%,transparent 50%)}
 }
 
 .marquee-wrap {
@@ -3439,6 +3439,7 @@ footer hr {
   .modal-header-bg { padding: 28px 28px 70px; }
   .modal-body-content { padding: 0 28px 28px; }
   .env-list { grid-template-columns: 1fr; }
+  .app-content{padding-left:0;margin-top:30px}
 }
 
 @media (max-width: 768px) {
@@ -3461,3 +3462,26 @@ footer hr {
 @media (max-width: 576px) {
   .vmc-row { grid-template-columns: 1fr; }
 }
+hero-affil{color:rgba(255,255,255,.5);font-size:.82rem;font-weight:500;margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.15)}
+.hero-affil strong{color:rgba(255,255,255,.8)}
+
+/* ===== APP SECTION ===== */
+.app-section{padding:80px 0;background:var(--off-white)}
+.app-content{padding-left:20px}
+.app-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.app-eyebrow .line{width:30px;height:3px;background:var(--accent);border-radius:2px}
+.app-eyebrow span{font-size:.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.12em}
+.app-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:var(--navy);line-height:1.25;margin-bottom:22px}
+.app-title span{color:var(--accent)}
+.app-features{display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
+.app-feat{display:flex;align-items:flex-start;gap:14px}
+.app-feat-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--accent));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(23,66,86,.2)}
+.app-feat-icon i{color:#fff;font-size:.9rem}
+.app-feat-text{font-size:.88rem;color:var(--text);font-weight:500;line-height:1.5}
+.app-feat-text span{display:block;font-size:.78rem;color:var(--muted);font-weight:400;margin-top:2px}
+.playstore-btn{display:inline-block;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:all .25s}
+.playstore-btn:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.playstore-btn img{height:56px;display:block}
+.app-phone-wrap{text-align:center;position:relative}
+.app-phone-wrap img{max-height:500px;width:auto;border-radius:24px;box-shadow:0 20px 60px rgba(23,66,86,.2);border:3px solid var(--border)}
+.app-phone-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(47,128,237,.15) 0%,transparent 70%);border-radius:50%;z-index:0;pointer-events:none}
