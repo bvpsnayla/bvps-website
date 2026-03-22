@@ -229,7 +229,6 @@ body {
 }
 
 /* ─── HERO BASE ─── */
-/* ─── HERO BASE ─── */
 .hero {
   background: linear-gradient(135deg, var(--navy-dp) 0%, var(--navy) 45%, var(--blue) 100%);
   padding: 88px 0 78px;
@@ -402,7 +401,6 @@ body {
   margin: 0 auto;
   line-height: 1.7;
 }
-
 .breadcrumb-nav {
   font-size: .79rem;
   color: rgba(255, 255, 255, .5);
