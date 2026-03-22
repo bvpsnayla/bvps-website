@@ -251,7 +251,7 @@ body {
   left: 0;
   right: 0;
   height: 70px;
-  background: transparent;
+  background: linear-gradient(to bottom, transparent, #0f172a);
   clip-path: ellipse(60% 100% at 50% 100%);
 }
 
