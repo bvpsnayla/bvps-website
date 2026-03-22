@@ -3485,3 +3485,21 @@ hero-affil{color:rgba(255,255,255,.5);font-size:.82rem;font-weight:500;margin-to
 .app-phone-wrap{text-align:center;position:relative}
 .app-phone-wrap img{max-height:500px;width:auto;border-radius:24px;box-shadow:0 20px 60px rgba(23,66,86,.2);border:3px solid var(--border)}
 .app-phone-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(47,128,237,.15) 0%,transparent 70%);border-radius:50%;z-index:0;pointer-events:none}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+/* Whatsapp floating button styles */
+.whatsapp-float img {
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.whatsapp-float img:hover {
+  transform: scale(1.1);
+}
