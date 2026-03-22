@@ -1116,7 +1116,7 @@ footer hr {
 }
 
 .flt-card {
-  background: transparent;
+  background: var(--owhite);
   border-radius: 18px;
   overflow: hidden;
   border: 1.5px solid var(--bdr);
@@ -1138,7 +1138,7 @@ footer hr {
   border: 3px solid var(--bdr);
   overflow: hidden;
   margin: 0 auto 16px;
-  background: #fff;
+  background: #d31010;
   transition: border-color .3s;
 }
 
