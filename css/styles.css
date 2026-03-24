@@ -474,6 +474,7 @@ body {
 /* ─── BUTTONS ─── */
 .btn-g,
 .btn-gold {
+  margin-right: 15px;
   background: var(--gold);
   color: #fff;
   font-weight: 600;
@@ -1111,7 +1112,7 @@ footer hr {
 .faculty-sec {
   padding: 88px 0;
   background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 60%,rgba(47,128,237,.85) 100%);position:relative;overflow:hidden}
-}
+
 
 .flt-card {
   background: var(--owhite);
@@ -1689,64 +1690,69 @@ footer hr {
 }
 
 /* Hero logo wrap and card alignment */
+/* Hero Section Layout */
+.hero-inner {
+  position: relative;
+  z-index: 5;
+}
+
+.hero .row {
+  display: flex;
+  width: 100%;
+}
+
+/* Logo Wrapper Fixed */
 .hero-logo-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end; /* Desktop par right side align karega */
-    align-items: center;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end; /* Force logo to the right edge */
+  align-items: center;
 }
 
 .hero-logo-outer {
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    border: 5px solid rgba(255, 255, 255, .15);
-    padding: 25px;
-    background: rgba(255, 255, 255, .06);
-    backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    /* margin-left hata dein kyunki flex isse handle kar raha hai */
-}
-
-.hero-logo-outer::before {
-    content: '';
-    position: absolute;
-    inset: -15px;
-    border-radius: 50%;
-    border: 2px dashed rgba(255, 255, 255, .1);
-    animation: spin 40s linear infinite;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.15);
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  /* margin-left ko yahan se hata diya gaya hai */
 }
 
 .hero-logo-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
-    overflow: hidden; /* Taki image circle ke baahar na jaaye */
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 }
 
 .hero-logo-inner img {
-    max-width: 80%; /* Logo size balance karne ke liye */
-    height: auto;
+  width: 85%; /* Logo size adjusted */
+  height: auto;
+  object-fit: contain;
 }
 
-/* Mobile Responsive Fixes */
+/* Responsive adjustments */
 @media (max-width: 991px) {
-    .hero-logo-wrap {
-        justify-content: center; /* Mobile/Tablet par center dikhega */
-        margin-top: 40px;
-    }
-    .hero-logo-outer {
-        width: 250px;
-        height: 250px;
-    }
+  .hero-logo-wrap {
+    justify-content: center; /* Mobile par center rahega */
+    margin-top: 40px;
+  }
+  .hero-logo-outer {
+    width: 260px;
+    height: 260px;
+  }
 }
 
 /* ─── WHY CHOOSE ─── */
