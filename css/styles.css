@@ -1688,34 +1688,66 @@ footer hr {
   pointer-events: none;
 }
 
-/* Hero logo card */
-.hero-logo-wrap{
-  position: absolute;
-  right: 0;
-}
-.hero-logo-outer{width:320px;height:320px;border-radius:50%;border:5px solid rgba(255,255,255,.15); margin-left: auto; padding:25px;
-background:rgba(255,255,255,.06);
-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;position:relative}
-.hero-logo-outer::before{content:'';position:absolute;inset:-15px;border-radius:50%;border:2px dashed rgba(255,255,255,.1);
-animation:spin 40s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.hero-logo-inner{width:100%;height:100%;border-radius:50%;background:#fff;display:flex;align-items:center;
-  justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
-.hero-logo-inner img{max-height:180px;width:auto}
-
-@media(max-width:991px){
-  .hero{padding:65px 0 80px}
-  .hero-logo-outer{width:250px;height:250px}
-  .hero-logo-inner img{max-height:130px}
-}
-@media(max-width:768px){
-  .hero{padding:50px 0 75px;
-  display: block;}
-  .hero-logo-wrap{margin-top:30px}
-  .hero-logo-outer{width:220px;height:220px}
-  .hero-logo-inner img{max-height:110px}
+/* Hero logo wrap and card alignment */
+.hero-logo-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Desktop par right side align karega */
+    align-items: center;
 }
 
+.hero-logo-outer {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, .15);
+    padding: 25px;
+    background: rgba(255, 255, 255, .06);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* margin-left hata dein kyunki flex isse handle kar raha hai */
+}
+
+.hero-logo-outer::before {
+    content: '';
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 255, 255, .1);
+    animation: spin 40s linear infinite;
+}
+
+.hero-logo-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+    overflow: hidden; /* Taki image circle ke baahar na jaaye */
+}
+
+.hero-logo-inner img {
+    max-width: 80%; /* Logo size balance karne ke liye */
+    height: auto;
+}
+
+/* Mobile Responsive Fixes */
+@media (max-width: 991px) {
+    .hero-logo-wrap {
+        justify-content: center; /* Mobile/Tablet par center dikhega */
+        margin-top: 40px;
+    }
+    .hero-logo-outer {
+        width: 250px;
+        height: 250px;
+    }
+}
 
 /* ─── WHY CHOOSE ─── */
 .why-section {
