@@ -3476,12 +3476,21 @@ footer hr {
 @media (max-width: 576px) {
   .vmc-row { grid-template-columns: 1fr; }
 }
-hero-affil{
-  margin: 0;
-  padding: 0;
-  background:transparent;
-  color:rgba(255,255,255,.5);font-size:.82rem;font-weight:500;margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.15)}
-.hero-affil strong{color:rgba(255,255,255,.8)}
+.hero-affil {
+    margin-top: 32px;            /* Buttons se doori */
+    padding-top: 20px;           /* Line aur text ke beech ka gap */
+    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Yeh rahi wo patli line */
+    color: rgba(255, 255, 255, 0.6); 
+    font-size: 0.82rem;
+    font-weight: 500;
+    display: inline-block;       /* Line ki width text ke barabar rakhne ke liye */
+    /* Agar aapko line poori width mein chahiye toh niche wali line use karein */
+    /* width: 100%; */ 
+}
+
+.hero-affil strong {
+    color: rgba(255, 255, 255, 0.9);
+}
 
 /* ===== APP SECTION ===== */
 .app-section{padding:80px 0;background:var(--off-white)}
