@@ -236,6 +236,10 @@ body {
   overflow: hidden;
 }
 
+.hero .row {display: flex;
+align-items: center;}
+
+
 .hero::before {
   content: '';
   position: absolute;
@@ -1690,6 +1694,7 @@ footer hr {
 
 /* Hero logo card */
 .hero-logo-wrap{
+  width: 100%;
   display:flex;
   align-items:center;
   justify-content:flex-end; ✅
