@@ -3477,19 +3477,19 @@ footer hr {
   .vmc-row { grid-template-columns: 1fr; }
 }
 .hero-affil {
-    margin-top: 32px;            /* Buttons se doori */
-    padding-top: 20px;           /* Line aur text ke beech ka gap */
-    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Yeh rahi wo patli line */
-    color: rgba(255, 255, 255, 0.6); 
-    font-size: 0.82rem;
-    font-weight: 500;
-    display: inline-block;       /* Line ki width text ke barabar rakhne ke liye */
-    /* Agar aapko line poori width mein chahiye toh niche wali line use karein */
-    /* width: 100%; */ 
+    margin-top: 35px !important;    /* Buttons se niche ka gap */
+    padding-top: 20px !important;    /* Line aur text ke beech ka gap */
+    border-top: 1px solid rgba(255, 255, 255, 0.3) !important; /* Safed halki line */
+    display: block !important;       /* Isse line poori width cover karegi */
+    width: 100%;                     /* Line ki full width */
+    color: rgba(255, 255, 255, 0.7); 
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
 }
 
 .hero-affil strong {
-    color: rgba(255, 255, 255, 0.9);
+    color: #fff !important;
+    font-weight: 700;
 }
 
 /* ===== APP SECTION ===== */
