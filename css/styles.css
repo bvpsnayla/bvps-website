@@ -1689,18 +1689,9 @@ footer hr {
 }
 
 /* Hero logo card */
-.hero .col-lg-5 {
-  position: relative;
-  right: 0;
-  margin-left: auto;
-  display: flex;
-  justify-content: flex-end;
-}
-
 .hero-logo-wrap{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end; ✅
+  position: absolute;
+  right: 0;
 }
 .hero-logo-outer{width:320px;height:320px;border-radius:50%;border:5px solid rgba(255,255,255,.15); margin-left: auto; padding:25px;
 background:rgba(255,255,255,.06);
