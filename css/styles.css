@@ -1696,11 +1696,6 @@ footer hr {
   z-index: 5;
 }
 
-.hero .row {
-  display: flex;
-  width: 100%;
-}
-
 /* Logo Wrapper Fixed */
 .hero-logo-wrap {
   display: flex;
