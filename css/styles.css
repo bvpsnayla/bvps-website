@@ -1696,6 +1696,112 @@ footer hr {
   z-index: 5;
 }
 
+/* ===== HERO ANIMATED LOGO CSS ===== */
+.hero {
+  background: linear-gradient(135deg, var(--navy-dp) 0%, var(--navy) 45%, var(--blue) 100%);
+  padding: 100px 0 90px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glassmorphism Background Gradients */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(47, 128, 237, .25) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(217, 119, 6, .18) 0%, transparent 50%);
+}
+
+/* Bottom Curve */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: var(--owhite);
+  clip-path: ellipse(60% 100% at 50% 100%);
+}
+
+/* Logo Wrapper Alignment */
+.hero-logo-wrap {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* The Animated Outer Circle (Glass Effect) */
+.hero-logo-outer {
+  width: 330px;
+  height: 330px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.15);
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px); /* Glass Blur Effect */
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Spinning Dashed Ring */
+.hero-logo-outer::before {
+  content: '';
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  animation: spin 40s linear infinite; /* Rotation Animation */
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Inner Circle holding the Logo */
+.hero-logo-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+}
+
+.hero-logo-inner img {
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Responsive Fixes */
+@media (max-width: 991px) {
+  .hero { padding: 60px 0 80px; }
+  .hero-logo-wrap {
+    justify-content: center;
+    margin-top: 40px;
+    display: flex !important; /* Mobile par dikhane ke liye */
+  }
+  .hero-logo-outer {
+    width: 260px;
+    height: 260px;
+    padding: 18px;
+  }
+  .hero-logo-outer::before { inset: -10px; }
+}
+
 /* Logo Wrapper Fixed */
 .hero-logo-wrap {
   display: flex;
@@ -1736,10 +1842,6 @@ footer hr {
   width: 85%; /* Logo size adjusted */
   height: auto;
   object-fit: contain;
-}
-
-.hero .col-lg-5 {
-  margin-left: auto !important;
 }
 
 /* Responsive adjustments */
