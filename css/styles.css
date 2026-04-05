@@ -762,14 +762,14 @@ footer hr {
 .d6 { animation-delay: .6s; }
 
 <!-- ===== IMG SLIDER SECTION ===== -->
-.hero {
+.imgslider {
   padding: 80px 0;
   background: linear-gradient(135deg, #0b1c3f, #1f6fd1);
   color: #fff;
 }
 
 /* image */
-.hero-img img {
+.imgslider-img img {
   width: 100%;
   height: auto;
 }
@@ -777,12 +777,12 @@ footer hr {
 /* mobile fix */
 @media (max-width: 768px) {
 
-  .hero {
+  .imgslider {
     padding: 40px 0;
     text-align: center;
   }
 
-  .hero-img {
+  .imgslider-img {
     margin-top: 20px;
   }
 
