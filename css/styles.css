@@ -1111,7 +1111,7 @@ footer hr {
 /* ─── FACULTY / STAFF SECTION ─── */
 .faculty-sec {
   padding: 88px 0;
-  background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 60%,rgba(47,128,237,.85) 100%);position:relative;overflow:hidden}
+  background: #0a1f2b}
 
 
 .flt-card {
