@@ -1111,7 +1111,7 @@ footer hr {
 /* ─── FACULTY / STAFF SECTION ─── */
 .faculty-sec {
   padding: 88px 0;
-  background: #0a1f2b}
+  background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 60%,rgba(47,128,237,.85) 100%);position:relative;overflow:hidden}
 
 
 .flt-card {
@@ -1317,12 +1317,12 @@ footer hr {
 .faculty-section,
 .marquee-section {
   padding: 80px 0;
-  background: #0a1f2b;
-position: relative !important;
-    overflow: hidden !important;}
-  
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, rgba(47, 128, 237, .85) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
 .marquee-section::before {
-  display: none;
   content: '';
   position: absolute;
   inset: 0;
