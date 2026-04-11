@@ -132,77 +132,70 @@ function submitApp() {
     form.style.display = "none";
   })
 
-  /* Enquiry Form */
-const scriptURL = "https://script.google.com/macros/s/AKfycbwNIbPMlzWyeo1GqZazoIMXqeqJygs7B4mgZxrMe6etjkJibJWzRGbyQheLa_1gCBbE/exec";
+  /* =========================
+   QUICK ENQUIRY FORM
+========================= */
 
-document.getElementById("qBtn").addEventListener("click", async function () {
-  
-  const btn = this;
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("qBtn");
   const status = document.getElementById("formStatus");
 
-  const formBox = btn.closest(".qbody");
+  if (!btn) return;
 
-  const inputs = formBox.querySelectorAll("input");
-  const select = formBox.querySelector("select");
-  const textarea = formBox.querySelector("textarea");
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwNIbPMlzWyeo1GqZazoIMXqeqJygs7B4mgZxrMe6etjkJibJWzRGbyQheLa_1gCBbE/exec";
 
-  const studentName = inputs[0].value.trim();
-  const fatherName = inputs[1].value.trim();
-  const classApplied = select.value.trim();
-  const mobile = inputs[2].value.trim();
-  const message = textarea.value.trim();
+  btn.addEventListener("click", async function (e) {
+    e.preventDefault();
 
-  // Validation
-  if (!studentName || !fatherName || !classApplied || !mobile) {
-    status.style.color = "red";
-    status.innerText = "Please fill all required fields.";
-    return;
-  }
+    const box = btn.closest(".qbody");
+    const inputs = box.querySelectorAll("input");
+    const select = box.querySelector("select");
+    const textarea = box.querySelector("textarea");
 
-  if (!/^[0-9]{10}$/.test(mobile.replace(/\D/g,''))) {
-    status.style.color = "red";
-    status.innerText = "Enter valid 10 digit mobile number.";
-    return;
-  }
+    const data = {
+      studentName: inputs[0].value.trim(),
+      fatherName: inputs[1].value.trim(),
+      classApplied: select.value.trim(),
+      mobile: inputs[2].value.trim(),
+      message: textarea.value.trim()
+    };
 
-  btn.disabled = true;
-  btn.innerHTML = "Submitting...";
-
-  const data = {
-    studentName,
-    fatherName,
-    classApplied,
-    mobile,
-    message
-  };
-
-  try {
-    const res = await fetch(scriptURL, {
-      method: "POST",
-      body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-
-    if (result.result === "success") {
-      status.style.color = "green";
-      status.innerText = "Enquiry submitted successfully!";
-
-      inputs[0].value = "";
-      inputs[1].value = "";
-      inputs[2].value = "";
-      select.selectedIndex = 0;
-      textarea.value = "";
-    } else {
+    // Validation
+    if (!data.studentName || !data.fatherName || !data.classApplied || !data.mobile) {
+      status.innerText = "Please fill all required fields.";
       status.style.color = "red";
-      status.innerText = "Submission failed.";
+      return;
     }
 
-  } catch (error) {
-    status.style.color = "red";
-    status.innerText = "Network error. Try again.";
-  }
+    if (!/^[0-9]{10}$/.test(data.mobile.replace(/\D/g, ""))) {
+      status.innerText = "Enter valid mobile number.";
+      status.style.color = "red";
+      return;
+    }
 
-  btn.disabled = false;
-  btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
+    btn.disabled = true;
+    btn.innerHTML = "Submitting...";
+
+    try {
+      await fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      status.innerText = "Enquiry submitted successfully!";
+      status.style.color = "green";
+
+      inputs.forEach(input => input.value = "");
+      select.selectedIndex = 0;
+      textarea.value = "";
+
+    } catch (error) {
+      console.log(error);
+      status.innerText = "Submission failed. Try again.";
+      status.style.color = "red";
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
+  });
 });
