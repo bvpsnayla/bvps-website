@@ -100,7 +100,7 @@ function markDoc(stId, inp) {
 }
 
 /* Submit */
-function submitApp() {
+function submitApp() {}
 
   var c1 = document.getElementById('dc1');
   var c2 = document.getElementById('dc2');
@@ -131,6 +131,7 @@ function submitApp() {
 
     form.style.display = "none";
   })
+
 
   /* =========================
    QUICK ENQUIRY FORM
