@@ -170,10 +170,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (!/^[0-9]{10}$/.test(data.mobile.replace(/\D/g, ""))) {
-      status.innerText = "Enter valid mobile number.";
-      status.style.color = "red";
-      return;
-    }
+  status.innerText = "Enter valid mobile number.";
+  status.style.color = "red";
+  return; // MUST STOP HERE
+}
 
     btn.disabled = true;
     btn.innerHTML = "Submitting...";
