@@ -240,3 +240,79 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbwNIbPMlzWyeo1GqZazoIMXqeqJygs7B4mgZxrMe6etjkJibJWzRGbyQheLa_1gCBbE/exec";
+
+document.getElementById("qBtn").addEventListener("click", async function () {
+  
+  const btn = this;
+  const status = document.getElementById("formStatus");
+
+  const formBox = btn.closest(".qbody");
+
+  const inputs = formBox.querySelectorAll("input");
+  const select = formBox.querySelector("select");
+  const textarea = formBox.querySelector("textarea");
+
+  const studentName = inputs[0].value.trim();
+  const fatherName = inputs[1].value.trim();
+  const classApplied = select.value.trim();
+  const mobile = inputs[2].value.trim();
+  const message = textarea.value.trim();
+
+  // Validation
+  if (!studentName || !fatherName || !classApplied || !mobile) {
+    status.style.color = "red";
+    status.innerText = "Please fill all required fields.";
+    return;
+  }
+
+  if (!/^[0-9]{10}$/.test(mobile.replace(/\D/g,''))) {
+    status.style.color = "red";
+    status.innerText = "Enter valid 10 digit mobile number.";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = "Submitting...";
+
+  const data = {
+    studentName,
+    fatherName,
+    classApplied,
+    mobile,
+    message
+  };
+
+  try {
+    const res = await fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if (result.result === "success") {
+      status.style.color = "green";
+      status.innerText = "Enquiry submitted successfully!";
+
+      inputs[0].value = "";
+      inputs[1].value = "";
+      inputs[2].value = "";
+      select.selectedIndex = 0;
+      textarea.value = "";
+    } else {
+      status.style.color = "red";
+      status.innerText = "Submission failed.";
+    }
+
+  } catch (error) {
+    status.style.color = "red";
+    status.innerText = "Network error. Try again.";
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
+});
+</script>
