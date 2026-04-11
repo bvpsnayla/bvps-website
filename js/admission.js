@@ -248,3 +248,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 2000);
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const mobileInput = document.getElementById("mobile");
+
+  if (!mobileInput) return;
+
+  // Click / focus pe +91
+  mobileInput.addEventListener("focus", function () {
+    if (this.value.trim() === "") {
+      this.value = "+91 ";
+    }
+  });
+
+  // Input control
+  mobileInput.addEventListener("input", function () {
+    let val = this.value.replace(/\D/g, ""); // only digits
+
+    // remove country code if typed again
+    if (val.startsWith("91")) {
+      val = val.substring(2);
+    }
+
+    // only 10 digits
+    val = val.substring(0, 10);
+
+    this.value = "+91 " + val;
+  });
+
+  // Prevent deleting +91 completely
+  mobileInput.addEventListener("keydown", function (e) {
+    if (this.selectionStart <= 4 &&
+      (e.key === "Backspace" || e.key === "Delete")) {
+      e.preventDefault();
+    }
+  });
+});
