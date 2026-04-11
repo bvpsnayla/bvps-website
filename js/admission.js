@@ -201,3 +201,50 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
   });
 });
+
+/* submit loader */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("qBtn");
+  const status = document.getElementById("formStatus");
+
+  if (!btn) return;
+
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const box = btn.closest(".qbody");
+    const inputs = box.querySelectorAll("input");
+    const select = box.querySelector("select");
+
+    const studentName = inputs[0].value.trim();
+    const fatherName = inputs[1].value.trim();
+    const classApplied = select.value.trim();
+    const mobile = inputs[2].value.trim();
+
+    if (!studentName || !fatherName || !classApplied || !mobile) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
+    // Loading Start
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+    // Fake delay (2 sec demo)
+    setTimeout(function () {
+
+      // Success Popup
+      alert("Enquiry Submitted Successfully!");
+
+      // Reset form
+      inputs.forEach(input => input.value = "");
+      select.selectedIndex = 0;
+
+      // Button Reset
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
+
+    }, 2000);
+  });
+});
