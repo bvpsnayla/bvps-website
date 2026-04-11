@@ -133,7 +133,6 @@ function submitApp() {
   })
 
   /* Enquiry Form */
-  <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbwNIbPMlzWyeo1GqZazoIMXqeqJygs7B4mgZxrMe6etjkJibJWzRGbyQheLa_1gCBbE/exec";
 
 document.getElementById("qBtn").addEventListener("click", async function () {
@@ -207,4 +206,3 @@ document.getElementById("qBtn").addEventListener("click", async function () {
   btn.disabled = false;
   btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
 });
-</script>
