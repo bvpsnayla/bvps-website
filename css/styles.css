@@ -3623,6 +3623,7 @@ footer hr {
 
 /* Whatsapp floating button styles */
 .whatsapp-float img {
+  width: 6%;
   border-radius: 50%;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: transform 0.3s;
