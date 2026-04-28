@@ -3623,7 +3623,6 @@ footer hr {
 
 /* Whatsapp floating button styles */
 .whatsapp-float img {
-  width: 6%;
   border-radius: 50%;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: transform 0.3s;
@@ -3631,4 +3630,49 @@ footer hr {
 
 .whatsapp-float img:hover {
   transform: scale(1.1);
+}
+
+.notice-bar{
+  display:flex;
+  align-items:center;
+  background:#0b1d51;
+  color:#fff;
+  overflow:hidden;
+  width:100%;
+  height:48px;
+  border-top:1px solid rgba(255,255,255,.1);
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.notice-label{
+  background:#f59e0b;
+  color:#000;
+  font-weight:700;
+  padding:0 18px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
+}
+
+.notice-wrap{
+  overflow:hidden;
+  white-space:nowrap;
+  flex:1;
+}
+
+.notice-text{
+  display:inline-block;
+  padding-left:100%;
+  animation: tickerMove 18s linear infinite;
+  font-weight:600;
+}
+
+@keyframes tickerMove{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-100%);}
+}
+
+.notice-bar:hover .notice-text{
+  animation-play-state:paused;
 }
