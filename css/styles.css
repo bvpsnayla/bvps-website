@@ -121,6 +121,11 @@ body {
   z-index: 1000;
   transition: box-shadow .3s;
 }
+.notice-bar{
+  position: sticky;
+  top: 80px;
+  z-index: 999;
+}
 
 .navbar-brand {
   display: flex;
