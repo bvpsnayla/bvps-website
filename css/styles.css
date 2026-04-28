@@ -134,21 +134,29 @@ body {
   padding: 10px 0;
 }
 
-.logo-ring {
+.logo-ring{
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--navy), var(--blue));
+  background: #ffffff; /* ya gradient rakh sakte ho */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
   box-shadow: 0 4px 14px rgba(47, 128, 237, .35);
 }
 
-.logo-ring i {
-  color: #fff;
-  font-size: 1.4rem;
+/* old icon hide if present */
+.logo-ring i{
+  display: none;
+}
+
+/* new image logo */
+.logo-ring img{
+  width: 85%;
+  height: 85%;
+  object-fit: contain;   /* full circle fill */
 }
 
 .brand-text .sname {
