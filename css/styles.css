@@ -3627,7 +3627,8 @@ footer hr {
 .app-phone-wrap img{max-height:500px;width:auto;border-radius:24px;box-shadow:0 20px 60px rgba(23,66,86,.2);border:3px solid var(--border)}
 .app-phone-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(47,128,237,.15) 0%,transparent 70%);border-radius:50%;z-index:0;pointer-events:none}
 
-.whatsapp-float{
+.whatsapp-float {
+  text-decoration: none;
   position: fixed;
   bottom: 20px;
   right: 20px;
