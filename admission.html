@@ -493,7 +493,7 @@
           </div>
           <div class="snav mt-4">
             <button class="btn-back" onclick="goStep(4)"><i class="fas fa-arrow-left me-1"></i> Back</button>
-            <button type="button" onclick="submitApp()">Submit</button>
+            <button type="submit" id="finalBtn">Submit</button>
           </div>
           <!-- Success -->
           <div class="success-box" id="successBox" style="display:none">
@@ -588,7 +588,7 @@
           </div>
         </div>
         <div class="col-lg-8">
-          <div class="qbody">
+          <div class="qbody" id="enquiryForm">
             <h3>Quick Enquiry Form</h3>
             <p class="qsub">All fields marked with * are required.</p>
             <div class="row g-3">

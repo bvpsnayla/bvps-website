@@ -99,188 +99,121 @@ function markDoc(stId, inp) {
   el.classList.add('done');
 }
 
-/* Submit */
-function submitApp() {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  var c1 = document.getElementById('dc1');
-  var c2 = document.getElementById('dc2');
+const firebaseConfig = {
+  apiKey: "AIzaSyB4lKzImQCbBBew884TdVRMNX05oZq_U84",
+  authDomain: "bvps-web-app.firebaseapp.com",
+  projectId: "bvps-web-app",
+  storageBucket: "bvps-web-app.firebasestorage.app",
+  messagingSenderId: "686596817462",
+  appId: "1:686596817462:web:ce55286d301d024b30ce97"
+};
 
-  if (!c1.checked || !c2.checked) {
-    alert("Please accept declaration.");
-    return;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // =====================
+  // 🔵 FULL ADMISSION FORM
+  // =====================
+  const admissionForm = document.getElementById("admissionForm");
+
+  if (admissionForm) {
+    admissionForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const mobile = admissionForm.mobile.value.replace(/\D/g, "").slice(0, 10);
+
+      if (mobile.length !== 10) {
+        alert("Enter valid mobile number");
+        return;
+      }
+
+      const data = {
+        student_name: admissionForm.student_name.value,
+        father_name: admissionForm.father_name.value,
+        mobile: mobile,
+        class_apply: admissionForm.class_apply.value,
+        createdAt: new Date()
+      };
+
+      const btn = document.getElementById("finalBtn");
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = "Submitting...";
+      }
+
+      try {
+        await addDoc(collection(db, "admissions"), data);
+
+        alert("Admission Form Submitted ✅");
+        admissionForm.reset();
+
+      } catch (err) {
+        alert("Error: " + err.message);
+      }
+
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = "Submit";
+      }
+    });
   }
 
-  var btn = document.getElementById("finalBtn");
-  btn.disabled = true;
-  btn.innerHTML = "Uploading...";
+  // =====================
+  // 🟢 QUICK ENQUIRY FORM
+  // =====================
+  const qBtn = document.getElementById("qBtn");
 
-  var form = document.getElementById("admissionForm");
-  var formData = new FormData(form);
-
-  fetch("https://script.google.com/macros/s/AKfycbzKbIY3Ld81MVEfhexfQF-GRXz0cpCx05fnlTEMcQQOJuPwvqYxXFQZwrGTt3VUIYHv/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(res => res.json())
-  .then(response => {
-
-    btn.style.display = "none";
-
-    document.getElementById("successBox").style.display = "block";
-    document.getElementById("refNum").textContent = response.admission_id;
-
-    form.style.display = "none";
-  });
-}
-
-
-  /* =========================
-   QUICK ENQUIRY FORM
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-  const btn = document.getElementById("qBtn");
-  const status = document.getElementById("formStatus");
-
-  if (!btn) return;
-
-  const scriptURL = "https://script.google.com/macros/s/AKfycbwNIbPMlzWyeo1GqZazoIMXqeqJygs7B4mgZxrMe6etjkJibJWzRGbyQheLa_1gCBbE/exec";
-
-  btn.addEventListener("click", async function (e) {
-    e.preventDefault();
-
-    const box = btn.closest(".qbody");
-    const inputs = box.querySelectorAll("input");
-    const select = box.querySelector("select");
-    const textarea = box.querySelector("textarea");
-
-    const data = {
-      studentName: inputs[0].value.trim(),
-      fatherName: inputs[1].value.trim(),
-      classApplied: select.value.trim(),
-      mobile: inputs[2].value.trim(),
-      message: textarea.value.trim()
-    };
-
-    // Validation
-    if (!data.studentName || !data.fatherName || !data.classApplied || !data.mobile) {
-      status.innerText = "Please fill all required fields.";
-      status.style.color = "red";
-      return;
-    }
-
-    if (!/^[0-9]{10}$/.test(data.mobile.replace(/\D/g, ""))) {
-  status.innerText = "Enter valid mobile number.";
-  status.style.color = "red";
-  return; // MUST STOP HERE
-}
-
-    btn.disabled = true;
-    btn.innerHTML = "Submitting...";
-
-    try {
-      await fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(data)
-      });
-
-      status.innerText = "Enquiry submitted successfully!";
-      status.style.color = "green";
-
-      inputs.forEach(input => input.value = "");
-      select.selectedIndex = 0;
-      textarea.value = "";
-
-    } catch (error) {
-      console.log(error);
-      status.innerText = "Submission failed. Try again.";
-      status.style.color = "red";
-    }
-
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
-  });
-});
-
-/* submit loader */
-
-document.addEventListener("DOMContentLoaded", function () {
-  const btn = document.getElementById("qBtn");
-  const status = document.getElementById("formStatus");
-
-  if (!btn) return;
-
-  btn.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const box = btn.closest(".qbody");
-    const inputs = box.querySelectorAll("input");
-    const select = box.querySelector("select");
-
-    const studentName = inputs[0].value.trim();
-    const fatherName = inputs[1].value.trim();
-    const classApplied = select.value.trim();
-    const mobile = inputs[2].value.trim();
-
-    if (!studentName || !fatherName || !classApplied || !mobile) {
-      alert("Please fill all required fields.");
-      return;
-    }
-
-    // Loading Start
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-
-    // Fake delay (2 sec demo)
-    setTimeout(function () {
-
-      // Success Popup
-      alert("Enquiry Submitted Successfully!");
-
-      // Reset form
-      inputs.forEach(input => input.value = "");
-      select.selectedIndex = 0;
-
-      // Button Reset
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
-
-    }, 2000);
-  });
-});
-document.addEventListener("DOMContentLoaded", function () {
-  const mobileInput = document.getElementById("mobile");
-
-  if (!mobileInput) return;
-
-  // Click / focus pe +91
-  mobileInput.addEventListener("focus", function () {
-    if (this.value.trim() === "") {
-      this.value = "+91 ";
-    }
-  });
-
-  // Input control
-  mobileInput.addEventListener("input", function () {
-    let val = this.value.replace(/\D/g, ""); // only digits
-
-    // remove country code if typed again
-    if (val.startsWith("91")) {
-      val = val.substring(2);
-    }
-
-    // only 10 digits
-    val = val.substring(0, 10);
-
-    this.value = "+91 " + val;
-  });
-
-  // Prevent deleting +91 completely
-  mobileInput.addEventListener("keydown", function (e) {
-    if (this.selectionStart <= 4 &&
-      (e.key === "Backspace" || e.key === "Delete")) {
+  if (qBtn) {
+    qBtn.addEventListener("click", async (e) => {
       e.preventDefault();
-    }
-  });
+
+      const box = document.getElementById("enquiryForm");
+
+      const inputs = box.querySelectorAll("input");
+      const select = box.querySelector("select");
+      const textarea = box.querySelector("textarea");
+
+      const mobile = inputs[2].value.replace(/\D/g, "").slice(0, 10);
+
+      if (!inputs[0].value || !inputs[1].value || !select.value || mobile.length !== 10) {
+        alert("Fill all required fields correctly");
+        return;
+      }
+
+      const data = {
+        studentName: inputs[0].value,
+        fatherName: inputs[1].value,
+        classApplied: select.value,
+        mobile: mobile,
+        message: textarea.value,
+        createdAt: new Date()
+      };
+
+      qBtn.disabled = true;
+      qBtn.innerHTML = "Sending...";
+
+      try {
+        await addDoc(collection(db, "enquiries"), data);
+
+        alert("Enquiry Submitted ✅");
+
+        inputs.forEach(i => i.value = "");
+        select.selectedIndex = 0;
+        textarea.value = "";
+
+      } catch (err) {
+        alert("Error: " + err.message);
+      }
+
+      qBtn.disabled = false;
+      qBtn.innerHTML = "Send Enquiry";
+    });
+  }
+
 });
 
