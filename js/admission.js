@@ -166,54 +166,62 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================
   // 🟢 QUICK ENQUIRY FORM
   // =====================
-  const qBtn = document.getElementById("qBtn");
+// =====================
+// 🟢 QUICK ENQUIRY FORM
+// =====================
+const qBtn = document.getElementById("qBtn");
 
-  if (qBtn) {
-    qBtn.addEventListener("click", async (e) => {
-      e.preventDefault();
+if (qBtn) {
+  qBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-      const box = document.getElementById("enquiryForm");
+    const box = document.getElementById("enquiryForm");
 
-      const inputs = box.querySelectorAll("input");
-      const select = box.querySelector("select");
-      const textarea = box.querySelector("textarea");
+    const name = box.querySelectorAll("input")[0].value.trim();
+    const father = box.querySelectorAll("input")[1].value.trim();
+    const classApplied = box.querySelector("select").value;
+    const mobile = document.getElementById("qMobile").value.replace(/\D/g, "");
+    const message = box.querySelector("textarea").value.trim();
 
-      const mobile = inputs[2].value.replace(/\D/g, "").slice(0, 10);
+    // ✅ validation
+    if (!name || !father || !classApplied) {
+      alert("Please fill all required fields");
+      return;
+    }
 
-      if (!inputs[0].value || !inputs[1].value || !select.value || mobile.length !== 10) {
-        alert("Fill all required fields correctly");
-        return;
-      }
+    if (mobile.length !== 10) {
+      alert("Enter valid 10 digit mobile number");
+      return;
+    }
 
-      const data = {
-        studentName: inputs[0].value,
-        fatherName: inputs[1].value,
-        classApplied: select.value,
-        mobile: mobile,
-        message: textarea.value,
-        createdAt: new Date()
-      };
+    const data = {
+      studentName: name,
+      fatherName: father,
+      classApplied: classApplied,
+      mobile: mobile,
+      message: message,
+      createdAt: new Date()
+    };
 
-      qBtn.disabled = true;
-      qBtn.innerHTML = "Sending...";
+    qBtn.disabled = true;
+    qBtn.innerHTML = "Sending...";
 
-      try {
-        await addDoc(collection(db, "enquiries"), data);
+    try {
+      await addDoc(collection(db, "enquiries"), data);
 
-        alert("Enquiry Submitted ✅");
+      alert("Enquiry Submitted Successfully ✅");
 
-        inputs.forEach(i => i.value = "");
-        select.selectedIndex = 0;
-        textarea.value = "";
+      // reset
+      box.querySelectorAll("input").forEach(i => i.value = "");
+      box.querySelector("select").selectedIndex = 0;
+      box.querySelector("textarea").value = "";
 
-      } catch (err) {
-        alert("Error: " + err.message);
-      }
+    } catch (err) {
+      alert("Error: " + err.message);
+    }
 
-      qBtn.disabled = false;
-      qBtn.innerHTML = "Send Enquiry";
-    });
-  }
-
-});
-
+    qBtn.disabled = false;
+    qBtn.innerHTML = "Send Enquiry";
+  });
+}
