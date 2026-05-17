@@ -103,7 +103,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB4lKzImQCbBBew884TdVRMNX05oZq_U84",
+  apiKey: "",
   authDomain: "bvps-web-app.firebaseapp.com",
   projectId: "bvps-web-app",
   storageBucket: "bvps-web-app.firebasestorage.app",
