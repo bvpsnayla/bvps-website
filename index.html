@@ -8,10 +8,79 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/popup image.css">
 <link rel="icon" href="assets/images/favicon.png" type="image/png">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 </head>
 <body>
+
+<!-- ================================================================
+                             POPUP OVERLAY 
+     ================================================================ -->
+<div class="popup-overlay" id="bvpsPopup">
+  <div class="popup-card">
+ 
+    <!-- Close Button -->
+    <button class="popup-close" id="popupClose" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+ 
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <div class="logo-glow-ring">
+        <div class="logo-inner">
+          <!--
+            BVPS LOGO:
+            Odoo se: <img src="/web/image/583-40568c84/BVPS%20NEW%20LOGO%20WB.webp" alt="BVPS Logo">
+            Local file: <img src="images/bvps-logo.webp" alt="BVPS Logo">
+          -->
+          <img
+            src="/assets/images/bvpslogo.jpeg"
+            alt="BVPS Logo"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-family:Playfair Display,serif;font-size:22px;font-weight:900;color:#174256;letter-spacing:0.05em\'>BVPS</span>\'"
+          >
+        </div>
+      </div>
+      <div class="school-badge">
+        <i class="fas fa-star"></i>
+        RBSE Affiliated · Est. 2000
+      </div>
+    </div>
+ 
+    <!-- School Image -->
+    <div class="image-section">
+      <div class="image-placeholder">
+        
+          SCHOOL BUILDING IMAGE — Yahan apni image ka path daalo:
+          <img class="school-img" src="assets/images/POPUPIMG.png" alt="BVPS Campus" style="display:block">
+        
+        <img class="school-img" src="" alt="BVPS Campus">
+ 
+        <div class="placeholder-icon">
+          <i class="fas fa-school"></i>
+        </div>
+        <div class="placeholder-text">School Building Photo</div> 
+        <div class="placeholder-hint">Replace: src="images/school-building.jpg"</div>
+ 
+        <span class="img-badge">Independence Day</span>
+        <span class="img-year-badge">15 AUG 2026</span>
+      </div>
+      <button class="apply-btn" id="popupBtn">📍Venue Location</button>
+    </div>
+ 
+    
+ 
+    <!-- Footer -->
+    <div class="popup-footer">
+      <div class="school-name">Bal Vikas Senior Secondary School</div>
+      <div class="school-address">Nayla, Jamwa Ramgarh, Jaipur – 303012</div>
+      <a href="https://www.bvpsnayla.in" class="school-website" target="_blank">
+        www.bvpsnayla.in
+      </a>
+    </div>
+ 
+  </div>
+</div>
 
 <!-- ===== TOPBAR ===== -->
 <div class="topbar">
@@ -405,5 +474,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="js/scripts.js"></script>
+<script src="js/popup image.js"></script>
 </body>
 </html>
