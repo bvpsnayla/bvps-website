@@ -108,7 +108,7 @@ const firebaseConfig = {
   projectId: "bvps-web-app",
   storageBucket: "bvps-web-app.firebasestorage.app",
   messagingSenderId: "686596817462",
-  appId: "1:686596817462:web:ce55286d301d024b30ce97"
+  appId: ""
 };
 
 const app = initializeApp(firebaseConfig);
