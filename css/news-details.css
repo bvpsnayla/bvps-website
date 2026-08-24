@@ -1,0 +1,194 @@
+<style>
+:root{
+    --navy:#174256;
+    --blue:#2f80ed;
+    --gold:#f5a623;
+    --light:#f4f8fb;
+    --muted:#607985;
+}
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:"DM Sans",sans-serif;
+    background:var(--light);
+    color:var(--navy);
+}
+.topbar{
+    background:#0a1f2b;
+    color:#fff;
+    padding:10px 0;
+    font-size:14px;
+}
+.topbar a{color:#fff;text-decoration:none}
+.navbar{
+    background:#fff;
+    padding:16px 0;
+    box-shadow:0 3px 22px rgba(23,66,86,.10);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+.brand{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    text-decoration:none;
+    color:var(--navy);
+}
+.logo{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#174256,#2f80ed);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    flex:none;
+}
+.brand-name{
+    font-family:"Playfair Display",serif;
+    font-weight:800;
+    font-size:20px;
+}
+.brand-sub{
+    display:block;
+    color:#748a95;
+    font-size:12px;
+    margin-top:2px;
+}
+.back-btn{
+    border:1px solid #d8e5eb;
+    color:var(--navy);
+    padding:10px 17px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+    transition:.25s;
+}
+.back-btn:hover{background:var(--navy);color:#fff}
+
+.article-hero{
+    background:
+      radial-gradient(circle at 85% 15%,rgba(245,166,35,.22),transparent 28%),
+      linear-gradient(135deg,#123c50,#2f80ed);
+    padding:75px 0 125px;
+    color:#fff;
+}
+.category-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 15px;
+    border-radius:30px;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.25);
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+.article-title{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(2rem,5vw,3.7rem);
+    line-height:1.12;
+    max-width:1000px;
+    margin:0 0 20px;
+}
+.article-meta{
+    color:rgba(255,255,255,.82);
+    font-size:14px;
+}
+.article-wrapper{
+    max-width:1050px;
+    margin:-72px auto 75px;
+    padding:0 15px;
+    position:relative;
+}
+.article-card{
+    background:#fff;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 22px 70px rgba(23,66,86,.14);
+}
+.article-image{
+    width:100%;
+    height:500px;
+    object-fit:cover;
+    display:block;
+}
+.article-content{
+    padding:48px;
+}
+.article-content p{
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.9;
+    margin-bottom:22px;
+}
+.article-content h2{
+    font-family:"Playfair Display",serif;
+    color:var(--navy);
+    font-size:28px;
+    margin:35px 0 14px;
+}
+.article-content ul{
+    color:var(--muted);
+    line-height:2;
+    font-size:16px;
+}
+.share-box{
+    border-top:1px solid #e5edf1;
+    margin-top:38px;
+    padding-top:25px;
+}
+.share-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 16px;
+    border-radius:9px;
+    text-decoration:none;
+    font-weight:700;
+    margin:12px 8px 0 0;
+}
+.whatsapp{background:#25d366;color:#fff}
+.back-bottom{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:14px;
+    background:var(--navy);
+    color:#fff;
+    padding:12px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+}
+.not-found{
+    padding:85px 25px;
+    text-align:center;
+}
+.not-found i{font-size:58px;color:var(--gold);margin-bottom:18px}
+footer{
+    background:#0a1f2b;
+    color:rgba(255,255,255,.72);
+    padding:35px 0;
+    text-align:center;
+}
+@media(max-width:768px){
+    .brand-name{font-size:16px}
+    .brand-sub{font-size:10px}
+    .logo{width:46px;height:46px;font-size:19px}
+    .back-btn{padding:8px 11px;font-size:12px}
+    .article-hero{padding:55px 0 105px}
+    .article-image{height:280px}
+    .article-content{padding:28px 20px}
+    .article-content p{font-size:15px}
+    .article-content h2{font-size:24px}
+}
+
+
+
+
+</style>
