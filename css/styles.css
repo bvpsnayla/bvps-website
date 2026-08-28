@@ -2322,6 +2322,167 @@ footer hr {
   }
 }
 
+.lb-nav {
+  z-index: 50 !important;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 576px) {
+  .lb-nav {
+    width: 52px;
+    height: 52px;
+    background: rgba(23, 66, 86, .94);
+  }
+
+  .lb-prev { left: 10px; }
+  .lb-next { right: 10px; }
+}
+
+/* ─── GALLERY LIGHTBOX: SWIPE, PREVIEWS & DOWNLOAD ─── */
+
+.lb-stage {
+  position: relative;
+  min-height: 350px;
+  height: min(72vh, 650px);
+  overflow: hidden;
+  background: var(--navy-dp);
+  touch-action: pan-y;
+}
+
+/* Main photo बीच में 80% */
+.lb-main-image {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 10%;
+  width: 80% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: contain;
+  background: var(--navy-dp);
+  pointer-events: none;
+}
+
+/* सिर्फ 10% left/right preview */
+.lb-side-preview {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  width: 20% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover;
+  opacity: .45;
+  filter: brightness(.6);
+  pointer-events: none;
+}
+
+.lb-preview-prev {
+  left: 0;
+}
+
+.lb-preview-next {
+  right: 0;
+}
+
+/* Photo के अंदर right-bottom Download button */
+.lb-download {
+  position: absolute;
+  z-index: 20;
+  right: 18px !important;
+  bottom: 18px !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 24px;
+  background: rgba(47, 128, 237, .94);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, .25);
+  transition: transform .2s ease, background .2s ease;
+}
+
+.lb-download:hover {
+  background: var(--gold);
+  color: var(--navy);
+  transform: translateY(-2px) !important;
+}
+
+/* Navigation arrows photo के अंदर */
+.lb-nav {
+  z-index: 20 !important;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 576px) {
+  .lb-stage {
+    min-height: 300px;
+    height: 62vh;
+  }
+
+  .lb-nav {
+    width: 50px;
+    height: 50px;
+    background: rgba(23, 66, 86, .94);
+  }
+
+  .lb-prev {
+    left: 8px;
+  }
+
+  .lb-next {
+    right: 8px;
+  }
+
+  .lb-download {
+    right: 12px !important;
+    bottom: 12px !important;
+    padding: 11px 15px;
+    font-size: .82rem;
+  }
+}
+
+/* सिर्फ एक main photo दिखेगी */
+.lb-main-image {
+  left: 0 !important;
+  width: 100% !important;
+}
+
+/* Side preview photos hide रहेंगी */
+.lb-side-preview {
+  display: none !important;
+}
+
+/* Close button को photo के ऊपर दिखाएँ */
+.lb-close {
+  z-index: 30 !important;
+  top: 16px !important;
+  right: 16px !important;
+  left: auto !important;
+  bottom: auto !important;
+  pointer-events: auto !important;
+}
+
+@media (max-width: 576px) {
+  .lb-close {
+    top: 12px !important;
+    right: 12px !important;
+  }
+}
+
+
 /* ─── VIDEO THUMBNAILS ─── */
 .v-thumb {
   position: relative;

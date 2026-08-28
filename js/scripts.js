@@ -7,30 +7,32 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ─── LIGHTBOX ───
+// ─── LIGHTBOX ───
 let bvpsActiveImage = '';
-
 let bvpsCurrentIndex = -1;
 let bvpsGalleryImages = [];
+let bvpsWheelLock = false;
 
-function openLightbox(imgSrc, caption, category) {
+function getVisibleGalleryImages() {
+  return Array.from(document.querySelectorAll('#gGrid .g-item'))
+    .filter(item => getComputedStyle(item).display !== 'none');
+}
+
+function openLightbox(imgSrc) {
   const backdrop = document.querySelector('.lb-backdrop') || createLightbox();
-  const img = backdrop.querySelector('.lb-inner img');
-  const title = backdrop.querySelector('.lb-info h4');
-  const categoryText = backdrop.querySelector('.lb-info span');
 
-  bvpsGalleryImages = Array.from(document.querySelectorAll('#gGrid .g-item'))
-    .filter(item => item.style.display !== 'none');
+  bvpsGalleryImages = getVisibleGalleryImages();
 
   bvpsCurrentIndex = bvpsGalleryImages.findIndex(item => {
-    return item.querySelector('img').getAttribute('src') === imgSrc;
+    const cardImage = item.querySelector('img').getAttribute('src');
+
+    return new URL(cardImage, document.baseURI).href ===
+      new URL(imgSrc, document.baseURI).href;
   });
 
-  bvpsActiveImage = imgSrc;
-  img.src = imgSrc;
-  img.alt = caption;
-  title.textContent = caption;
-  categoryText.textContent = category;
+  if (bvpsCurrentIndex < 0) bvpsCurrentIndex = 0;
 
+  showGalleryImage(bvpsCurrentIndex);
   backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -44,58 +46,15 @@ function closeLightbox() {
   }
 }
 
-function createLightbox() {
-  const html = `
-    <div class="lb-backdrop">
-      <div class="lb-inner">
-        <img src="" alt="">
-
-        <button class="lb-download" type="button" onclick="downloadWatermarkedPhoto()">
-          <i class="fas fa-download"></i>
-          <span>Download</span>
-        </button>
-
-        <button class="lb-close" type="button" aria-label="Close photo" onclick="closeLightbox()">
-          <i class="fas fa-times"></i>
-        </button>
-
-        <div class="lb-info">
-          <h4></h4>
-          <span></span>
-        </div>
-
-        <button class="lb-nav lb-prev" type="button" aria-label="Previous photo" onclick="prevImage()">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <button class="lb-nav lb-next" type="button" aria-label="Next photo" onclick="nextImage()">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
-    </div>
-  `;
-
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  const backdrop = div.firstElementChild;
-
-  backdrop.addEventListener('click', function (event) {
-    if (event.target === backdrop) closeLightbox();
-  });
-
-  document.body.appendChild(backdrop);
-  return backdrop;
-}
-
 function nextImage() {
-  if (!bvpsGalleryImages.length) return;
+  if (bvpsGalleryImages.length < 2) return;
 
   bvpsCurrentIndex = (bvpsCurrentIndex + 1) % bvpsGalleryImages.length;
   showGalleryImage(bvpsCurrentIndex);
 }
 
 function prevImage() {
-  if (!bvpsGalleryImages.length) return;
+  if (bvpsGalleryImages.length < 2) return;
 
   bvpsCurrentIndex =
     (bvpsCurrentIndex - 1 + bvpsGalleryImages.length) % bvpsGalleryImages.length;
@@ -105,25 +64,128 @@ function prevImage() {
 
 function showGalleryImage(index) {
   const item = bvpsGalleryImages[index];
-  const imgElement = item.querySelector('img');
-  const imagePath = imgElement.getAttribute('src');
-  const captionElement = item.querySelector('.g-caption h4');
+  if (!item) return;
 
-  const caption = captionElement
-    ? captionElement.textContent.trim()
-    : imgElement.alt;
-
+  const mainImage = item.querySelector('img');
+  const imagePath = mainImage.getAttribute('src');
+  const caption = item.querySelector('.g-caption h4')?.textContent.trim() || mainImage.alt;
   const category = item.getAttribute('data-gcat') || '';
 
+  const previousIndex =
+    (index - 1 + bvpsGalleryImages.length) % bvpsGalleryImages.length;
+
+  const nextIndex = (index + 1) % bvpsGalleryImages.length;
+
+  const previousImage = bvpsGalleryImages[previousIndex]
+    .querySelector('img')
+    .getAttribute('src');
+
+  const nextImagePath = bvpsGalleryImages[nextIndex]
+    .querySelector('img')
+    .getAttribute('src');
+
   const backdrop = document.querySelector('.lb-backdrop');
-  const lightboxImage = backdrop.querySelector('.lb-inner img');
 
   bvpsActiveImage = imagePath;
-  lightboxImage.src = imagePath;
-  lightboxImage.alt = caption;
+
+  backdrop.querySelector('.lb-main-image').src = imagePath;
+  backdrop.querySelector('.lb-main-image').alt = caption;
+
+  backdrop.querySelector('.lb-preview-prev').src = previousImage;
+  backdrop.querySelector('.lb-preview-next').src = nextImagePath;
 
   backdrop.querySelector('.lb-info h4').textContent = caption;
   backdrop.querySelector('.lb-info span').textContent = category;
+
+  const navigationDisplay = bvpsGalleryImages.length > 1 ? 'flex' : 'none';
+  backdrop.querySelector('.lb-prev').style.display = navigationDisplay;
+  backdrop.querySelector('.lb-next').style.display = navigationDisplay;
+}
+
+function createLightbox() {
+  const html = `
+    <div class="lb-backdrop">
+      <div class="lb-inner">
+
+        <div class="lb-stage">
+          <img class="lb-side-preview lb-preview-prev" src="" alt="">
+          <img class="lb-main-image" src="" alt="">
+          <img class="lb-side-preview lb-preview-next" src="" alt="">
+
+          <button class="lb-download" type="button" aria-label="Download photo">
+            <i class="fas fa-download"></i>
+            <span>Download</span>
+          </button>
+
+          <button class="lb-close" type="button" aria-label="Close photo">
+            <i class="fas fa-times"></i>
+          </button>
+
+          <button class="lb-nav lb-prev" type="button" aria-label="Previous photo">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          <button class="lb-nav lb-next" type="button" aria-label="Next photo">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="lb-info">
+          <h4></h4>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const div = document.createElement('div');
+  div.innerHTML = html;
+
+  const backdrop = div.firstElementChild;
+  const stage = backdrop.querySelector('.lb-stage');
+  let touchStartX = 0;
+
+  backdrop.querySelector('.lb-close').addEventListener('click', closeLightbox);
+  backdrop.querySelector('.lb-download').addEventListener('click', downloadWatermarkedPhoto);
+  backdrop.querySelector('.lb-prev').addEventListener('click', prevImage);
+  backdrop.querySelector('.lb-next').addEventListener('click', nextImage);
+
+  /* Mobile swipe */
+  stage.addEventListener('pointerdown', function (event) {
+    touchStartX = event.clientX;
+  });
+
+  stage.addEventListener('pointerup', function (event) {
+    const distance = event.clientX - touchStartX;
+
+    if (distance <= -40) nextImage();
+    if (distance >= 40) prevImage();
+  });
+
+  /* Desktop mouse wheel/scroll */
+  stage.addEventListener('wheel', function (event) {
+    if (Math.abs(event.deltaY) < 10 || bvpsWheelLock) return;
+
+    event.preventDefault();
+    bvpsWheelLock = true;
+
+    if (event.deltaY > 0) {
+      nextImage();
+    } else {
+      prevImage();
+    }
+
+    setTimeout(() => {
+      bvpsWheelLock = false;
+    }, 350);
+  }, { passive: false });
+
+  backdrop.addEventListener('click', function (event) {
+    if (event.target === backdrop) closeLightbox();
+  });
+
+  document.body.appendChild(backdrop);
+  return backdrop;
 }
 
 function downloadWatermarkedPhoto() {
@@ -166,10 +228,7 @@ function downloadWatermarkedPhoto() {
     context.restore();
 
     const link = document.createElement('a');
-    const imageName = bvpsActiveImage
-      .split('/')
-      .pop()
-      .replace(/\.[^/.]+$/, '');
+    const imageName = bvpsActiveImage.split('/').pop().replace(/\.[^/.]+$/, '');
 
     link.href = canvas.toDataURL('image/jpeg', 0.92);
     link.download = `${imageName}-bvps-nayla.jpg`;
@@ -183,26 +242,9 @@ function downloadWatermarkedPhoto() {
 
 document.addEventListener('keydown', function (event) {
   if (event.key === 'Escape') closeLightbox();
+  if (event.key === 'ArrowRight') nextImage();
+  if (event.key === 'ArrowLeft') prevImage();
 });
-
-
-// ─── NEWS FILTER ───
-function filterNews(category, button) {
-  const items = document.querySelectorAll('#newsGrid .n-item');
-  
-  items.forEach(item => {
-    if (category === 'all' || item.getAttribute('data-cat') === category) {
-      item.style.display = 'block';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-  
-  // Update button states
-  const buttons = document.querySelectorAll('.fbtn');
-  buttons.forEach(btn => btn.classList.remove('active'));
-  button.classList.add('active');
-}
 
 // ─── FACULTY PROFILE MODAL ───
 function openProfile(card) {
