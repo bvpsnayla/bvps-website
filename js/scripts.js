@@ -9,15 +9,27 @@ document.addEventListener('DOMContentLoaded', function() {
 // ─── LIGHTBOX ───
 let bvpsActiveImage = '';
 
+let bvpsCurrentIndex = -1;
+let bvpsGalleryImages = [];
+
 function openLightbox(imgSrc, caption, category) {
   const backdrop = document.querySelector('.lb-backdrop') || createLightbox();
   const img = backdrop.querySelector('.lb-inner img');
   const title = backdrop.querySelector('.lb-info h4');
+  const categoryText = backdrop.querySelector('.lb-info span');
+
+  bvpsGalleryImages = Array.from(document.querySelectorAll('#gGrid .g-item'))
+    .filter(item => item.style.display !== 'none');
+
+  bvpsCurrentIndex = bvpsGalleryImages.findIndex(item => {
+    return item.querySelector('img').getAttribute('src') === imgSrc;
+  });
 
   bvpsActiveImage = imgSrc;
   img.src = imgSrc;
   img.alt = caption;
   title.textContent = caption;
+  categoryText.textContent = category;
 
   backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -73,6 +85,45 @@ function createLightbox() {
 
   document.body.appendChild(backdrop);
   return backdrop;
+}
+
+function nextImage() {
+  if (!bvpsGalleryImages.length) return;
+
+  bvpsCurrentIndex = (bvpsCurrentIndex + 1) % bvpsGalleryImages.length;
+  showGalleryImage(bvpsCurrentIndex);
+}
+
+function prevImage() {
+  if (!bvpsGalleryImages.length) return;
+
+  bvpsCurrentIndex =
+    (bvpsCurrentIndex - 1 + bvpsGalleryImages.length) % bvpsGalleryImages.length;
+
+  showGalleryImage(bvpsCurrentIndex);
+}
+
+function showGalleryImage(index) {
+  const item = bvpsGalleryImages[index];
+  const imgElement = item.querySelector('img');
+  const imagePath = imgElement.getAttribute('src');
+  const captionElement = item.querySelector('.g-caption h4');
+
+  const caption = captionElement
+    ? captionElement.textContent.trim()
+    : imgElement.alt;
+
+  const category = item.getAttribute('data-gcat') || '';
+
+  const backdrop = document.querySelector('.lb-backdrop');
+  const lightboxImage = backdrop.querySelector('.lb-inner img');
+
+  bvpsActiveImage = imagePath;
+  lightboxImage.src = imagePath;
+  lightboxImage.alt = caption;
+
+  backdrop.querySelector('.lb-info h4').textContent = caption;
+  backdrop.querySelector('.lb-info span').textContent = category;
 }
 
 function downloadWatermarkedPhoto() {
