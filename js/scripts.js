@@ -6,40 +6,26 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ─── GALLERY FILTER ───
-function filterGal(category, button) {
-  const items = document.querySelectorAll('#gGrid .g-item');
-  
-  items.forEach(item => {
-    if (category === 'all' || item.getAttribute('data-gcat') === category) {
-      item.style.display = 'block';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-  
-  // Update button states
-  const buttons = document.querySelectorAll('.gfbtn');
-  buttons.forEach(btn => btn.classList.remove('active'));
-  button.classList.add('active');
-}
-
 // ─── LIGHTBOX ───
+let bvpsActiveImage = '';
+
 function openLightbox(imgSrc, caption, category) {
   const backdrop = document.querySelector('.lb-backdrop') || createLightbox();
   const img = backdrop.querySelector('.lb-inner img');
   const title = backdrop.querySelector('.lb-info h4');
-  
+
+  bvpsActiveImage = imgSrc;
   img.src = imgSrc;
   img.alt = caption;
   title.textContent = caption;
-  
+
   backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
   const backdrop = document.querySelector('.lb-backdrop');
+
   if (backdrop) {
     backdrop.classList.remove('open');
     document.body.style.overflow = '';
@@ -51,23 +37,103 @@ function createLightbox() {
     <div class="lb-backdrop">
       <div class="lb-inner">
         <img src="" alt="">
+
+        <button class="lb-download" type="button" onclick="downloadWatermarkedPhoto()">
+          <i class="fas fa-download"></i>
+          <span>Download</span>
+        </button>
+
+        <button class="lb-close" type="button" aria-label="Close photo" onclick="closeLightbox()">
+          <i class="fas fa-times"></i>
+        </button>
+
         <div class="lb-info">
           <h4></h4>
           <span></span>
         </div>
-        <div class="lb-close" onclick="closeLightbox()"></div>
-        <div class="lb-nav lb-prev" onclick="prevImage()"></div>
-        <div class="lb-nav lb-next" onclick="nextImage()"></div>
+
+        <button class="lb-nav lb-prev" type="button" aria-label="Previous photo" onclick="prevImage()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <button class="lb-nav lb-next" type="button" aria-label="Next photo" onclick="nextImage()">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
     </div>
   `;
-  
+
   const div = document.createElement('div');
   div.innerHTML = html;
-  document.body.appendChild(div.firstElementChild);
-  
-  return document.querySelector('.lb-backdrop');
+  const backdrop = div.firstElementChild;
+
+  backdrop.addEventListener('click', function (event) {
+    if (event.target === backdrop) closeLightbox();
+  });
+
+  document.body.appendChild(backdrop);
+  return backdrop;
 }
+
+function downloadWatermarkedPhoto() {
+  if (!bvpsActiveImage) return;
+
+  const originalImage = new Image();
+  originalImage.src = bvpsActiveImage;
+
+  originalImage.onload = function () {
+    const canvas = document.createElement('canvas');
+    canvas.width = originalImage.naturalWidth;
+    canvas.height = originalImage.naturalHeight;
+
+    const context = canvas.getContext('2d');
+    context.drawImage(originalImage, 0, 0);
+
+    const fontSize = Math.max(24, Math.round(canvas.width * 0.032));
+    const padding = Math.round(canvas.width * 0.035);
+
+    context.save();
+    context.globalAlpha = 0.62;
+    context.fillStyle = '#ffffff';
+    context.textAlign = 'right';
+    context.textBaseline = 'bottom';
+
+    context.font = `600 ${fontSize}px Arial`;
+    context.fillText(
+      'Bal Vikas Senior Secondary School, Nayla',
+      canvas.width - padding,
+      canvas.height - padding - fontSize
+    );
+
+    context.font = `500 ${Math.round(fontSize * 0.7)}px Arial`;
+    context.fillText(
+      '© BVPS Nayla',
+      canvas.width - padding,
+      canvas.height - padding
+    );
+
+    context.restore();
+
+    const link = document.createElement('a');
+    const imageName = bvpsActiveImage
+      .split('/')
+      .pop()
+      .replace(/\.[^/.]+$/, '');
+
+    link.href = canvas.toDataURL('image/jpeg', 0.92);
+    link.download = `${imageName}-bvps-nayla.jpg`;
+    link.click();
+  };
+
+  originalImage.onerror = function () {
+    alert('Photo download नहीं हो सकी। कृपया दोबारा कोशिश करें।');
+  };
+}
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') closeLightbox();
+});
+
 
 // ─── NEWS FILTER ───
 function filterNews(category, button) {

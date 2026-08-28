@@ -2269,6 +2269,59 @@ footer hr {
   margin-top: 2px;
 }
 
+/* ─── LIGHTBOX DOWNLOAD BUTTON ─── */
+.lb-download {
+  position: absolute !important;
+  top: auto !important;
+  left: auto !important;
+  right: 16px !important ;
+  bottom: 16px !important ;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 22px;
+  padding: 9px 14px;
+  background: var(--blue);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .22);
+  transition: all .2s ease;
+}
+
+.lb-download:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+  transform: translateY(-2px);
+}
+
+.lb-download:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 576px) {
+  .lb-download {
+    bottom: 12px;
+    right: 12px;
+    padding: 9px 11px;
+  }
+
+  .lb-download span {
+    display: none;
+  }
+
+  .lb-close {
+    top: 12px;
+    right: 12px;
+  }
+}
+
 /* ─── VIDEO THUMBNAILS ─── */
 .v-thumb {
   position: relative;
