@@ -246,6 +246,52 @@ document.addEventListener('keydown', function (event) {
   if (event.key === 'ArrowLeft') prevImage();
 });
 
+// ─── INDEPENDENCE DAY 2026 GALLERY ───
+document.addEventListener('DOMContentLoaded', function () {
+  const galleryGrid = document.querySelector('#gGrid');
+
+  if (!galleryGrid) return;
+
+  const folder = 'assets/images/independence-day-2026/';
+  const missingPhotos = new Set([2, 10]);
+
+  for (let photoNumber = 1; photoNumber <= 113; photoNumber++) {
+    if (missingPhotos.has(photoNumber)) continue;
+
+    const imagePath = `${folder}15-aug-2026 (${photoNumber}).JPG`;
+
+    const card = document.createElement('div');
+    card.className = 'g-item';
+    card.dataset.gcat = 'Events';
+
+    card.innerHTML = `
+      <img src="${imagePath}"
+           alt="Independence Day Celebration 2026 - Photo ${photoNumber}"
+           loading="lazy">
+
+      <div class="g-overlay">
+        <div class="g-caption">
+          <h4>Independence Day Celebration 2026</h4>
+          <span><i class="fas fa-calendar"></i>15 August 2026</span>
+        </div>
+      </div>
+
+      <div class="g-cat gc-ev">Events</div>
+      <div class="g-zoom"><i class="fas fa-search-plus"></i></div>
+    `;
+
+    card.addEventListener('click', function () {
+      openLightbox(
+        imagePath,
+        `Independence Day Celebration 2026 - Photo ${photoNumber}`,
+        'Events'
+      );
+    });
+
+    galleryGrid.appendChild(card);
+  }
+});
+
 // ─── FACULTY PROFILE MODAL ───
 function openProfile(card) {
   const name = card.getAttribute('data-name');
