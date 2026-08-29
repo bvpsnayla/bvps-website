@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (!galleryGrid) return;
 
-  const folder = 'assets/images/independence-day-2026/';
+  const folder = 'assets/images/';
   const missingPhotos = new Set([2, 10]);
 
   for (let photoNumber = 1; photoNumber <= 113; photoNumber++) {
