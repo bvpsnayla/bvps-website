@@ -20,28 +20,238 @@
 </div>
 
 <!-- NAVBAR -->
+<!-- ================= NAVBAR ================= -->
 <nav class="main-nav navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <div class="logo-ring"><img src="assets/images/bvpslogo.jpeg" alt="BVPS Logo"></div>
-      <div class="brand-text">
-        <span class="sname">Bal Vikas Senior Secondary School</span>
-        <span class="ssub">RBSE Affiliated · Est. 2000 · Classes I–XII</span>
-      </div>
-    </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav1"><i class="fas fa-bars" style="color:var(--navy)"></i></button>
-    <div class="collapse navbar-collapse" id="nav1">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="academics.html">Academics</a></li>
-        <li class="nav-item"><a class="nav-link" href="faculties.html">Faculties</a></li>
-        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link" href="Updates.html">Updates</a></li>
-        <li class="nav-item ms-lg-2"><a class="nav-link nav-cta" href="admission.html">Admission</a></li>
-      </ul>
+
+    <div class="container">
+
+        <!-- LOGO -->
+        <a class="navbar-brand" href="index.html">
+
+            <div class="logo-ring">
+                <img src="assets/images/bvpslogo.jpeg" alt="BVPS Logo">
+            </div>
+
+            <div class="brand-text">
+                <span class="sname">
+                    Bal Vikas Senior Secondary School
+                </span>
+
+                <span class="ssub">
+                    RBSE Affiliated · Est. 2000 · Classes I–XII
+                </span>
+            </div>
+
+        </a>
+
+
+        <!-- MOBILE MENU BUTTON -->
+        <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#nav1"
+            aria-controls="nav1"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+            <i class="fas fa-bars" style="color:var(--navy)"></i>
+
+        </button>
+
+
+        <!-- NAVIGATION -->
+        <div class="collapse navbar-collapse" id="nav1">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+
+                <!-- HOME -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        Home
+                    </a>
+                </li>
+
+
+                <!-- ABOUT -->
+                <li class="nav-item dropdown">
+
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="about.html"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        About
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="dropdown-item" href="about.html">
+                                • About School
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="about.html#principal-message">
+                                • Principal's Message
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="about.html#vision-mission">
+                                • Vision & Mission
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- ACADEMICS -->
+                <li class="nav-item dropdown">
+
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="academics.html"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Academics
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="dropdown-item" href="academics.html">
+                                • Classes
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="academics.html#curriculum">
+                                • Curriculum
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="academics.html#facilities">
+                                • Facilities
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="academics.html#activities">
+                                • Activities
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- FACULTIES -->
+                <li class="nav-item dropdown">
+
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="faculties.html"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Faculties
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="faculties.html#teaching-staff">
+                                • Teaching Staff
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="faculties.html#non-teaching-staff">
+                                • Non-Teaching Staff
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- GALLERY -->
+                <li class="nav-item dropdown">
+
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="gallery.html"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Gallery
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="gallery.html">
+                                • Photos
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="gallery.html#videos">
+                                • Videos
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- Updates -->
+                <li class="nav-item">
+
+                    <a class="nav-link" href="Updates.html">
+                        Updates
+                    </a>
+
+                </li>
+
+
+                <!-- ADMISSION -->
+                <li class="nav-item ms-lg-2">
+
+                    <a
+                        class="nav-link nav-cta"
+                        href="admission.html">
+                        Admission
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+        </div>
+
     </div>
-  </div>
+
 </nav>
 <div class="notice-bar">
   <div class="notice-label">Notice:</div>
