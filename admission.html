@@ -856,18 +856,22 @@
   <div class="col-md-6">
     <label class="form-label">Mobile Number *</label>
 
-    <div class="iw">
-      <i class="fas fa-mobile-alt ic"></i>
+    <div class="mobile-input-group">
+        <div class="country-code">+91</div>
 
-      <input
-        type="tel"
-        id="mobile"
-        class="form-control"
-        placeholder="+91 XXXXX XXXXX"
-        maxlength="10"
-        required>
+        <input
+            type="tel"
+            id="mobile"
+            name="mobile"
+            class="mobile-number"
+            placeholder="Enter 10 digit mobile number"
+            inputmode="numeric"
+            autocomplete="tel"
+            maxlength="10"
+            required
+        >
     </div>
-  </div>
+</div>
 
   <div class="col-12">
     <label class="form-label">Message / Query (Optional)</label>

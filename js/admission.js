@@ -325,3 +325,21 @@ const response = await fetch(scriptURL, {
 }
 
 });
+
+const mobileInput = document.getElementById("mobile");
+
+if (mobileInput) {
+    mobileInput.addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+    });
+
+    mobileInput.addEventListener("keydown", function (e) {
+        // केवल digits + जरूरी control keys
+        if (
+            !/[0-9]/.test(e.key) &&
+            !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab", "Home", "End"].includes(e.key)
+        ) {
+            e.preventDefault();
+        }
+    });
+}
