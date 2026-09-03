@@ -801,22 +801,106 @@
             <h3>Quick Enquiry Form</h3>
             <p class="qsub">All fields marked with * are required.</p>
             <div class="row g-3">
-              <div class="col-md-6"><label class="form-label">Student Name *</label><div class="iw"><i class="fas fa-user ic"></i><input type="text" class="form-control" placeholder="Student's name"></div></div>
-              <div class="col-md-6"><label class="form-label">Father's / Guardian's Name *</label><div class="iw"><i class="fas fa-user-tie ic"></i><input type="text" class="form-control" placeholder="Father's name"></div></div>
-              <div class="col-md-6">
-                <label class="form-label">Class Applied For *</label>
-                <select class="form-select">
-                  <option value="" disabled selected>Select class</option>
-                  <option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option>
-                  <option>Class VI</option><option>Class VII</option><option>Class VIII</option><option>Class IX</option><option>Class X</option>
-                  <option>Class XI - Science</option><option>Class XI - Arts</option>
-                  <option>Class XII - Science</option><option>Class XII - Arts</option>
-                </select>
-              </div>
-              <div class="col-md-6"><label class="form-label">Mobile Number *</label><div class="iw"><i class="fas fa-mobile-alt ic"></i><input type="tel" id="mobile" autocomplete="off" inputmode="numeric" class="form-control" placeholder="+91 XXXXX XXXXX"></div></div>
-              <div class="col-12"><label class="form-label">Message / Query (Optional)</label><textarea class="ta" rows="3" placeholder="Any questions about admission, fees, transport, facilities..."></textarea></div>
-              <div class="col-12"><button type="button" class="btn-qsubmit" id="qBtn"><i class="fas fa-paper-plane"></i> Send Enquiry</button><p class="pnote"><i class="fas fa-shield-alt"></i> Your information is safe and will never be shared with third parties.</p><p id="formStatus" class="mt-2"></p></div>
-            </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Student Name *</label>
+    <div class="iw">
+      <i class="fas fa-user ic"></i>
+      <input
+        type="text"
+        id="studentName"
+        class="form-control"
+        placeholder="Student's name"
+        required>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Father's / Guardian's Name *</label>
+    <div class="iw">
+      <i class="fas fa-user-tie ic"></i>
+      <input
+        type="text"
+        id="fatherName"
+        class="form-control"
+        placeholder="Father's name"
+        required>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Class Applied For *</label>
+
+    <select id="classApplied" class="form-select" required>
+      <option value="" disabled selected>Select class</option>
+
+      <option>Class I</option>
+      <option>Class II</option>
+      <option>Class III</option>
+      <option>Class IV</option>
+      <option>Class V</option>
+      <option>Class VI</option>
+      <option>Class VII</option>
+      <option>Class VIII</option>
+      <option>Class IX</option>
+      <option>Class X</option>
+
+      <option>Class XI - Science</option>
+      <option>Class XI - Arts</option>
+
+      <option>Class XII - Science</option>
+      <option>Class XII - Arts</option>
+    </select>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label">Mobile Number *</label>
+
+    <div class="iw">
+      <i class="fas fa-mobile-alt ic"></i>
+
+      <input
+        type="tel"
+        id="mobile"
+        class="form-control"
+        placeholder="+91 XXXXX XXXXX"
+        maxlength="10"
+        required>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Message / Query (Optional)</label>
+
+    <textarea
+      id="message"
+      class="ta"
+      rows="3"
+      placeholder="Any questions about admission, fees, transport, facilities..."></textarea>
+  </div>
+
+  <div class="col-12">
+
+    <button
+      type="button"
+      class="btn-qsubmit"
+      id="qBtn">
+
+      <i class="fas fa-paper-plane"></i>
+      Send Enquiry
+
+    </button>
+
+    <p class="pnote">
+      <i class="fas fa-shield-alt"></i>
+      Your information is safe and will never be shared with third parties.
+    </p>
+
+    <div id="formStatus" style="margin-top:12px;font-weight:600;"></div>
+
+  </div>
+
+</div>
           </div>
         </div>
       </div>

@@ -6,245 +6,195 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ─── LIGHTBOX ───
-// ─── LIGHTBOX ───
-let bvpsActiveImage = '';
-let bvpsCurrentIndex = -1;
-let bvpsGalleryImages = [];
-let bvpsWheelLock = false;
+/* =========================================================
+   SHARE MENU
+   ========================================================= */
 
-function getVisibleGalleryImages() {
-  return Array.from(document.querySelectorAll('#gGrid .g-item'))
-    .filter(item => getComputedStyle(item).display !== 'none');
+function toggleShareMenu() {
+
+    const menu = document.getElementById(
+        "socialShareMenu"
+    );
+
+    if (!menu) return;
+
+    menu.classList.toggle("active");
 }
 
-function openLightbox(imgSrc) {
-  const backdrop = document.querySelector('.lb-backdrop') || createLightbox();
 
-  bvpsGalleryImages = getVisibleGalleryImages();
+/* =========================================================
+   CLOSE SHARE MENU
+   ========================================================= */
 
-  bvpsCurrentIndex = bvpsGalleryImages.findIndex(item => {
-    const cardImage = item.querySelector('img').getAttribute('src');
+function closeShareMenu() {
 
-    return new URL(cardImage, document.baseURI).href ===
-      new URL(imgSrc, document.baseURI).href;
-  });
+    const menu = document.getElementById(
+        "socialShareMenu"
+    );
 
-  if (bvpsCurrentIndex < 0) bvpsCurrentIndex = 0;
-
-  showGalleryImage(bvpsCurrentIndex);
-  backdrop.classList.add('open');
-  document.body.style.overflow = 'hidden';
+    if (menu) {
+        menu.classList.remove("active");
+    }
 }
 
-function closeLightbox() {
-  const backdrop = document.querySelector('.lb-backdrop');
 
-  if (backdrop) {
-    backdrop.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-}
+/* =========================================================
+   SHARE LINKS
+   ========================================================= */
 
-function nextImage() {
-  if (bvpsGalleryImages.length < 2) return;
+function updateShareLinks() {
+    const pageURL = window.location.href;
 
-  bvpsCurrentIndex = (bvpsCurrentIndex + 1) % bvpsGalleryImages.length;
-  showGalleryImage(bvpsCurrentIndex);
-}
+    const shareText =
+        `${currentPhotoTitle} - Bal Vikas Senior Secondary School, Nayla`;
 
-function prevImage() {
-  if (bvpsGalleryImages.length < 2) return;
+    const telegram = document.getElementById("telegramShare");
 
-  bvpsCurrentIndex =
-    (bvpsCurrentIndex - 1 + bvpsGalleryImages.length) % bvpsGalleryImages.length;
-
-  showGalleryImage(bvpsCurrentIndex);
-}
-
-function showGalleryImage(index) {
-  const item = bvpsGalleryImages[index];
-  if (!item) return;
-
-  const mainImage = item.querySelector('img');
-  const imagePath = mainImage.getAttribute('src');
-  const caption = item.querySelector('.g-caption h4')?.textContent.trim() || mainImage.alt;
-  const category = item.getAttribute('data-gcat') || '';
-
-  const previousIndex =
-    (index - 1 + bvpsGalleryImages.length) % bvpsGalleryImages.length;
-
-  const nextIndex = (index + 1) % bvpsGalleryImages.length;
-
-  const previousImage = bvpsGalleryImages[previousIndex]
-    .querySelector('img')
-    .getAttribute('src');
-
-  const nextImagePath = bvpsGalleryImages[nextIndex]
-    .querySelector('img')
-    .getAttribute('src');
-
-  const backdrop = document.querySelector('.lb-backdrop');
-
-  bvpsActiveImage = imagePath;
-
-  backdrop.querySelector('.lb-main-image').src = imagePath;
-  backdrop.querySelector('.lb-main-image').alt = caption;
-
-  backdrop.querySelector('.lb-preview-prev').src = previousImage;
-  backdrop.querySelector('.lb-preview-next').src = nextImagePath;
-
-  backdrop.querySelector('.lb-info h4').textContent = caption;
-  backdrop.querySelector('.lb-info span').textContent = category;
-
-  const navigationDisplay = bvpsGalleryImages.length > 1 ? 'flex' : 'none';
-  backdrop.querySelector('.lb-prev').style.display = navigationDisplay;
-  backdrop.querySelector('.lb-next').style.display = navigationDisplay;
-}
-
-function createLightbox() {
-  const html = `
-    <div class="lb-backdrop">
-      <div class="lb-inner">
-
-        <div class="lb-stage">
-          <img class="lb-side-preview lb-preview-prev" src="" alt="">
-          <img class="lb-main-image" src="" alt="">
-          <img class="lb-side-preview lb-preview-next" src="" alt="">
-
-          <button class="lb-download" type="button" aria-label="Download photo">
-            <i class="fas fa-download"></i>
-            <span>Download</span>
-          </button>
-
-          <button class="lb-close" type="button" aria-label="Close photo">
-            <i class="fas fa-times"></i>
-          </button>
-
-          <button class="lb-nav lb-prev" type="button" aria-label="Previous photo">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-
-          <button class="lb-nav lb-next" type="button" aria-label="Next photo">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-
-        <div class="lb-info">
-          <h4></h4>
-          <span></span>
-        </div>
-      </div>
-    </div>
-  `;
-
-  const div = document.createElement('div');
-  div.innerHTML = html;
-
-  const backdrop = div.firstElementChild;
-  const stage = backdrop.querySelector('.lb-stage');
-  let touchStartX = 0;
-
-  backdrop.querySelector('.lb-close').addEventListener('click', closeLightbox);
-  backdrop.querySelector('.lb-download').addEventListener('click', downloadWatermarkedPhoto);
-  backdrop.querySelector('.lb-prev').addEventListener('click', prevImage);
-  backdrop.querySelector('.lb-next').addEventListener('click', nextImage);
-
-  /* Mobile swipe */
-  stage.addEventListener('pointerdown', function (event) {
-    touchStartX = event.clientX;
-  });
-
-  stage.addEventListener('pointerup', function (event) {
-    const distance = event.clientX - touchStartX;
-
-    if (distance <= -40) nextImage();
-    if (distance >= 40) prevImage();
-  });
-
-  /* Desktop mouse wheel/scroll */
-  stage.addEventListener('wheel', function (event) {
-    if (Math.abs(event.deltaY) < 10 || bvpsWheelLock) return;
-
-    event.preventDefault();
-    bvpsWheelLock = true;
-
-    if (event.deltaY > 0) {
-      nextImage();
-    } else {
-      prevImage();
+    if (telegram) {
+        telegram.href =
+            "https://t.me/share/url?url=" +
+            encodeURIComponent(pageURL) +
+            "&text=" +
+            encodeURIComponent(shareText);
     }
 
-    setTimeout(() => {
-      bvpsWheelLock = false;
-    }, 350);
-  }, { passive: false });
+    const facebook = document.getElementById("facebookShare");
 
-  backdrop.addEventListener('click', function (event) {
-    if (event.target === backdrop) closeLightbox();
-  });
+    if (facebook) {
+        facebook.href =
+            "https://www.facebook.com/sharer/sharer.php?u=" +
+            encodeURIComponent(pageURL);
+    }
 
-  document.body.appendChild(backdrop);
-  return backdrop;
+    const twitter = document.getElementById("twitterShare");
+
+    if (twitter) {
+        twitter.href =
+            "https://twitter.com/intent/tweet?url=" +
+            encodeURIComponent(pageURL) +
+            "&text=" +
+            encodeURIComponent(shareText);
+    }
 }
 
-function downloadWatermarkedPhoto() {
-  if (!bvpsActiveImage) return;
 
-  const originalImage = new Image();
-  originalImage.src = bvpsActiveImage;
+/* =========================================================
+   WHATSAPP SHARE
+   ========================================================= */
 
-  originalImage.onload = function () {
-    const canvas = document.createElement('canvas');
-    canvas.width = originalImage.naturalWidth;
-    canvas.height = originalImage.naturalHeight;
+function shareWhatsApp() {
 
-    const context = canvas.getContext('2d');
-    context.drawImage(originalImage, 0, 0);
+    const pageURL = window.location.href;
 
-    const fontSize = Math.max(24, Math.round(canvas.width * 0.032));
-    const padding = Math.round(canvas.width * 0.035);
+    const shareText =
+        `${currentPhotoTitle}
 
-    context.save();
-    context.globalAlpha = 0.62;
-    context.fillStyle = '#ffffff';
-    context.textAlign = 'right';
-    context.textBaseline = 'bottom';
+Bal Vikas Senior Secondary School
+Nayla, Jaipur
 
-    context.font = `600 ${fontSize}px Arial`;
-    context.fillText(
-      'Bal Vikas Senior Secondary School, Nayla',
-      canvas.width - padding,
-      canvas.height - padding - fontSize
+🌐 View this photo:
+${pageURL}`;
+
+    const whatsappURL =
+        "https://wa.me/?text=" +
+        encodeURIComponent(shareText);
+
+    window.open(
+        whatsappURL,
+        "_blank"
     );
-
-    context.font = `500 ${Math.round(fontSize * 0.7)}px Arial`;
-    context.fillText(
-      '© BVPS Nayla',
-      canvas.width - padding,
-      canvas.height - padding
-    );
-
-    context.restore();
-
-    const link = document.createElement('a');
-    const imageName = bvpsActiveImage.split('/').pop().replace(/\.[^/.]+$/, '');
-
-    link.href = canvas.toDataURL('image/jpeg', 0.92);
-    link.download = `${imageName}-bvps-nayla.jpg`;
-    link.click();
-  };
-
-  originalImage.onerror = function () {
-    alert('Photo download नहीं हो सकी। कृपया दोबारा कोशिश करें।');
-  };
 }
 
-document.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape') closeLightbox();
-  if (event.key === 'ArrowRight') nextImage();
-  if (event.key === 'ArrowLeft') prevImage();
-});
+
+/* =========================================================
+   SYSTEM SHARE
+   ========================================================= */
+
+async function systemSharePhoto() {
+
+    const pageURL = window.location.href;
+
+    const shareData = {
+
+        title: currentPhotoTitle,
+
+        text:
+            `${currentPhotoTitle} - Bal Vikas Senior Secondary School`,
+
+        url: pageURL
+    };
+
+    if (!navigator.share) {
+
+        alert(
+            "Is browser mein system sharing available nahi hai."
+        );
+
+        return;
+    }
+
+    try {
+
+        await navigator.share(shareData);
+
+        closeShareMenu();
+
+    } catch (error) {
+
+        console.log(
+            "Share cancelled:",
+            error
+        );
+
+    }
+}
+
+
+/* =========================================================
+   BUTTON EVENTS
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const shareBtn =
+            document.getElementById("shareBtn");
+
+        if (shareBtn) {
+
+            shareBtn.addEventListener(
+                "click",
+                toggleShareMenu
+            );
+        }
+
+
+        const whatsappBtn =
+            document.getElementById("whatsappBtn");
+
+        if (whatsappBtn) {
+
+            whatsappBtn.addEventListener(
+                "click",
+                shareWhatsApp
+            );
+        }
+
+
+        const systemShare =
+            document.getElementById("systemShare");
+
+        if (systemShare) {
+
+            systemShare.addEventListener(
+                "click",
+                systemSharePhoto
+            );
+        }
+
+    }
+);
 
 // ─── INDEPENDENCE DAY 2026 GALLERY ───
 document.addEventListener('DOMContentLoaded', function () {
@@ -291,6 +241,840 @@ document.addEventListener('DOMContentLoaded', function () {
     galleryGrid.appendChild(card);
   }
 });
+
+/* =========================================================
+   BVPS PHOTO LIGHTBOX + DOWNLOAD + SHARE
+   ========================================================= */
+
+let currentPhotoURL = "";
+let currentPhotoTitle = "";
+let currentPhotoCategory = "";
+
+
+/* =========================================================
+   OPEN LIGHTBOX
+   ========================================================= */
+
+function openLightbox(imageURL, title, category) {
+
+    const lightbox = document.getElementById("photoLightbox");
+    const image = document.getElementById("lbImage");
+    const titleEl = document.getElementById("lbTitle");
+    const categoryEl = document.getElementById("lbCategory");
+
+    if (!lightbox || !image) {
+        console.error("Photo Lightbox HTML not found.");
+        return;
+    }
+
+    currentPhotoURL = imageURL;
+    currentPhotoTitle = title || "Bal Vikas Senior Secondary School";
+    currentPhotoCategory = category || "Gallery";
+
+    image.src = imageURL;
+
+    titleEl.textContent = currentPhotoTitle;
+    categoryEl.textContent = currentPhotoCategory;
+
+    lightbox.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+
+    updateShareLinks();
+}
+
+
+/* =========================================================
+   CLOSE LIGHTBOX
+   ========================================================= */
+
+function closeLightbox() {
+
+    const lightbox =
+        document.getElementById("photoLightbox");
+
+    if (!lightbox) return;
+
+    lightbox.classList.remove("show");
+
+    document.body.style.overflow = "";
+
+    closeShareMenu();
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const closeBtn =
+        document.getElementById("lbClose");
+
+    if (closeBtn) {
+        closeBtn.addEventListener(
+            "click",
+            closeLightbox
+        );
+    }
+
+
+    /* Close by clicking background */
+
+    const lightbox =
+        document.getElementById("photoLightbox");
+
+    if (lightbox) {
+
+        lightbox.addEventListener(
+            "click",
+            function (e) {
+
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+
+            }
+        );
+    }
+
+
+    /* ESC */
+
+    document.addEventListener(
+        "keydown",
+        function (e) {
+
+            if (e.key === "Escape") {
+                closeLightbox();
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       DOWNLOAD BUTTON
+       ===================================================== */
+
+    const downloadBtn =
+        document.getElementById("downloadBtn");
+
+    if (downloadBtn) {
+
+        downloadBtn.addEventListener(
+            "click",
+            downloadPhoto
+        );
+
+    }
+
+
+    /* =====================================================
+       SHARE BUTTON
+       ===================================================== */
+
+    const shareBtn =
+        document.getElementById("shareBtn");
+
+    if (shareBtn) {
+
+        shareBtn.addEventListener(
+            "click",
+            toggleShareMenu
+        );
+
+    }
+
+
+    /* =====================================================
+       WHATSAPP
+       ===================================================== */
+
+    const whatsappBtn =
+        document.getElementById("whatsappBtn");
+
+    if (whatsappBtn) {
+
+        whatsappBtn.addEventListener(
+            "click",
+            shareWhatsApp
+        );
+
+    }
+
+
+    /* =====================================================
+       SYSTEM SHARE
+       ===================================================== */
+
+    const systemShare =
+        document.getElementById("systemShare");
+
+    if (systemShare) {
+
+        systemShare.addEventListener(
+            "click",
+            systemSharePhoto
+        );
+
+    }
+
+});
+
+
+/* =========================================================
+   DOWNLOAD PHOTO
+   ========================================================= */
+
+async function downloadPhoto() {
+
+    if (!currentPhotoURL) return;
+
+    try {
+
+        const response =
+            await fetch(currentPhotoURL);
+
+        const blob =
+            await response.blob();
+
+        /*
+         * IMPORTANT:
+         * Browser cannot reliably add a watermark
+         * to an image using a simple download link.
+         *
+         * Therefore canvas is used.
+         */
+
+        const img = new Image();
+
+        img.onload = function () {
+
+            const canvas =
+                document.createElement("canvas");
+
+            const ctx =
+                canvas.getContext("2d");
+
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+
+            /* Original image */
+
+            ctx.drawImage(
+                img,
+                0,
+                0
+            );
+
+
+            /* Watermark */
+
+            const fontSize =
+                Math.max(
+                    24,
+                    Math.floor(
+                        canvas.width * 0.025
+                    )
+                );
+
+            ctx.font =
+                `600 ${fontSize}px Arial`;
+
+            ctx.fillStyle =
+                "rgba(255,255,255,0.65)";
+
+            ctx.textAlign = "right";
+
+            ctx.textBaseline = "bottom";
+
+            ctx.shadowColor =
+                "rgba(0,0,0,0.5)";
+
+            ctx.shadowBlur = 4;
+
+            ctx.fillText(
+                "Bal Vikas Senior Secondary School | bvpsnayla.in",
+                canvas.width - 30,
+                canvas.height - 25
+            );
+
+
+            canvas.toBlob(
+                function (watermarkedBlob) {
+
+                    const url =
+                        URL.createObjectURL(
+                            watermarkedBlob
+                        );
+
+                    const a =
+                        document.createElement("a");
+
+                    a.href = url;
+
+                    a.download =
+                        "BVPS-" +
+                        currentPhotoTitle
+                            .replace(/[^a-z0-9]/gi, "-")
+                            .toLowerCase() +
+                        ".jpg";
+
+                    document.body.appendChild(a);
+
+                    a.click();
+
+                    a.remove();
+
+                    URL.revokeObjectURL(url);
+
+                },
+                "image/jpeg",
+                0.92
+            );
+
+        };
+
+
+        /*
+         * Needed when images are hosted on another domain.
+         * Your GitHub/local assets should normally be same-origin.
+         */
+
+        img.src =
+            URL.createObjectURL(blob);
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Download failed:",
+            error
+        );
+
+        alert(
+            "Photo download nahi ho pa raha. Please try again."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PHOTO SHARE
+   ========================================================= */
+
+async function sharePhotoImage() {
+
+    if (!currentPhotoURL) {
+        alert("Photo available nahi hai.");
+        return;
+    }
+
+    try {
+
+        // Current photo fetch karo
+        const response = await fetch(currentPhotoURL);
+
+        if (!response.ok) {
+            throw new Error("Photo fetch failed");
+        }
+
+        const blob = await response.blob();
+
+        // Image file create karo
+        const file = new File(
+            [blob],
+            "BVPS-Photo.jpg",
+            {
+                type: blob.type || "image/jpeg"
+            }
+        );
+
+        // Browser actual image sharing support karta hai?
+        if (
+            navigator.share &&
+            navigator.canShare &&
+            navigator.canShare({ files: [file] })
+        ) {
+
+            await navigator.share({
+                files: [file]
+            });
+
+            closeShareMenu();
+            return;
+        }
+
+        // Agar image sharing supported nahi hai
+        alert(
+            "Is browser mein direct photo sharing available nahi hai. " +
+            "Mobile Chrome/Android par try karein."
+        );
+
+    } catch (error) {
+
+        if (error.name !== "AbortError") {
+
+            console.error(
+                "Photo sharing failed:",
+                error
+            );
+
+            alert(
+                "Photo share nahi ho pa rahi. Please try again."
+            );
+        }
+    }
+}
+
+
+/* =========================================================
+   SHARE MENU
+   ========================================================= */
+
+function toggleShareMenu() {
+
+    const menu =
+        document.getElementById("socialShareMenu");
+
+    if (!menu) return;
+
+    menu.classList.toggle("active");
+}
+
+
+function closeShareMenu() {
+
+    const menu =
+        document.getElementById("socialShareMenu");
+
+    if (menu) {
+        menu.classList.remove("active");
+    }
+}
+
+
+/* =========================================================
+   SHARE BUTTON EVENTS
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const shareBtn =
+        document.getElementById("shareBtn");
+
+    if (shareBtn) {
+
+        shareBtn.addEventListener(
+            "click",
+            toggleShareMenu
+        );
+    }
+
+
+    const systemShare =
+        document.getElementById("systemShare");
+
+    if (systemShare) {
+
+        systemShare.addEventListener(
+            "click",
+            sharePhotoImage
+        );
+    }
+
+});
+
+
+/* =========================================================
+   CLOSE SHARE MENU
+   ========================================================= */
+
+function closeShareMenu() {
+
+    const menu =
+        document.getElementById(
+            "socialShareMenu"
+        );
+
+    if (menu) {
+        menu.classList.remove("active");
+    }
+
+}
+
+
+/* =========================================================
+   SHARE LINKS
+   ========================================================= */
+
+function updateShareLinks() {
+
+    const pageURL =
+        window.location.href;
+
+    const shareText =
+        `${currentPhotoTitle} - Bal Vikas Senior Secondary School\n${pageURL}`;
+
+
+    /* Telegram */
+
+    const telegram =
+        document.getElementById(
+            "telegramShare"
+        );
+
+    if (telegram) {
+
+        telegram.href =
+            "https://t.me/share/url?url=" +
+            encodeURIComponent(pageURL) +
+            "&text=" +
+            encodeURIComponent(
+                currentPhotoTitle +
+                " - Bal Vikas Senior Secondary School"
+            );
+
+    }
+
+
+    /* Facebook */
+
+    const facebook =
+        document.getElementById(
+            "facebookShare"
+        );
+
+    if (facebook) {
+
+        facebook.href =
+            "https://www.facebook.com/sharer/sharer.php?u=" +
+            encodeURIComponent(pageURL);
+
+    }
+
+
+    /* X / Twitter */
+
+    const twitter =
+        document.getElementById(
+            "twitterShare"
+        );
+
+    if (twitter) {
+
+        twitter.href =
+            "https://twitter.com/intent/tweet?url=" +
+            encodeURIComponent(pageURL) +
+            "&text=" +
+            encodeURIComponent(
+                currentPhotoTitle
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   WHATSAPP SHARE
+   ========================================================= */
+
+async function sharePhoto() {
+
+    if (!currentPhotoURL) return;
+
+    const pageURL = window.location.href;
+
+    const shareText =
+        `${currentPhotoTitle}
+
+Bal Vikas Senior Secondary School
+Nayla, Jaipur
+
+🌐 View this photo:
+${pageURL}`;
+
+
+    try {
+
+        // Photo fetch करो
+        const response = await fetch(currentPhotoURL);
+
+        const blob = await response.blob();
+
+        // File बनाओ
+        const file = new File(
+            [blob],
+            "BVPS-Photo.jpg",
+            {
+                type: blob.type || "image/jpeg"
+            }
+        );
+
+
+        // Check करो browser image sharing support करता है या नहीं
+        if (
+            navigator.share &&
+            navigator.canShare &&
+            navigator.canShare({
+                files: [file]
+            })
+        ) {
+
+            await navigator.share({
+
+                title: currentPhotoTitle,
+
+                text: shareText,
+
+                url: pageURL,
+
+                files: [file]
+
+            });
+
+            return;
+        }
+
+
+        // अगर image sharing support नहीं है
+        if (navigator.share) {
+
+            await navigator.share({
+
+                title: currentPhotoTitle,
+
+                text: shareText,
+
+                url: pageURL
+
+            });
+
+            return;
+        }
+
+
+        // पुराने browser के लिए WhatsApp fallback
+
+        const whatsappURL =
+            "https://wa.me/?text=" +
+            encodeURIComponent(shareText);
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Share cancelled or failed:",
+            error
+        );
+
+    }
+}
+
+
+/* =========================================================
+   SHARE PHOTO — IMAGE ONLY
+   Supports JPG, JPEG, PNG, WEBP, GIF, AVIF, BMP, SVG, TIFF...
+   ========================================================= */
+
+async function sharePhotoImage() {
+
+    if (!currentPhotoURL) {
+        alert("Photo available nahi hai.");
+        return;
+    }
+
+    // Web Share API available?
+    if (!navigator.share || !navigator.canShare) {
+        alert(
+            "Is browser mein photo sharing supported nahi hai. " +
+            "Mobile Chrome/Android par try karein."
+        );
+        return;
+    }
+
+    try {
+
+        /* -------------------------------------------------
+           1. Original photo fetch
+        ------------------------------------------------- */
+
+        const response =
+            await fetch(currentPhotoURL);
+
+        if (!response.ok) {
+            throw new Error("Photo fetch failed");
+        }
+
+        const blob =
+            await response.blob();
+
+
+        /* -------------------------------------------------
+           2. Detect image MIME type
+        ------------------------------------------------- */
+
+        let mimeType = blob.type;
+
+        if (!mimeType || !mimeType.startsWith("image/")) {
+
+            const extension =
+                currentPhotoURL
+                    .split("?")[0]
+                    .split("#")[0]
+                    .split(".")
+                    .pop()
+                    .toLowerCase();
+
+            const mimeTypes = {
+
+                jpg: "image/jpeg",
+                jpeg: "image/jpeg",
+                jfif: "image/jpeg",
+                pjpeg: "image/jpeg",
+
+                png: "image/png",
+
+                gif: "image/gif",
+
+                webp: "image/webp",
+
+                avif: "image/avif",
+
+                bmp: "image/bmp",
+
+                svg: "image/svg+xml",
+
+                svgz: "image/svg+xml",
+
+                ico: "image/x-icon",
+
+                tif: "image/tiff",
+                tiff: "image/tiff"
+
+            };
+
+            mimeType =
+                mimeTypes[extension] ||
+                "image/jpeg";
+        }
+
+
+        /* -------------------------------------------------
+           3. Get correct file extension
+        ------------------------------------------------- */
+
+        const extensionMap = {
+
+            "image/jpeg": "jpg",
+            "image/png": "png",
+            "image/gif": "gif",
+            "image/webp": "webp",
+            "image/avif": "avif",
+            "image/bmp": "bmp",
+            "image/svg+xml": "svg",
+            "image/x-icon": "ico",
+            "image/tiff": "tiff"
+
+        };
+
+        const extension =
+            extensionMap[mimeType] || "jpg";
+
+
+        /* -------------------------------------------------
+           4. Create actual image File
+        ------------------------------------------------- */
+
+        const file =
+            new File(
+                [blob],
+                `BVPS-Photo.${extension}`,
+                {
+                    type: mimeType
+                }
+            );
+
+
+        /* -------------------------------------------------
+           5. Check whether THIS file can be shared
+        ------------------------------------------------- */
+
+        if (
+            !navigator.canShare({
+                files: [file]
+            })
+        ) {
+
+            alert(
+                "Is device/browser mein " +
+                mimeType +
+                " image sharing supported nahi hai."
+            );
+
+            return;
+        }
+
+
+        /* -------------------------------------------------
+           6. SHARE ONLY IMAGE
+           
+           No:
+           ❌ text
+           ❌ URL
+           ❌ title
+           
+           Only:
+           ✅ image file
+        ------------------------------------------------- */
+
+        await navigator.share({
+
+            files: [file]
+
+        });
+
+
+        /* -------------------------------------------------
+           7. Close menu after successful share
+        ------------------------------------------------- */
+
+        closeShareMenu();
+
+
+    } catch (error) {
+
+        /* User cancelled sharing */
+
+        if (error.name === "AbortError") {
+            return;
+        }
+
+
+        console.error(
+            "Image sharing failed:",
+            error
+        );
+
+
+        alert(
+            "Photo share nahi ho pa rahi. Please try again."
+        );
+    }
+}
+
 
 // ─── FACULTY PROFILE MODAL ───
 function openProfile(card) {

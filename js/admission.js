@@ -163,65 +163,165 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // =====================
-  // 🟢 QUICK ENQUIRY FORM
-  // =====================
-// =====================
-// 🟢 QUICK ENQUIRY FORM
-// =====================
+  /* =========================================================
+   BVPS QUICK ENQUIRY FORM
+   Google Apps Script Backend
+========================================================= */
+
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbxcGIOMamV2EO1aXlC3S-5ozrfnjgs-NGZd3yNxSMRAlbVZn7A1Q2xg6MIyJnTAZrY7/exec";
+
+
 const qBtn = document.getElementById("qBtn");
 
 if (qBtn) {
-  qBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
 
-    const box = document.getElementById("enquiryForm");
+  qBtn.addEventListener("click", async function () {
 
-    const name = box.querySelectorAll("input")[0].value.trim();
-    const father = box.querySelectorAll("input")[1].value.trim();
-    const classApplied = box.querySelector("select").value;
-    const mobile = document.getElementById("qMobile").value.replace(/\D/g, "");
-    const message = box.querySelector("textarea").value.trim();
+    const studentName =
+      document.getElementById("studentName").value.trim();
 
-    // ✅ validation
-    if (!name || !father || !classApplied) {
-      alert("Please fill all required fields");
+    const fatherName =
+      document.getElementById("fatherName").value.trim();
+
+    const classApplied =
+      document.getElementById("classApplied").value;
+
+    const mobile =
+      document.getElementById("mobile").value.trim();
+
+    const message =
+      document.getElementById("message").value.trim();
+
+    const status =
+      document.getElementById("formStatus");
+
+
+    /* Validation */
+
+    if (!studentName || !fatherName || !classApplied || !mobile) {
+
+      status.style.color = "#dc2626";
+      status.textContent =
+        "Please fill all required fields.";
+
       return;
     }
 
-    if (mobile.length !== 10) {
-      alert("Enter valid 10 digit mobile number");
+
+    /* Mobile validation */
+
+    const cleanMobile =
+      mobile.replace(/\D/g, "");
+
+    if (!/^[0-9]{10}$/.test(cleanMobile)) {
+
+      status.style.color = "#dc2626";
+      status.textContent =
+        "Please enter a valid 10 digit mobile number.";
+
       return;
     }
 
-    const data = {
-      studentName: name,
-      fatherName: father,
-      classApplied: classApplied,
-      mobile: mobile,
-      message: message,
-      createdAt: new Date()
-    };
+
+    /* Loading */
 
     qBtn.disabled = true;
-    qBtn.innerHTML = "Sending...";
+
+    qBtn.innerHTML =
+      '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+    status.style.color = "#2563eb";
+    status.textContent =
+      "Please wait...";
+
+
+    /* Data */
+
+    const data = {
+
+      studentName: studentName,
+
+      fatherName: fatherName,
+
+      classApplied: classApplied,
+
+      mobile: cleanMobile,
+
+      message: message
+
+    };
+
 
     try {
-      await addDoc(collection(db, "enquiries"), data);
 
-      alert("Enquiry Submitted Successfully ✅");
+      const formData = new URLSearchParams();
 
-      // reset
-      box.querySelectorAll("input").forEach(i => i.value = "");
-      box.querySelector("select").selectedIndex = 0;
-      box.querySelector("textarea").value = "";
+formData.append("studentName", studentName);
+formData.append("fatherName", fatherName);
+formData.append("classApplied", classApplied);
+formData.append("mobile", cleanMobile);
+formData.append("message", message);
 
-    } catch (err) {
-      alert("Error: " + err.message);
+const response = await fetch(scriptURL, {
+  method: "POST",
+  body: formData
+});
+
+      const result = await response.json();
+
+
+      if (result.result === "success") {
+
+        status.style.color = "#16a34a";
+
+        status.textContent =
+          "✓ Enquiry submitted successfully! We will contact you soon.";
+
+
+        /* Clear form */
+
+        document.getElementById("studentName").value = "";
+
+        document.getElementById("fatherName").value = "";
+
+        document.getElementById("classApplied").selectedIndex = 0;
+
+        document.getElementById("mobile").value = "";
+
+        document.getElementById("message").value = "";
+
+
+      } else {
+    console.log("Google Apps Script response:", result);
+
+    status.style.color = "#dc2626";
+    status.textContent =
+      "Submission failed: " + (result.message || "Unknown error");
+}
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      status.style.color = "#dc2626";
+
+      status.textContent =
+        "Something went wrong. Please try again.";
+
     }
 
+
+    /* Reset button */
+
     qBtn.disabled = false;
-    qBtn.innerHTML = "Send Enquiry";
+
+    qBtn.innerHTML =
+      '<i class="fas fa-paper-plane"></i> Send Enquiry';
+
   });
+
 }
+
+});
