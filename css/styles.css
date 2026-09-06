@@ -1169,6 +1169,116 @@ footer hr {
   transition: color .28s;
 }
 
+/* =========================================================
+   PRINCIPAL'S MESSAGE
+========================================================= */
+
+.principal-message-sec{
+  padding:90px 0;
+  background:var(--off-white);
+}
+
+.principal-photo-wrap{
+  position:relative;
+  display:inline-block;
+  max-width:330px;
+  width:100%;
+}
+
+.principal-photo{
+  width:100%;
+  max-width:300px;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:22px;
+  border:8px solid #fff;
+  box-shadow:var(--shadow-lg);
+  display:block;
+  margin:auto;
+}
+
+.principal-photo-badge{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--navy),var(--accent));
+  color:#fff;
+  padding:10px 22px;
+  border-radius:30px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:.82rem;
+  font-weight:700;
+  white-space:nowrap;
+  box-shadow:0 8px 22px rgba(23,66,86,.25);
+}
+
+.principal-photo-badge i{
+  color:var(--gold-light);
+}
+
+.principal-message-content{
+  margin-top:22px;
+}
+
+.principal-message-content p{
+  color:var(--mut);
+  font-size:.91rem;
+  line-height:1.85;
+  margin-bottom:15px;
+}
+
+.principal-message-content p:first-child{
+  color:var(--navy);
+  font-weight:600;
+  font-size:.96rem;
+}
+
+.principal-signature{
+  margin-top:25px;
+  padding-left:18px;
+  border-left:4px solid var(--gold);
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.principal-signature strong{
+  font-family:'Playfair Display',serif;
+  color:var(--navy);
+  font-size:1rem;
+}
+
+.principal-signature span{
+  color:var(--mut);
+  font-size:.78rem;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+  .principal-message-sec{
+    padding:60px 0;
+  }
+
+  .principal-photo-wrap{
+    max-width:270px;
+    margin-bottom:10px;
+  }
+
+  .principal-photo{
+    max-width:250px;
+  }
+
+  .principal-message-content p{
+    font-size:.87rem;
+    line-height:1.75;
+  }
+
+}
+
 /* ─── VMV SECTION ─── */
 .vmv-sec {
   padding: 88px 0;
