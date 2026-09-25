@@ -196,6 +196,38 @@ document.addEventListener(
     }
 );
 
+// ─── GALLERY FILTER ───
+function filterGal(category, button) {
+
+  const items = document.querySelectorAll('#gGrid .g-item');
+  const buttons = document.querySelectorAll('.gfbtn');
+
+  items.forEach(item => {
+
+    const itemCategory = (item.getAttribute('data-gcat') || '').trim().toLowerCase();
+    const selectedCategory = (category || '').trim().toLowerCase();
+
+    if (
+      selectedCategory === 'all' ||
+      itemCategory === selectedCategory
+    ) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+
+  });
+
+  // Active button
+  buttons.forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  if (button) {
+    button.classList.add('active');
+  }
+}
+
 // ─── INDEPENDENCE DAY 2026 GALLERY ───
 document.addEventListener('DOMContentLoaded', function () {
   const galleryGrid = document.querySelector('#gGrid');
@@ -1228,4 +1260,254 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       }
     }
   });
+});
+
+
+// =====================================================
+// BVPS HOMEPAGE GALLERY
+// Automatically loads images from gallery.html
+// =====================================================
+
+(function () {
+
+    const galleryImages = [];
+    let currentIndex = 0;
+
+    // Gallery page से images निकालना
+    fetch("gallery.html")
+        .then(response => response.text())
+        .then(html => {
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+
+            // Gallery के अंदर सभी images
+            const images = doc.querySelectorAll(".g-grid img");
+
+            images.forEach(img => {
+
+                const src = img.getAttribute("src");
+
+                if (src && !galleryImages.includes(src)) {
+
+                    galleryImages.push({
+                        src: src,
+                        title: img.getAttribute("alt") || "BVPS School"
+                    });
+
+                }
+
+            });
+
+            // अगर images मिल गईं
+            if (galleryImages.length > 0) {
+
+                // Random starting image
+                currentIndex =
+                    Math.floor(Math.random() * galleryImages.length);
+
+                showGalleryImages();
+
+            }
+            document.querySelectorAll(".bvps-vg-photo").forEach(function (photo) {
+
+    photo.style.cursor = "pointer";
+
+    photo.onclick = function () {
+        window.location.href = "gallery.html";
+    };
+
+});
+
+        })
+        .catch(error => {
+            console.error("BVPS Gallery Load Error:", error);
+        });
+
+
+    // =================================================
+    // SHOW IMAGES
+    // =================================================
+
+    function showGalleryImages() {
+
+        if (galleryImages.length === 0) return;
+
+        const total = galleryImages.length;
+
+        const getImage = (offset) => {
+
+            return galleryImages[
+                (currentIndex + offset + total) % total
+            ];
+
+        };
+
+
+        const farLeft =
+            getImage(-2);
+
+        const left =
+            getImage(-1);
+
+        const center =
+            getImage(0);
+
+        const right =
+            getImage(1);
+
+        const farRight =
+            getImage(2);
+
+
+        // Elements
+        const farLeftEl =
+            document.getElementById("bvpsVgFarLeft");
+
+        const leftEl =
+            document.getElementById("bvpsVgLeft");
+
+        const centerEl =
+            document.getElementById("bvpsVgCenter");
+
+        const rightEl =
+            document.getElementById("bvpsVgRight");
+
+        const farRightEl =
+            document.getElementById("bvpsVgFarRight");
+
+
+        if (!centerEl) return;
+
+
+        // Images
+        if (farLeftEl)
+            farLeftEl.src = farLeft.src;
+
+        if (leftEl)
+            leftEl.src = left.src;
+
+        centerEl.src =
+            center.src;
+
+        if (rightEl)
+            rightEl.src = right.src;
+
+        if (farRightEl)
+            farRightEl.src = farRight.src;
+
+
+        // Center image information
+        centerEl.alt =
+            center.title;
+
+
+        const category =
+            document.getElementById("bvpsVgCategory");
+
+        const title =
+            document.getElementById("bvpsVgTitle");
+
+
+        if (category)
+            category.textContent = "BVPS SCHOOL";
+
+        if (title)
+            title.textContent = center.title;
+
+    }
+
+
+    // =================================================
+    // NEXT
+    // =================================================
+
+    const nextButton =
+        document.getElementById("bvpsVgNext");
+
+    if (nextButton) {
+
+        nextButton.addEventListener("click", function () {
+
+            if (galleryImages.length === 0) return;
+
+            currentIndex =
+                (currentIndex + 1) %
+                galleryImages.length;
+
+            showGalleryImages();
+
+        });
+
+    }
+
+
+    // =================================================
+    // PREVIOUS
+    // =================================================
+
+    const prevButton =
+        document.getElementById("bvpsVgPrev");
+
+    if (prevButton) {
+
+        prevButton.addEventListener("click", function () {
+
+            if (galleryImages.length === 0) return;
+
+            currentIndex =
+                (currentIndex - 1 +
+                galleryImages.length) %
+                galleryImages.length;
+
+            showGalleryImages();
+
+        });
+
+    }
+
+
+    // =================================================
+    // AUTO CHANGE — EVERY 3 SECONDS
+    // =================================================
+
+    setInterval(function () {
+
+        if (galleryImages.length === 0) return;
+
+        currentIndex =
+            (currentIndex + 1) %
+            galleryImages.length;
+
+        showGalleryImages();
+
+    }, 3000);
+
+
+})();
+
+// =================================================
+// CLICK ON ANY PHOTO → OPEN GALLERY
+// =================================================
+
+const galleryPhotoElements = [
+    document.getElementById("bvpsVgFarLeft"),
+    document.getElementById("bvpsVgLeft"),
+    document.getElementById("bvpsVgCenter"),
+    document.getElementById("bvpsVgRight"),
+    document.getElementById("bvpsVgFarRight")
+];
+
+galleryPhotoElements.forEach(function (img) {
+
+    if (img) {
+
+        img.style.cursor = "pointer";
+
+        img.onclick = function () {
+            window.location.href = "gallery.html";
+        };
+
+    }
+
 });
