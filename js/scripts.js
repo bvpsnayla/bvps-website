@@ -282,6 +282,590 @@ let currentPhotoURL = "";
 let currentPhotoTitle = "";
 let currentPhotoCategory = "";
 
+/* =====================================================
+   BVPS GALLERY
+   PREVIOUS / NEXT NAVIGATION
+   ===================================================== */
+
+let galleryPhotos = [];
+let currentGalleryIndex = -1;
+
+
+/* =====================================================
+   GET VISIBLE GALLERY PHOTOS
+   ===================================================== */
+
+function getGalleryPhotos() {
+
+    const photos = [];
+
+    document.querySelectorAll('#gGrid .g-item').forEach(function (card) {
+
+        /*
+         * Filter के बाद hidden photos को navigation में
+         * शामिल नहीं करना है.
+         */
+        if (card.style.display === 'none') {
+            return;
+        }
+
+        const img = card.querySelector('img');
+
+        if (!img) {
+            return;
+        }
+
+
+        /*
+         * Default image
+         */
+        let imageURL =
+            img.getAttribute('src');
+
+
+        /*
+         * Existing inline onclick से actual lightbox
+         * image निकालो.
+         *
+         * इससे आपके पुराने cards भी सही रहेंगे.
+         */
+        const onclickCode =
+            card.getAttribute('onclick');
+
+
+        if (onclickCode) {
+
+            const match =
+                onclickCode.match(
+                    /openLightbox\(['"]([^'"]+)['"]/
+                );
+
+            if (match && match[1]) {
+
+                imageURL =
+                    match[1];
+
+            }
+
+        }
+
+
+        /*
+         * Title
+         */
+        const titleElement =
+            card.querySelector(
+                '.g-caption h4'
+            );
+
+
+        const title =
+            titleElement
+                ? titleElement.textContent.trim()
+                : (
+                    img.alt ||
+                    'BVPS School Gallery'
+                );
+
+
+        /*
+         * Category
+         */
+        const category =
+            card.getAttribute(
+                'data-gcat'
+            ) || 'Gallery';
+
+
+        photos.push({
+
+            url: imageURL,
+
+            title: title,
+
+            category: category
+
+        });
+
+    });
+
+
+    return photos;
+
+}
+
+
+/* =====================================================
+   SHOW PHOTO
+   ===================================================== */
+
+function showGalleryPhoto(index) {
+
+    galleryPhotos =
+        getGalleryPhotos();
+
+
+    if (!galleryPhotos.length) {
+        return;
+    }
+
+
+    /*
+     * LOOP NAVIGATION
+     *
+     * Last → First
+     * First → Last
+     */
+
+    if (index < 0) {
+
+        index =
+            galleryPhotos.length - 1;
+
+    }
+
+
+    if (index >= galleryPhotos.length) {
+
+        index = 0;
+
+    }
+
+
+    currentGalleryIndex =
+        index;
+
+
+    const photo =
+        galleryPhotos[
+            currentGalleryIndex
+        ];
+
+
+    /*
+     * Existing lightbox variables
+     */
+
+    currentPhotoURL =
+        photo.url;
+
+    currentPhotoTitle =
+        photo.title;
+
+    currentPhotoCategory =
+        photo.category;
+
+
+    /*
+     * Image
+     */
+
+    const image =
+        document.getElementById(
+            'lbImage'
+        );
+
+
+    if (image) {
+
+        image.src =
+            photo.url;
+
+        image.alt =
+            photo.title;
+
+    }
+
+
+    /*
+     * Title
+     */
+
+    const title =
+        document.getElementById(
+            'lbTitle'
+        );
+
+
+    if (title) {
+
+        title.textContent =
+            photo.title;
+
+    }
+
+
+    /*
+     * Category
+     */
+
+    const category =
+        document.getElementById(
+            'lbCategory'
+        );
+
+
+    if (category) {
+
+        category.textContent =
+            photo.category;
+
+    }
+
+
+    /*
+     * IMPORTANT:
+     * Existing Download / Share / WhatsApp
+     * ko new photo ke according update karo.
+     */
+
+    if (
+        typeof updateShareLinks ===
+        'function'
+    ) {
+
+        updateShareLinks();
+
+    }
+
+
+    /*
+     * Share menu close
+     */
+
+    if (
+        typeof closeShareMenu ===
+        'function'
+    ) {
+
+        closeShareMenu();
+
+    }
+
+}
+
+
+/* =====================================================
+   NEXT PHOTO
+   ===================================================== */
+
+function nextGalleryPhoto() {
+
+    galleryPhotos =
+        getGalleryPhotos();
+
+
+    if (!galleryPhotos.length) {
+        return;
+    }
+
+
+    showGalleryPhoto(
+        currentGalleryIndex + 1
+    );
+
+}
+
+
+/* =====================================================
+   PREVIOUS PHOTO
+   ===================================================== */
+
+function previousGalleryPhoto() {
+
+    galleryPhotos =
+        getGalleryPhotos();
+
+
+    if (!galleryPhotos.length) {
+        return;
+    }
+
+
+    showGalleryPhoto(
+        currentGalleryIndex - 1
+    );
+
+}
+
+
+/* =====================================================
+   LIGHTBOX NAVIGATION EVENTS
+   ===================================================== */
+
+document.addEventListener(
+    'DOMContentLoaded',
+    function () {
+
+        const nextButton =
+            document.getElementById(
+                'lbNext'
+            );
+
+
+        const prevButton =
+            document.getElementById(
+                'lbPrev'
+            );
+
+
+        /* ================= NEXT ================= */
+
+        if (nextButton) {
+
+            nextButton.addEventListener(
+                'click',
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    nextGalleryPhoto();
+
+                }
+            );
+
+        }
+
+
+        /* ================= PREVIOUS ================= */
+
+        if (prevButton) {
+
+            prevButton.addEventListener(
+                'click',
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    previousGalleryPhoto();
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           KEYBOARD NAVIGATION
+           ← Previous
+           → Next
+           ESC Existing Close
+           ================================================= */
+
+        document.addEventListener(
+            'keydown',
+            function (event) {
+
+                const lightbox =
+                    document.getElementById(
+                        'photoLightbox'
+                    );
+
+
+                /*
+                 * केवल तब keyboard navigation
+                 * चले जब lightbox खुला हो.
+                 */
+
+                if (
+                    !lightbox ||
+                    !lightbox.classList.contains(
+                        'show'
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                /* ================= LEFT ================= */
+
+                if (
+                    event.key ===
+                    'ArrowLeft'
+                ) {
+
+                    event.preventDefault();
+
+                    previousGalleryPhoto();
+
+                }
+
+
+                /* ================= RIGHT ================= */
+
+                if (
+                    event.key ===
+                    'ArrowRight'
+                ) {
+
+                    event.preventDefault();
+
+                    nextGalleryPhoto();
+
+                }
+
+            }
+        );
+
+    }
+);
+
+/* =====================================================
+   MOBILE TOUCH SWIPE
+   Swipe Left  → Next Photo
+   Swipe Right → Previous Photo
+   ===================================================== */
+
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const lightbox =
+            document.getElementById("photoLightbox");
+
+        if (!lightbox) return;
+
+
+        /* ================= TOUCH START ================= */
+
+        lightbox.addEventListener(
+            "touchstart",
+            function (event) {
+
+                if (
+                    !lightbox.classList.contains("show")
+                ) {
+                    return;
+                }
+
+                const touch =
+                    event.changedTouches[0];
+
+                touchStartX =
+                    touch.clientX;
+
+                touchStartY =
+                    touch.clientY;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* ================= TOUCH END ================= */
+
+        lightbox.addEventListener(
+            "touchend",
+            function (event) {
+
+                if (
+                    !lightbox.classList.contains("show")
+                ) {
+                    return;
+                }
+
+                const touch =
+                    event.changedTouches[0];
+
+                touchEndX =
+                    touch.clientX;
+
+                touchEndY =
+                    touch.clientY;
+
+
+                handleGallerySwipe();
+
+            },
+            {
+                passive: true
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   HANDLE SWIPE
+   ===================================================== */
+
+function handleGallerySwipe() {
+
+    const deltaX =
+        touchEndX - touchStartX;
+
+    const deltaY =
+        touchEndY - touchStartY;
+
+
+    /*
+     * Minimum horizontal movement.
+     * इससे छोटी movement को swipe नहीं माना जाएगा.
+     */
+
+    const minSwipeDistance = 50;
+
+
+    /*
+     * Vertical scroll को swipe navigation
+     * नहीं मानना है.
+     */
+
+    if (
+        Math.abs(deltaX) <
+        minSwipeDistance
+    ) {
+        return;
+    }
+
+
+    if (
+        Math.abs(deltaY) >
+        Math.abs(deltaX)
+    ) {
+        return;
+    }
+
+
+    /* ================= SWIPE LEFT ================= */
+
+    if (deltaX < 0) {
+
+        nextGalleryPhoto();
+
+    }
+
+
+    /* ================= SWIPE RIGHT ================= */
+
+    else {
+
+        previousGalleryPhoto();
+
+    }
+
+}
+
+
+/* =====================================================
+   MODIFY EXISTING OPEN LIGHTBOX
+   ===================================================== */
+
+
 
 /* =========================================================
    OPEN LIGHTBOX
