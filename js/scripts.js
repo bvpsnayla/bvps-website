@@ -1264,250 +1264,320 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 // =====================================================
-// BVPS HOMEPAGE GALLERY
-// Automatically loads images from gallery.html
+// BVPS HOME GALLERY
+// RANDOM IMAGES FROM ALL assets/images/ FOLDERS
 // =====================================================
 
 (function () {
 
-    const galleryImages = [];
-    let currentIndex = 0;
+    const GITHUB_OWNER = "bvpsnayla";
+    const GITHUB_REPO = "bvps-website";
 
-    // Gallery page से images निकालना
-    fetch("gallery.html")
-        .then(response => response.text())
-        .then(html => {
+    const ROOT_PATH = "assets/images";
 
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
+    let allGalleryImages = [];
+    let currentImages = [];
 
-            // Gallery के अंदर सभी images
-            const images = doc.querySelectorAll(".g-grid img");
+    // =====================================================
+    // GET ALL IMAGES RECURSIVELY FROM GITHUB
+    // =====================================================
 
-            images.forEach(img => {
+    async function getAllImages(path) {
 
-                const src = img.getAttribute("src");
+        const apiURL =
+            `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
 
-                if (src && !galleryImages.includes(src)) {
+        try {
 
-                    galleryImages.push({
-                        src: src,
-                        title: img.getAttribute("alt") || "BVPS School"
-                    });
+            const response = await fetch(apiURL);
+
+            if (!response.ok) {
+                throw new Error(
+                    `GitHub API Error: ${response.status}`
+                );
+            }
+
+            const items = await response.json();
+
+            let images = [];
+
+            for (const item of items) {
+
+                // IMAGE FILE
+                if (
+                    item.type === "file" &&
+                    /\.(jpg|jpeg|png|webp|gif)$/i.test(item.name)
+                ) {
+
+                    images.push(item.download_url);
 
                 }
 
-            });
+                // FOLDER
+                else if (item.type === "dir") {
 
-            // अगर images मिल गईं
-            if (galleryImages.length > 0) {
+                    const folderImages =
+                        await getAllImages(item.path);
 
-                // Random starting image
-                currentIndex =
-                    Math.floor(Math.random() * galleryImages.length);
+                    images.push(...folderImages);
 
-                showGalleryImages();
+                }
 
             }
-            document.querySelectorAll(".bvps-vg-photo").forEach(function (photo) {
 
-    photo.style.cursor = "pointer";
+            return images;
 
-    photo.onclick = function () {
-        window.location.href = "gallery.html";
-    };
+        } catch (error) {
 
-});
+            console.error(
+                "Gallery folder error:",
+                path,
+                error
+            );
 
-        })
-        .catch(error => {
-            console.error("BVPS Gallery Load Error:", error);
-        });
+            return [];
 
-
-    // =================================================
-    // SHOW IMAGES
-    // =================================================
-
-    function showGalleryImages() {
-
-        if (galleryImages.length === 0) return;
-
-        const total = galleryImages.length;
-
-        const getImage = (offset) => {
-
-            return galleryImages[
-                (currentIndex + offset + total) % total
-            ];
-
-        };
-
-
-        const farLeft =
-            getImage(-2);
-
-        const left =
-            getImage(-1);
-
-        const center =
-            getImage(0);
-
-        const right =
-            getImage(1);
-
-        const farRight =
-            getImage(2);
-
-
-        // Elements
-        const farLeftEl =
-            document.getElementById("bvpsVgFarLeft");
-
-        const leftEl =
-            document.getElementById("bvpsVgLeft");
-
-        const centerEl =
-            document.getElementById("bvpsVgCenter");
-
-        const rightEl =
-            document.getElementById("bvpsVgRight");
-
-        const farRightEl =
-            document.getElementById("bvpsVgFarRight");
-
-
-        if (!centerEl) return;
-
-
-        // Images
-        if (farLeftEl)
-            farLeftEl.src = farLeft.src;
-
-        if (leftEl)
-            leftEl.src = left.src;
-
-        centerEl.src =
-            center.src;
-
-        if (rightEl)
-            rightEl.src = right.src;
-
-        if (farRightEl)
-            farRightEl.src = farRight.src;
-
-
-        // Center image information
-        centerEl.alt =
-            center.title;
-
-
-        const category =
-            document.getElementById("bvpsVgCategory");
-
-        const title =
-            document.getElementById("bvpsVgTitle");
-
-
-        if (category)
-            category.textContent = "BVPS SCHOOL";
-
-        if (title)
-            title.textContent = center.title;
+        }
 
     }
 
 
-    // =================================================
-    // NEXT
-    // =================================================
+    // =====================================================
+    // SHUFFLE ARRAY
+    // =====================================================
+
+    function shuffle(array) {
+
+        for (
+            let i = array.length - 1;
+            i > 0;
+            i--
+        ) {
+
+            const j =
+                Math.floor(
+                    Math.random() * (i + 1)
+                );
+
+            [
+                array[i],
+                array[j]
+            ] = [
+                array[j],
+                array[i]
+            ];
+
+        }
+
+        return array;
+
+    }
+
+
+    // =====================================================
+    // SHOW 5 RANDOM IMAGES
+    // =====================================================
+
+    function showRandomImages() {
+
+        if (allGalleryImages.length === 0) {
+            return;
+        }
+
+        // पूरी gallery में से random 5
+        const shuffled =
+            shuffle([...allGalleryImages]);
+
+        currentImages =
+            shuffled.slice(
+                0,
+                Math.min(5, shuffled.length)
+            );
+
+
+        const imageElements = [
+
+            document.getElementById(
+                "bvpsVgFarLeft"
+            ),
+
+            document.getElementById(
+                "bvpsVgLeft"
+            ),
+
+            document.getElementById(
+                "bvpsVgCenter"
+            ),
+
+            document.getElementById(
+                "bvpsVgRight"
+            ),
+
+            document.getElementById(
+                "bvpsVgFarRight"
+            )
+
+        ];
+
+
+        imageElements.forEach(
+            function (element, index) {
+
+                if (
+                    element &&
+                    currentImages[index]
+                ) {
+
+                    element.src =
+                        currentImages[index];
+
+                    element.alt =
+                        "BVPS School Gallery";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // =====================================================
+    // LOAD ALL IMAGES
+    // =====================================================
+
+    async function loadBVPSGallery() {
+
+        console.log(
+            "Loading BVPS Gallery..."
+        );
+
+        allGalleryImages =
+            await getAllImages(ROOT_PATH);
+
+
+        // Remove duplicate paths
+        allGalleryImages =
+            [...new Set(allGalleryImages)];
+
+
+        console.log(
+            "TOTAL BVPS GALLERY IMAGES:",
+            allGalleryImages.length
+        );
+
+
+        if (
+            allGalleryImages.length === 0
+        ) {
+
+            console.warn(
+                "No images found in assets/images/"
+            );
+
+            return;
+
+        }
+
+
+        // FIRST RANDOM DISPLAY
+        showRandomImages();
+
+
+        // =================================================
+        // AUTO RANDOM CHANGE — EVERY 3 SECONDS
+        // =================================================
+
+        setInterval(
+            function () {
+
+                showRandomImages();
+
+            },
+            3000
+        );
+
+    }
+
+
+    // =====================================================
+    // NEXT BUTTON
+    // =====================================================
 
     const nextButton =
-        document.getElementById("bvpsVgNext");
+        document.getElementById(
+            "bvpsVgNext"
+        );
 
     if (nextButton) {
 
-        nextButton.addEventListener("click", function () {
+        nextButton.addEventListener(
+            "click",
+            function () {
 
-            if (galleryImages.length === 0) return;
+                showRandomImages();
 
-            currentIndex =
-                (currentIndex + 1) %
-                galleryImages.length;
-
-            showGalleryImages();
-
-        });
+            }
+        );
 
     }
 
 
-    // =================================================
-    // PREVIOUS
-    // =================================================
+    // =====================================================
+    // PREVIOUS BUTTON
+    // =====================================================
 
     const prevButton =
-        document.getElementById("bvpsVgPrev");
+        document.getElementById(
+            "bvpsVgPrev"
+        );
 
     if (prevButton) {
 
-        prevButton.addEventListener("click", function () {
+        prevButton.addEventListener(
+            "click",
+            function () {
 
-            if (galleryImages.length === 0) return;
+                showRandomImages();
 
-            currentIndex =
-                (currentIndex - 1 +
-                galleryImages.length) %
-                galleryImages.length;
-
-            showGalleryImages();
-
-        });
+            }
+        );
 
     }
 
 
-    // =================================================
-    // AUTO CHANGE — EVERY 3 SECONDS
-    // =================================================
+    // =====================================================
+    // PHOTO CLICK → GALLERY PAGE
+    // =====================================================
 
-    setInterval(function () {
+    document
+        .querySelectorAll(
+            ".bvps-vg-photo"
+        )
+        .forEach(
+            function (photo) {
 
-        if (galleryImages.length === 0) return;
+                photo.style.cursor =
+                    "pointer";
 
-        currentIndex =
-            (currentIndex + 1) %
-            galleryImages.length;
+                photo.addEventListener(
+                    "click",
+                    function () {
 
-        showGalleryImages();
+                        window.location.href =
+                            "gallery.html";
 
-    }, 3000);
+                    }
+                );
 
+            }
+        );
+
+
+    // =====================================================
+    // START
+    // =====================================================
+
+    loadBVPSGallery();
 
 })();
-
-// =================================================
-// CLICK ON ANY PHOTO → OPEN GALLERY
-// =================================================
-
-const galleryPhotoElements = [
-    document.getElementById("bvpsVgFarLeft"),
-    document.getElementById("bvpsVgLeft"),
-    document.getElementById("bvpsVgCenter"),
-    document.getElementById("bvpsVgRight"),
-    document.getElementById("bvpsVgFarRight")
-];
-
-galleryPhotoElements.forEach(function (img) {
-
-    if (img) {
-
-        img.style.cursor = "pointer";
-
-        img.onclick = function () {
-            window.location.href = "gallery.html";
-        };
-
-    }
-
-});
