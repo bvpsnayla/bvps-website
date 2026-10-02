@@ -778,7 +778,7 @@ body {
 .btn-ow,
 .btn-outline,
 .btn-outline-hero {
-  background: transparent;
+  background: linear-gradient(135deg, var(--navy), var(--accent));
   color: #fff;
   border: 2px solid rgba(255, 255, 255, .42);
   border-radius: 12px;
@@ -796,7 +796,7 @@ body {
 .btn-ow:hover,
 .btn-outline:hover,
 .btn-outline-hero:hover {
-  background: rgba(255, 255, 255, .12);
+  background: rgba(13, 110, 253, 1);
   border-color: rgba(255, 255, 255, .7);
   color: #fff;
 }
@@ -1676,20 +1676,26 @@ footer hr {
   margin: 0;
 }
 
-/* ─── MARQUEE / CAROUSEL ─── */
-.faculty-section,
-.marquee-section {
+/* ─── HOME FACULTY SECTION ─── */
+.faculty-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, rgba(47, 128, 237, .85) 100%);
+  background: var(--off-white);
   position: relative;
   overflow: hidden;
 }
 
-.marquee-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 70%,rgba(47,128,237,.08) 0%,transparent 50%)}
+/* अगर marquee-section कहीं और use हो तो उसका पुराना dark style सुरक्षित रहे */
+.marquee-section {
+  padding: 80px 0;
+  background: linear-gradient(
+    135deg,
+    var(--navy-deep) 0%,
+    var(--navy) 60%,
+    rgba(47, 128, 237, .85) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
 
 .marquee-wrap {
   width: 100%;
@@ -1724,17 +1730,17 @@ footer hr {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  border: 4px solid rgba(255, 255, 255, .2);
+  border: 4px solid #ffffff;
   overflow: hidden;
   margin: 0 auto 16px;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
-  transition: all .4s;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(23, 66, 86, .16);
+  transition: all .3s ease;
 }
 
 .teacher-img:hover {
-  border-color: var(--gold-light);
-  transform: translateY(-8px);
+  border-color: var(--blue);
+  transform: translateY(-7px);
 }
 
 .teacher-img img {
@@ -1747,22 +1753,58 @@ footer hr {
   font-family: 'Playfair Display', serif;
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--gold-light);
+  color: var(--navy);
   margin-bottom: 4px;
 }
 
 .teacher-card .subject {
   font-size: .86rem;
   font-weight: 600;
-  color: var(--gold-light);
-  opacity: .9;
+  color: var(--blue);
   margin-bottom: 2px;
 }
 
 .teacher-card .exp {
-  font-size: .78rem;
-  color: rgba(255, 255, 255, .5);
-  font-style: italic;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 5px 11px;
+  border: 1px solid rgba(217, 119, 6, .22);
+  border-radius: 16px;
+  background: rgba(217, 119, 6, .10);
+  color: var(--gold);
+  font-size: .76rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.teacher-card .exp i {
+  color: var(--gold);
+}
+
+/* Faculty CTA */
+.faculty-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 2px solid var(--navy);
+  border-radius: 12px;
+  background: var(--navy);
+  color: #ffffff;
+  font-size: .92rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(23, 66, 86, .18);
+  transition: all .25s ease;
+}
+
+.faculty-cta:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff;
+  transform: translateY(-3px);
 }
 
 /* ─── ABOUT SECTION ─── */
@@ -2019,7 +2061,7 @@ footer hr {
 
 .app-section {
   padding: 80px 0;
-  background: var(--off-white);
+  background: #e3e4ee;
 }
 
 .app-content {
@@ -4575,7 +4617,7 @@ footer hr {
 }
 
 /* ===== APP SECTION ===== */
-.app-section{padding:80px 0;background:var(--off-white)}
+.app-section{padding:80px 0;}
 .app-content{padding-left:20px}
 .app-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .app-eyebrow .line{width:30px;height:3px;background:var(--accent);border-radius:2px}
